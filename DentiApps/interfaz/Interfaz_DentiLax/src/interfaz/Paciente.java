@@ -1,0 +1,167 @@
+package interfaz;
+
+import java.awt.FlowLayout;
+
+import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JTable;
+import javax.swing.border.EmptyBorder;
+
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
+import java.awt.Font;
+import java.awt.Toolkit;
+
+import javax.swing.JTextField;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
+public class Paciente extends JDialog {
+
+	private static final long serialVersionUID = 1L;
+	private final JPanel contentPanel = new JPanel();
+	
+	
+	private JTextField text_nombrePaciente;
+	private JTextField text_dniPaciente;
+	private JTextField text_direccionPaciente;
+	private JTextField text_emailPaciente;
+	private JTextField text_telefonoPaciente;
+	private JTextField text_edadPaciente;
+	private JTable table_paciente;
+
+	public static void main(String[] args) {
+		
+	}
+
+	public Paciente() {
+			
+		setTitle("Paciente");
+		setBounds(100, 100, 900, 700);
+		getContentPane().setLayout(null);
+		contentPanel.setBounds(0, 0, 884, 660);
+		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
+		getContentPane().add(contentPanel);
+		contentPanel.setLayout(null);
+		{
+			JPanel buttonPane = new JPanel();
+			buttonPane.setBounds(10, 516, 864, 133);
+			contentPanel.add(buttonPane);
+			buttonPane.setLayout(null);
+			{
+				JLabel lblNewLabel_1 = new JLabel("Nombre y Apellidos:");
+				lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 15));
+				lblNewLabel_1.setBounds(10, 10, 150, 20);
+				buttonPane.add(lblNewLabel_1);
+			}
+			{
+				JLabel lblNewLabel_1 = new JLabel("Dni:");
+				lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 15));
+				lblNewLabel_1.setBounds(10, 40, 150, 20);
+				buttonPane.add(lblNewLabel_1);
+			}
+			{
+				JLabel lblNewLabel_1 = new JLabel("Dirección:");
+				lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 15));
+				lblNewLabel_1.setBounds(10, 70, 150, 20);
+				buttonPane.add(lblNewLabel_1);
+			}
+			{
+				JLabel lblNewLabel_1 = new JLabel("Email:");
+				lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 15));
+				lblNewLabel_1.setBounds(10, 100, 150, 20);
+				buttonPane.add(lblNewLabel_1);
+			}
+			
+			text_nombrePaciente = new JTextField();
+			text_nombrePaciente.setBounds(180, 10, 285, 20);
+			buttonPane.add(text_nombrePaciente);
+			text_nombrePaciente.setColumns(10);
+			
+			text_dniPaciente = new JTextField();
+			text_dniPaciente.setColumns(10);
+			text_dniPaciente.setBounds(180, 40, 285, 20);
+			buttonPane.add(text_dniPaciente);
+			
+			text_direccionPaciente = new JTextField();
+			text_direccionPaciente.setColumns(10);
+			text_direccionPaciente.setBounds(180, 70, 285, 20);
+			buttonPane.add(text_direccionPaciente);
+			
+			text_emailPaciente = new JTextField();
+			text_emailPaciente.setColumns(10);
+			text_emailPaciente.setBounds(180, 100, 285, 20);
+			buttonPane.add(text_emailPaciente);
+			
+			JLabel lblNewLabel_1 = new JLabel("Nº Telefono:");
+			lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 15));
+			lblNewLabel_1.setBounds(537, 10, 135, 20);
+			buttonPane.add(lblNewLabel_1);
+			
+			JLabel lblNewLabel_1_1 = new JLabel("Edad:");
+			lblNewLabel_1_1.setFont(new Font("Tahoma", Font.BOLD, 15));
+			lblNewLabel_1_1.setBounds(537, 40, 135, 20);
+			buttonPane.add(lblNewLabel_1_1);
+			
+			text_telefonoPaciente = new JTextField();
+			text_telefonoPaciente.setBounds(684, 10, 170, 20);
+			buttonPane.add(text_telefonoPaciente);
+			text_telefonoPaciente.setColumns(10);
+			
+			text_edadPaciente = new JTextField();
+			text_edadPaciente.setColumns(10);
+			text_edadPaciente.setBounds(684, 40, 170, 20);
+			buttonPane.add(text_edadPaciente);
+			
+			JButton btn_odontograma = new JButton("Odontograma");
+			btn_odontograma.setFont(new Font("Tahoma", Font.BOLD, 15));
+			btn_odontograma.setBounds(535, 87, 320, 35);
+			buttonPane.add(btn_odontograma);
+		}
+		
+		JLabel lblNewLabel = new JLabel("Datos Cliente");
+		lblNewLabel.setBounds(10, 485, 105, 20);
+		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 15));
+		contentPanel.add(lblNewLabel);
+		
+		
+		
+		
+		
+		JButton btn_modificarCliente = new JButton("Modificar");
+		btn_modificarCliente.addActionListener(new ActionListener() {
+		public void actionPerformed(ActionEvent e) {
+					
+			}
+		});
+		btn_modificarCliente.setBounds(695, 485, 85, 20);
+		contentPanel.add(btn_modificarCliente);
+		
+		
+		JButton btn_agregarCliente = new JButton("Agregar");
+		btn_agregarCliente.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
+		btn_agregarCliente.setBounds(600, 485, 85, 20);
+		contentPanel.add(btn_agregarCliente);
+		
+		JButton btn_bajaCliente = new JButton("Baja");
+		btn_bajaCliente.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btn_bajaCliente.setBounds(790, 485, 85, 20);
+		contentPanel.add(btn_bajaCliente);
+		
+		table_paciente = new JTable();
+		table_paciente.setBounds(10, 11, 864, 463);
+		contentPanel.add(table_paciente);
+		
+	}
+
+}
