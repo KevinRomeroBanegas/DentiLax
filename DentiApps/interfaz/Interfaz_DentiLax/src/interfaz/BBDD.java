@@ -161,15 +161,14 @@ public class BBDD {
 		}
 	}
 
-	public void borrar(String tableName, boolean AutoInc) {
+	public void borrar(String tableName, String[] valoresFinales, boolean AutoInc) {
 		conectar();
 		try {
 			DatabaseMetaData metaData = (DatabaseMetaData) cn.getMetaData();
 			ResultSet resultSet = metaData.getColumns(null, null, tableName, null);
 			String columnNames = "";
 			String[] ArrayC;
-			String[] miarray;
-			String Condicion = "";
+			String condicion = "";
 			if (AutoInc == false) {
 				while (resultSet.next()) {
 					String columnName = resultSet.getString("COLUMN_NAME");
@@ -177,7 +176,6 @@ public class BBDD {
 				}
 				columnNames = columnNames.substring(0, columnNames.length() - 1);
 				ArrayC = columnNames.split(",");
-				miarray = Arrays.copyOf(ArrayC, ArrayC.length);
 			} else {
 				while (resultSet.next()) {
 					String columnName = resultSet.getString("COLUMN_NAME");
@@ -187,21 +185,22 @@ public class BBDD {
 				ArrayC = columnNames.split(",");
 				ArrayList<String> Columnas = new ArrayList<String>(Arrays.asList(ArrayC));
 				Columnas.remove(0);
-				miarray = new String[Columnas.size()];
-				miarray = Columnas.toArray(miarray);
-			}
-			int respuesta = JOptionPane.showOptionDialog(null,
-					"¿Que campo quieres usar para borrar la tabla" + tableName + " ?", "BORRAR",
-					JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, miarray, miarray[0]);
-			for (int i = 0; i < miarray.length; i++) {
-				if (respuesta == i) {
-					Condicion = JOptionPane.showInputDialog(
-							"Ingrese la condición para borrar el registro de " + miarray[i].toString());
-					Condicion = miarray[i].toString() + "='" + Condicion + "'";
+				StringBuilder str = new StringBuilder();
+				for (String ColumnasDefinitivas : Columnas) {
+					str.append(ColumnasDefinitivas);
+					str.append(",");
 				}
+				columnNames = str.substring(0, str.length() - 1);
+				ArrayC = columnNames.split(",");
 			}
 
-			String query = "DELETE FROM bbdd_dentista." + tableName + " WHERE " + Condicion;
+			for (int i = 0; i < valoresFinales.length; i++) {
+				String valor = ArrayC[i] + "=" + valoresFinales[i];
+				condicion += valor + ",";
+			}
+			condicion = condicion.substring(0, condicion.length() - 1);
+
+			String query = "DELETE FROM bbdd_dentista." + tableName +" WHERE " + condicion;
 			Statement statement = cn.createStatement();
 			statement.executeUpdate(query);
 			statement.close();
