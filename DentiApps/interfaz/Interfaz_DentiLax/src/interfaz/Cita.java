@@ -177,6 +177,7 @@ public class Cita extends JDialog {
 		JButton btn_bajaCita = new JButton("Baja");
 		btn_bajaCita.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				bbdd.borrar("cita",true);
 			}
 		});
 		btn_bajaCita.setBounds(790, 485, 85, 20);
