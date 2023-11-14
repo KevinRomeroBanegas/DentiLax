@@ -210,15 +210,15 @@ public class BBDD {
 		}
 	}
 
-	public void modificar(String tableName, boolean AutoInc) {
+	public void modificar(String tableName, String[] valoresFinales, boolean AutoInc) {
 		conectar();
 		try {
 			DatabaseMetaData metaData = (DatabaseMetaData) cn.getMetaData();
 			ResultSet resultSet = metaData.getColumns(null, null, tableName, null);
 			String columnNames = "";
+			String valores = "";
 			String[] ArrayC;
-			String[] miarray;
-			String Condicion = "";
+			String condicion = "";
 			if (AutoInc == false) {
 				while (resultSet.next()) {
 					String columnName = resultSet.getString("COLUMN_NAME");
@@ -226,7 +226,7 @@ public class BBDD {
 				}
 				columnNames = columnNames.substring(0, columnNames.length() - 1);
 				ArrayC = columnNames.split(",");
-				miarray = Arrays.copyOf(ArrayC, ArrayC.length);
+				valores = ArrayC[0] + "= '" + valoresFinales[0];
 			} else {
 				while (resultSet.next()) {
 					String columnName = resultSet.getString("COLUMN_NAME");
@@ -236,21 +236,23 @@ public class BBDD {
 				ArrayC = columnNames.split(",");
 				ArrayList<String> Columnas = new ArrayList<String>(Arrays.asList(ArrayC));
 				Columnas.remove(0);
-				miarray = new String[Columnas.size()];
-				miarray = Columnas.toArray(miarray);
-			}
-			int respuesta = JOptionPane.showOptionDialog(null,
-					"¿Que campo quieres modificar de la tabla" + tableName + " ?", "MODIFICAR",
-					JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, miarray, miarray[0]);
-			for (int i = 0; i < miarray.length; i++) {
-				if (respuesta == i) {
-					Condicion = JOptionPane
-							.showInputDialog("Ingrese la modificación del registro de " + miarray[i].toString());
-					Condicion = miarray[i].toString() + "='" + Condicion + "'";
+				StringBuilder str = new StringBuilder();
+				for (String ColumnasDefinitivas : Columnas) {
+					str.append(ColumnasDefinitivas);
+					str.append(",");
 				}
+				columnNames = str.substring(0, str.length() - 1);
+				ArrayC = columnNames.split(",");
+				valores = ArrayC[0] + "=" + valoresFinales[0];
 			}
 
-			String query = "DELETE FROM bbdd_dentista." + tableName + " WHERE " + Condicion;
+			for (int i = 0; i < valoresFinales.length; i++) {
+				String valor = ArrayC[i] + "=" + valoresFinales[i];
+				condicion += valor + ",";
+			}
+			condicion = condicion.substring(0, condicion.length() - 1);
+
+			String query = "UPDATE bbdd_dentista." + tableName + " SET " + valores + " WHERE " + condicion;
 			Statement statement = cn.createStatement();
 			statement.executeUpdate(query);
 			statement.close();
@@ -315,12 +317,12 @@ public class BBDD {
 
 	public String[] SacarValoresTabla(JTable table) {
 		DefaultTableModel model = (DefaultTableModel) table.getModel();
-		String []valores=new String[table.getColumnCount()];
-		for(int i=0; i<valores.length; i++) {
-			valores[i]=String.valueOf(model.getValueAt(table.getSelectedRow(), i));
+		String[] valores = new String[table.getColumnCount()];
+		for (int i = 0; i < valores.length; i++) {
+			valores[i] = String.valueOf(model.getValueAt(table.getSelectedRow(), i));
 		}
 		return valores;
-		
+
 	}
 
 }

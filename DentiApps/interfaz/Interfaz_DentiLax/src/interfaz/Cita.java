@@ -156,7 +156,14 @@ public class Cita extends JDialog {
 		JButton btn_modificarCita = new JButton("Modificar");
 		btn_modificarCita.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
+				String [] valores= new String[5];
+				valores[0]="'"+text_nombrePaciente.getText()+"'";
+				valores[1]="'"+cmb_Doctores.getSelectedItem().toString()+"'";
+				valores[2]="'"+cmb_Tratamientos.getSelectedItem().toString()+"'";
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+				valores[3]= "'"+sdf.format(fechaCalendario.getDate())+"'";
+				valores[4]="'"+text_observacionesCita.getText()+"'";
+				bbdd.modificar("cita", valores, true);
 			}
 		});
 		btn_modificarCita.setBounds(695, 485, 85, 20);
