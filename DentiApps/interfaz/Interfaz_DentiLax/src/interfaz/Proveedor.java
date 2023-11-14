@@ -33,6 +33,7 @@ public class Proveedor extends JDialog {
 	}
 
 	public Proveedor() {
+		BBDD bbdd=new BBDD();
 		setTitle("Proveedor");
 		setBounds(100, 100, 900, 700);
 		getContentPane().setLayout(null);
@@ -124,6 +125,7 @@ public class Proveedor extends JDialog {
 		
 		table_proveedor = new JTable();
 		table_proveedor.setBounds(10, 11, 864, 463);
+		table_proveedor=bbdd.MostrarTabla("Proveedores", table_proveedor);
 		contentPanel.add(table_proveedor);
 		
 	}

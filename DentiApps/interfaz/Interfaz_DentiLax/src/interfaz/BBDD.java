@@ -16,6 +16,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 import com.mysql.jdbc.DatabaseMetaData;
+import com.mysql.jdbc.ResultSetMetaData;
 
 public class BBDD {
 	private static final String CONTROLADOR = "com.mysql.jdbc.Driver";
@@ -238,19 +239,22 @@ public class BBDD {
 	}
 
 	public JTable MostrarTabla(String TableName, JTable table) {
-		conectar();
-		try {
-			String sql = "SELECT * FROM bbdd_dentista." + TableName;
+	    conectar();
+	    try {
+	        String sql = "SELECT * FROM bbdd_dentista." + TableName;
+	        Statement st = cn.createStatement();
+	        ResultSet res = st.executeQuery(sql);
 
-			Statement st;
+	        DefaultTableModel model = new DefaultTableModel();
 
-			DefaultTableModel model = new DefaultTableModel();
-			DatabaseMetaData metaData = (DatabaseMetaData) cn.getMetaData();
-			ResultSet resultSet;
+	        // Obtén metadatos para agregar columnas
+	        ResultSetMetaData metaData = (ResultSetMetaData) res.getMetaData();
+	        int columnCount = metaData.getColumnCount();
+	        DatabaseMetaData Data = (DatabaseMetaData) cn.getMetaData();
+	        ResultSet resultSet;
+			resultSet = Data.getColumns(null, null, TableName, null);
 
-			resultSet = metaData.getColumns(null, null, TableName, null);
-
-			String columnNames = "";
+	        String columnNames = "";
 			while (resultSet.next()) {
 				String columnName = resultSet.getString("COLUMN_NAME");
 				columnNames += columnName + ",";
@@ -260,30 +264,27 @@ public class BBDD {
 
 			table.setModel(model);
 			model.addRow(Array);
+	       // Agrega filas al modelo
+	        while (res.next()) {
+	            String[] rowData = new String[columnCount];
+	            for (int i = 1; i <= columnCount; i++) {
+	                rowData[i - 1] = res.getString(i);
+	            }
+	            model.addRow(rowData);
+	        }
 
-			try {
-				String[] dato = new String[Array.length];
-				st = cn.createStatement();
-				ResultSet res = st.executeQuery(sql);
-				int cont=0;
-				int contadorString = 1;
-				while (res.next()) {
-					for(int i=0; i<dato.length; i++) {
-						dato[i]= res.getString(contadorString);
-						System.out.println("dato["+i+"]= res.getString("+contadorString+")");
-						contadorString++;
-						model.addRow(dato);
-					}
-					contadorString=1;
-				}
-			} catch (Exception e) {
-				e.getMessage();
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return table;
+	        // Cierra recursos
+	        res.close();
+	        st.close();
+	        cn.close();
+
+	        // Establece el modelo en la tabla
+	        table.setModel(model);
+
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+	    return table;
 	}
 
 }

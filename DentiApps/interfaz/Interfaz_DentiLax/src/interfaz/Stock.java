@@ -34,6 +34,7 @@ public class Stock extends JDialog {
 	}
 
 	public Stock() {
+		BBDD bbdd=new BBDD();
 		setTitle("Stock");
 		setBounds(100, 100, 900, 700);
 		getContentPane().setLayout(null);
@@ -135,6 +136,8 @@ public class Stock extends JDialog {
 		
 		table_stock = new JTable();
 		table_stock.setBounds(10, 11, 864, 463);
+		
+		table_stock=bbdd.MostrarTabla("Stock", table_stock);
 		contentPanel.add(table_stock);
 		
 	}

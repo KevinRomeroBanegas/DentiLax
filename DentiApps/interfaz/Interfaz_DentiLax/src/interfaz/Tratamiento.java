@@ -33,6 +33,7 @@ public class Tratamiento extends JDialog {
 	}
 
 	public Tratamiento() {
+		BBDD bbdd=new BBDD();
 		setTitle("Tratamiento");
 		setBounds(100, 100, 900, 700);
 		getContentPane().setLayout(null);
@@ -124,6 +125,7 @@ public class Tratamiento extends JDialog {
 		
 		table_tratamiento = new JTable();
 		table_tratamiento.setBounds(10, 11, 864, 463);
+		table_tratamiento=bbdd.MostrarTabla("tratamiento", table_tratamiento);
 		contentPanel.add(table_tratamiento);
 		
 	}

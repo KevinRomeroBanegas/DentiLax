@@ -36,6 +36,7 @@ public class Materiales extends JDialog implements ActionListener{
 	}
 
 	public Materiales() {
+		BBDD bbdd=new BBDD();
 		setTitle("Materiales");
 		setBounds(100, 100, 900, 700);
 		getContentPane().setLayout(null);
@@ -131,6 +132,7 @@ public class Materiales extends JDialog implements ActionListener{
 		
 		table_material = new JTable();
 		table_material.setBounds(10, 11, 864, 493);
+		table_material=bbdd.MostrarTabla("Stock", table_material);
 		contentPanel.add(table_material);
 		
 	}
