@@ -38,6 +38,8 @@ public class Paciente extends JDialog {
 	}
 
 	public Paciente() {
+		BBDD bbdd= new BBDD();
+		bbdd.conectar();
 		setTitle("Paciente");
 		setBounds(100, 100, 900, 700);
 		getContentPane().setLayout(null);
@@ -159,6 +161,7 @@ public class Paciente extends JDialog {
 		
 		table_paciente = new JTable();
 		table_paciente.setBounds(10, 11, 864, 463);
+		table_paciente=bbdd.MostrarTabla("Cliente", table_paciente);
 		contentPanel.add(table_paciente);
 		
 	}

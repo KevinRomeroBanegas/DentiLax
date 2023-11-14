@@ -8,10 +8,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import javax.swing.JTable;
 import java.util.Arrays;
 import java.util.Collection;
 
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 import com.mysql.jdbc.DatabaseMetaData;
 
@@ -166,7 +168,7 @@ public class BBDD {
 			String columnNames = "";
 			String[] ArrayC;
 			String[] miarray;
-			String Condicion="";
+			String Condicion = "";
 			if (AutoInc == false) {
 				while (resultSet.next()) {
 					String columnName = resultSet.getString("COLUMN_NAME");
@@ -191,37 +193,97 @@ public class BBDD {
 					JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, miarray, miarray[0]);
 			for (int i = 0; i < miarray.length; i++) {
 				if (respuesta == i) {
-					Condicion = JOptionPane.showInputDialog("Ingrese la condición para borrar el registro de "+miarray[i].toString());
-					Condicion=miarray[i].toString()+"='"+Condicion+"'";
+					Condicion = JOptionPane.showInputDialog(
+							"Ingrese la condición para borrar el registro de " + miarray[i].toString());
+					Condicion = miarray[i].toString() + "='" + Condicion + "'";
 				}
 			}
-			
 
 			String query = "DELETE FROM bbdd_dentista." + tableName + " WHERE " + Condicion;
-			 Statement statement = cn.createStatement();
-			 statement.executeUpdate(query);
-			 statement.close();
+			Statement statement = cn.createStatement();
+			statement.executeUpdate(query);
+			statement.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
 
-	public String modificarCliente(String dNI, String nombre, int edad, String email, String direccion, String ciudad,
-			int tel) {
-		String Direccion_Completa = direccion + ", " + ciudad;
-		String result = "";
+	public void modificar(String tableName, boolean AutoInc) {
+		/*
+		 * conectar(); try { DatabaseMetaData metaData = (DatabaseMetaData)
+		 * cn.getMetaData(); ResultSet resultSet = metaData.getColumns(null, null,
+		 * tableName, null); String columnNames = ""; String valoresFinales = "";
+		 * 
+		 * if (AutoInc == false) { while (resultSet.next()) { String columnName =
+		 * resultSet.getString("COLUMN_NAME"); columnNames += columnName + ","; }
+		 * columnNames = columnNames.substring(0, columnNames.length() - 1); } else {
+		 * while (resultSet.next()) { String columnName =
+		 * resultSet.getString("COLUMN_NAME"); columnNames += columnName + ","; }
+		 * columnNames = columnNames.substring(0, columnNames.length() - 1); String[]
+		 * ArrayC = columnNames.split(","); ArrayList<String> Columnas = new
+		 * ArrayList<String>(Arrays.asList(ArrayC)); Columnas.remove(0); StringBuilder
+		 * str = new StringBuilder(); for (String ColumnasDefinitivas : Columnas) {
+		 * str.append(ColumnasDefinitivas); str.append(","); } columnNames =
+		 * str.substring(0, str.length() - 1); }
+		 * 
+		 * Statement statement = cn.createStatement(); for (int i = 0; i <
+		 * valores.length; i++) { String valor = valores[i].toString(); valoresFinales
+		 * += valor + ","; } valoresFinales = valoresFinales.substring(0,
+		 * valoresFinales.length() - 1); String query = "INSERT INTO bbdd_dentista." +
+		 * tableName + " (" + columnNames + ") VALUES (" + valoresFinales + ")";
+		 * statement.executeUpdate(query); statement.close();
+		 * 
+		 * } catch (SQLException e) { e.printStackTrace(); }
+		 */
+	}
+
+	public JTable MostrarTabla(String TableName, JTable table) {
+		conectar();
 		try {
-			this.conectar();
-			stm.executeUpdate("UPDATE bbdd_dentista.cliente SET Nombre='" + nombre + "', Direccion='"
-					+ Direccion_Completa + "', Edad=" + edad + ", Telefono=" + tel + ", Email='" + email
-					+ "' WHERE DNI='" + dNI + "'");
-			stm.close();
-			cn.close();
-			result = "Ok";
-		} catch (Exception e) {
-			result = "No";
+			String sql = "SELECT * FROM bbdd_dentista." + TableName;
+
+			Statement st;
+
+			DefaultTableModel model = new DefaultTableModel();
+			DatabaseMetaData metaData = (DatabaseMetaData) cn.getMetaData();
+			ResultSet resultSet;
+
+			resultSet = metaData.getColumns(null, null, TableName, null);
+
+			String columnNames = "";
+			while (resultSet.next()) {
+				String columnName = resultSet.getString("COLUMN_NAME");
+				columnNames += columnName + ",";
+				model.addColumn(columnName);
+			}
+			String[] Array = columnNames.split(",");
+
+			table.setModel(model);
+			model.addRow(Array);
+
+			try {
+				String[] dato = new String[Array.length];
+				st = cn.createStatement();
+				ResultSet res = st.executeQuery(sql);
+				int cont=0;
+				int contadorString = 1;
+				while (res.next()) {
+					for(int i=0; i<dato.length; i++) {
+						dato[i]= res.getString(contadorString);
+						System.out.println("dato["+i+"]= res.getString("+contadorString+")");
+						contadorString++;
+						model.addRow(dato);
+					}
+					contadorString=1;
+				}
+			} catch (Exception e) {
+				e.getMessage();
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		return result;
+		return table;
 	}
 
 }

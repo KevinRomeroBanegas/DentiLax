@@ -185,6 +185,7 @@ public class Cita extends JDialog {
 
 		table_cita = new JTable();
 		table_cita.setBounds(10, 11, 864, 463);
+		table_cita=bbdd.MostrarTabla("Cita", table_cita);
 		contentPanel.add(table_cita);
 
 	}
