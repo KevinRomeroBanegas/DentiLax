@@ -49,7 +49,6 @@ public class BBDD {
 
 		return cn;
 	}
-
 	public int entrar(String Nombre, String Cont) throws SQLException {
 		this.conectar();
 		int ent = 2;

@@ -76,12 +76,12 @@ public class InicioSesion extends JFrame {
 					} else {
 						if(i==1) {
 							JOptionPane.showMessageDialog(null, "Has iniciado sesion correctamente como administrador");
-							PaginaPrincipal frameLobby=new PaginaPrincipal();
+							PaginaPrincipal frameLobby=new PaginaPrincipal(nombre);
 							frameLobby.setVisible(true);
 							dispose();
 						} else {
 							JOptionPane.showMessageDialog(null, "Has iniciado sesion correctamente como doctor");
-							PaginaPrincipal frameLobby=new PaginaPrincipal();
+							PaginaPrincipal frameLobby=new PaginaPrincipal(nombre);
 							frameLobby.setVisible(true);
 							dispose();
 						}
