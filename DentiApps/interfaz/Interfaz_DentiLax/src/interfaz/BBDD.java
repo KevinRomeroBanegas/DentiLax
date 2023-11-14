@@ -8,12 +8,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 
 import javax.swing.JOptionPane;
 
+import com.mysql.jdbc.DatabaseMetaData;
+
 public class BBDD {
-	//Prueba
 	private static final String CONTROLADOR = "com.mysql.jdbc.Driver";
 	private static final String URL = "jdbc:mysql://localhost:3306/bbdd_dentista?useSSL=false";
 	private static final String USUARIO = "root";
@@ -143,6 +145,54 @@ public class BBDD {
 
 		return dato;
 	}
+	
+    public void insertar(String tableName, String [] valores, boolean AutoInc) {
+        conectar();
+        try {
+            DatabaseMetaData metaData = (DatabaseMetaData) cn.getMetaData();
+            ResultSet resultSet = metaData.getColumns(null, null, tableName, null);
+            String columnNames = "";
+            String valoresFinales="";
+
+            if(AutoInc==false) {
+            while (resultSet.next()) {
+                String columnName = resultSet.getString("COLUMN_NAME");
+                columnNames += columnName + ",";
+            }
+            columnNames = columnNames.substring(0, columnNames.length() - 1);
+            } else {
+            	while (resultSet.next()) {
+                    String columnName = resultSet.getString("COLUMN_NAME");
+                    columnNames += columnName + ",";
+                }
+            	columnNames = columnNames.substring(0, columnNames.length() - 1);
+            	String []ArrayC=columnNames.split(",");
+            	ArrayList <String>Columnas=new ArrayList<String>(Arrays.asList(ArrayC));
+            	Columnas.remove(0);
+            	StringBuilder str = new StringBuilder();
+                for (String ColumnasDefinitivas : Columnas) {
+                  str.append(ColumnasDefinitivas);
+                  str.append(",");
+                }
+                columnNames = str.substring(0, str.length() - 1);
+            	}
+
+            
+
+            Statement statement = cn.createStatement();
+            for(int i=0; i<valores.length; i++) {
+            	String valor = valores[i].toString();
+                valoresFinales += valor + ",";
+            }
+            valoresFinales = valoresFinales.substring(0, valoresFinales.length() - 1);
+            String query = "INSERT INTO bbdd_dentista." + tableName + " (" + columnNames + ") VALUES (" + valoresFinales + ")";
+            statement.executeUpdate(query);
+            statement.close();
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
 	public String modificarCliente(String dNI, String nombre, int edad, String email, String direccion, String ciudad, int tel) {
 		String Direccion_Completa = direccion + ", " + ciudad;

@@ -38,7 +38,6 @@ public class Paciente extends JDialog {
 	}
 
 	public Paciente() {
-		//Prueba
 		setTitle("Paciente");
 		setBounds(100, 100, 900, 700);
 		getContentPane().setLayout(null);

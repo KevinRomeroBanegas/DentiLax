@@ -34,7 +34,6 @@ public class Stock extends JDialog {
 	}
 
 	public Stock() {
-		//Prueba
 		setTitle("Stock");
 		setBounds(100, 100, 900, 700);
 		getContentPane().setLayout(null);
