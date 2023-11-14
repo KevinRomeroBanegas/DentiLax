@@ -9,6 +9,9 @@ import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
 import javax.swing.JTextField;
 
 public class Stock extends JDialog {
@@ -138,6 +141,7 @@ public class Stock extends JDialog {
 		table_stock.setBounds(10, 11, 864, 463);
 		
 		table_stock=bbdd.MostrarTabla("Stock", table_stock);
+		
 		contentPanel.add(table_stock);
 		
 	}

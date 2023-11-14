@@ -9,6 +9,8 @@ import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
 import java.text.DateFormat;
+import java.text.ParseException;
+
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
@@ -17,6 +19,8 @@ import java.awt.Toolkit;
 
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.text.SimpleDateFormat;
@@ -115,11 +119,11 @@ public class Cita extends JDialog {
 					String trat = cmb_Tratamientos.getSelectedItem().toString();
 					ArrayList DatosFiltrados;
 					try {
+						cmb_Doctores.removeAll();
 						DatosFiltrados = new ArrayList(bbdd.consultaDoctoresFiltrado(trat));
 						for (int i = 0; i < DatosFiltrados.size(); i++) {
 							String valor = (String) DatosFiltrados.get(i);
 							cmb_Doctores.addItem(valor);
-							DatosFiltrados.clear();
 						}
 					} catch (SQLException e1) {
 						// TODO Auto-generated catch block
@@ -186,7 +190,50 @@ public class Cita extends JDialog {
 		table_cita = new JTable();
 		table_cita.setBounds(10, 11, 864, 463);
 		table_cita=bbdd.MostrarTabla("Cita", table_cita);
+		table_cita.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if (e.getClickCount() == 2) {
+                    String[]valores=bbdd.SacarValoresTabla(table_cita);
+                    text_nombrePaciente.setText(valores[1].toString());
+                    selectItemInComboBox(cmb_Tratamientos, valores[3]);
+                    cmb_Doctores.setEnabled(true);
+					String trat = cmb_Tratamientos.getSelectedItem().toString();
+					ArrayList DatosFiltrados;
+					try {
+						cmb_Doctores.removeAll();
+						DatosFiltrados = new ArrayList(bbdd.consultaDoctoresFiltrado(trat));
+						for (int i = 0; i < DatosFiltrados.size(); i++) {
+							String valor = (String) DatosFiltrados.get(i);
+							cmb_Doctores.addItem(valor);
+						}
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+                    selectItemInComboBox(cmb_Doctores, valores[2]);
+                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                    Date fecha;
+					try {
+						fecha = sdf.parse(valores[4].toString());
+						fechaCalendario.setDate(fecha);
+					} catch (ParseException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+                    text_observacionesCita.setText(valores[5].toString());
+                }
+            }
+        });
 		contentPanel.add(table_cita);
 
+	}
+	private void selectItemInComboBox(JComboBox<String> comboBox, String value) {
+	    for (int i = 0; i < comboBox.getItemCount(); i++) {
+	        if (comboBox.getItemAt(i).equals(value)) {
+	            comboBox.setSelectedIndex(i);
+	            return; // Sal del bucle si se encuentra el elemento
+	        }
+	    }
 	}
 }

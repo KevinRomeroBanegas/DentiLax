@@ -190,7 +190,8 @@ public class BBDD {
 				miarray = new String[Columnas.size()];
 				miarray = Columnas.toArray(miarray);
 			}
-			int respuesta = JOptionPane.showOptionDialog(null, "¿Que campo quieres usar para borrar la cita?", "BORRAR",
+			int respuesta = JOptionPane.showOptionDialog(null,
+					"¿Que campo quieres usar para borrar la tabla" + tableName + " ?", "BORRAR",
 					JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, miarray, miarray[0]);
 			for (int i = 0; i < miarray.length; i++) {
 				if (respuesta == i) {
@@ -210,51 +211,71 @@ public class BBDD {
 	}
 
 	public void modificar(String tableName, boolean AutoInc) {
-		/*
-		 * conectar(); try { DatabaseMetaData metaData = (DatabaseMetaData)
-		 * cn.getMetaData(); ResultSet resultSet = metaData.getColumns(null, null,
-		 * tableName, null); String columnNames = ""; String valoresFinales = "";
-		 * 
-		 * if (AutoInc == false) { while (resultSet.next()) { String columnName =
-		 * resultSet.getString("COLUMN_NAME"); columnNames += columnName + ","; }
-		 * columnNames = columnNames.substring(0, columnNames.length() - 1); } else {
-		 * while (resultSet.next()) { String columnName =
-		 * resultSet.getString("COLUMN_NAME"); columnNames += columnName + ","; }
-		 * columnNames = columnNames.substring(0, columnNames.length() - 1); String[]
-		 * ArrayC = columnNames.split(","); ArrayList<String> Columnas = new
-		 * ArrayList<String>(Arrays.asList(ArrayC)); Columnas.remove(0); StringBuilder
-		 * str = new StringBuilder(); for (String ColumnasDefinitivas : Columnas) {
-		 * str.append(ColumnasDefinitivas); str.append(","); } columnNames =
-		 * str.substring(0, str.length() - 1); }
-		 * 
-		 * Statement statement = cn.createStatement(); for (int i = 0; i <
-		 * valores.length; i++) { String valor = valores[i].toString(); valoresFinales
-		 * += valor + ","; } valoresFinales = valoresFinales.substring(0,
-		 * valoresFinales.length() - 1); String query = "INSERT INTO bbdd_dentista." +
-		 * tableName + " (" + columnNames + ") VALUES (" + valoresFinales + ")";
-		 * statement.executeUpdate(query); statement.close();
-		 * 
-		 * } catch (SQLException e) { e.printStackTrace(); }
-		 */
+		conectar();
+		try {
+			DatabaseMetaData metaData = (DatabaseMetaData) cn.getMetaData();
+			ResultSet resultSet = metaData.getColumns(null, null, tableName, null);
+			String columnNames = "";
+			String[] ArrayC;
+			String[] miarray;
+			String Condicion = "";
+			if (AutoInc == false) {
+				while (resultSet.next()) {
+					String columnName = resultSet.getString("COLUMN_NAME");
+					columnNames += columnName + ",";
+				}
+				columnNames = columnNames.substring(0, columnNames.length() - 1);
+				ArrayC = columnNames.split(",");
+				miarray = Arrays.copyOf(ArrayC, ArrayC.length);
+			} else {
+				while (resultSet.next()) {
+					String columnName = resultSet.getString("COLUMN_NAME");
+					columnNames += columnName + ",";
+				}
+				columnNames = columnNames.substring(0, columnNames.length() - 1);
+				ArrayC = columnNames.split(",");
+				ArrayList<String> Columnas = new ArrayList<String>(Arrays.asList(ArrayC));
+				Columnas.remove(0);
+				miarray = new String[Columnas.size()];
+				miarray = Columnas.toArray(miarray);
+			}
+			int respuesta = JOptionPane.showOptionDialog(null,
+					"¿Que campo quieres modificar de la tabla" + tableName + " ?", "MODIFICAR",
+					JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, miarray, miarray[0]);
+			for (int i = 0; i < miarray.length; i++) {
+				if (respuesta == i) {
+					Condicion = JOptionPane
+							.showInputDialog("Ingrese la modificación del registro de " + miarray[i].toString());
+					Condicion = miarray[i].toString() + "='" + Condicion + "'";
+				}
+			}
+
+			String query = "DELETE FROM bbdd_dentista." + tableName + " WHERE " + Condicion;
+			Statement statement = cn.createStatement();
+			statement.executeUpdate(query);
+			statement.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public JTable MostrarTabla(String TableName, JTable table) {
-	    conectar();
-	    try {
-	        String sql = "SELECT * FROM bbdd_dentista." + TableName;
-	        Statement st = cn.createStatement();
-	        ResultSet res = st.executeQuery(sql);
+		conectar();
+		try {
+			String sql = "SELECT * FROM bbdd_dentista." + TableName;
+			Statement st = cn.createStatement();
+			ResultSet res = st.executeQuery(sql);
 
-	        DefaultTableModel model = new DefaultTableModel();
+			DefaultTableModel model = new DefaultTableModel();
 
-	        // Obtén metadatos para agregar columnas
-	        ResultSetMetaData metaData = (ResultSetMetaData) res.getMetaData();
-	        int columnCount = metaData.getColumnCount();
-	        DatabaseMetaData Data = (DatabaseMetaData) cn.getMetaData();
-	        ResultSet resultSet;
+			// Obtén metadatos para agregar columnas
+			ResultSetMetaData metaData = (ResultSetMetaData) res.getMetaData();
+			int columnCount = metaData.getColumnCount();
+			DatabaseMetaData Data = (DatabaseMetaData) cn.getMetaData();
+			ResultSet resultSet;
 			resultSet = Data.getColumns(null, null, TableName, null);
 
-	        String columnNames = "";
+			String columnNames = "";
 			while (resultSet.next()) {
 				String columnName = resultSet.getString("COLUMN_NAME");
 				columnNames += columnName + ",";
@@ -264,27 +285,42 @@ public class BBDD {
 
 			table.setModel(model);
 			model.addRow(Array);
-	       // Agrega filas al modelo
-	        while (res.next()) {
-	            String[] rowData = new String[columnCount];
-	            for (int i = 1; i <= columnCount; i++) {
-	                rowData[i - 1] = res.getString(i);
-	            }
-	            model.addRow(rowData);
-	        }
+			// Agrega filas al modelo
+			while (res.next()) {
+				String[] rowData = new String[columnCount];
+				for (int i = 1; i <= columnCount; i++) {
+					rowData[i - 1] = res.getString(i);
+				}
+				model.addRow(rowData);
+			}
 
-	        // Cierra recursos
-	        res.close();
-	        st.close();
-	        cn.close();
+			// Cierra recursos
+			res.close();
+			st.close();
+			cn.close();
 
-	        // Establece el modelo en la tabla
-	        table.setModel(model);
+			// Establece el modelo en la tabla
+			table.setModel(model);
+			// Hace que no puedas editar la tabla
+			for (int i = 0; i < columnCount; i++) {
+				Class<?> col_class = table.getColumnClass(i);
+				table.setDefaultEditor(col_class, null); // remove editor
+			}
 
-	    } catch (SQLException e) {
-	        e.printStackTrace();
-	    }
-	    return table;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return table;
+	}
+
+	public String[] SacarValoresTabla(JTable table) {
+		DefaultTableModel model = (DefaultTableModel) table.getModel();
+		String []valores=new String[table.getColumnCount()];
+		for(int i=0; i<valores.length; i++) {
+			valores[i]=String.valueOf(model.getValueAt(table.getSelectedRow(), i));
+		}
+		return valores;
+		
 	}
 
 }
