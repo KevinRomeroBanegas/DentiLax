@@ -33,6 +33,7 @@ public class Tratamiento extends JDialog {
 	}
 
 	public Tratamiento() {
+		//Prueba
 		setTitle("Tratamiento");
 		setBounds(100, 100, 900, 700);
 		getContentPane().setLayout(null);

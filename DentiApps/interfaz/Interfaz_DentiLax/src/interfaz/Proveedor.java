@@ -33,6 +33,7 @@ public class Proveedor extends JDialog {
 	}
 
 	public Proveedor() {
+		//Prueba
 		setTitle("Proveedor");
 		setBounds(100, 100, 900, 700);
 		getContentPane().setLayout(null);

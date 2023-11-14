@@ -34,7 +34,7 @@ public class Especialidad extends JDialog {
 	}
 
 	public Especialidad() {
-		
+		//Prueba
 		setTitle("Especialidad");
 		setBounds(100, 100, 900, 700);
 		getContentPane().setLayout(null);

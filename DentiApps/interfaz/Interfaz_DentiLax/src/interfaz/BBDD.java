@@ -13,6 +13,7 @@ import java.util.Collection;
 import javax.swing.JOptionPane;
 
 public class BBDD {
+	//Prueba
 	private static final String CONTROLADOR = "com.mysql.jdbc.Driver";
 	private static final String URL = "jdbc:mysql://localhost:3306/bbdd_dentista?useSSL=false";
 	private static final String USUARIO = "root";

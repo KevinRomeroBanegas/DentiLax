@@ -41,7 +41,7 @@ public class PaginaPrincipal extends JFrame {
 
 	public PaginaPrincipal() {
 		setResizable(false);
-		
+		//Prueba
 		BBDD bbdd = new BBDD();
 		bbdd.conectar();
 		

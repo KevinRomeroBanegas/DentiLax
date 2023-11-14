@@ -36,7 +36,7 @@ public class Cita extends JDialog {
 	}
 
 	public Cita() {
-		
+		//Prueba
 		setTitle("Cita");
 		setBounds(100, 100, 900, 700);
 		getContentPane().setLayout(null);

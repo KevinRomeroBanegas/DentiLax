@@ -24,6 +24,7 @@ public class Doctor extends JDialog {
 	private JTable table_doctor;
 
 	public static void main(String[] args) {
+		//Prueba
 		try {
 			Doctor dialog = new Doctor();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);

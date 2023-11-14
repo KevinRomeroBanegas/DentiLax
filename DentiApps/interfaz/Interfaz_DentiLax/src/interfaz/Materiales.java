@@ -36,7 +36,7 @@ public class Materiales extends JDialog implements ActionListener{
 	}
 
 	public Materiales() {
-		
+		//Prueba
 		setTitle("Materiales");
 		setBounds(100, 100, 900, 700);
 		getContentPane().setLayout(null);
