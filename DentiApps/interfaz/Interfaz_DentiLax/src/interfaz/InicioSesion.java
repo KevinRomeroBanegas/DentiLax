@@ -49,11 +49,12 @@ public class InicioSesion extends JFrame {
 		setResizable(false);
 		BBDD bbdd = new BBDD();
 		bbdd.conectar();
-		setIconImage(Toolkit.getDefaultToolkit().getImage(InicioSesion.class.getResource("/Iconos/diente.png")));
+		//setIconImage(Toolkit.getDefaultToolkit().getImage(InicioSesion.class.getResource("/Iconos/diente.png")));
 		setFont(new Font("DialogInput", Font.BOLD, 30));
 		setTitle("DENTIAPP");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 616, 489);
+		setLocationRelativeTo(null);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -112,17 +113,17 @@ public class InicioSesion extends JFrame {
 		contentPane.add(lbl_InicioSesion);
 		
 		JLabel lbl_usuario = new JLabel("");
-		lbl_usuario.setIcon(new ImageIcon(InicioSesion.class.getResource("/Iconos/usuario (1).png")));
+		//lbl_usuario.setIcon(new ImageIcon(InicioSesion.class.getResource("/Iconos/usuario (1).png")));
 		lbl_usuario.setBounds(120, 130, 32, 62);
 		contentPane.add(lbl_usuario);
 		
 		JLabel lbl_contra = new JLabel("");
-		lbl_contra.setIcon(new ImageIcon(InicioSesion.class.getResource("/Iconos/cerrar-con-llave (1).png")));
+		//lbl_contra.setIcon(new ImageIcon(InicioSesion.class.getResource("/Iconos/cerrar-con-llave (1).png")));
 		lbl_contra.setBounds(120, 240, 32, 32);
 		contentPane.add(lbl_contra);
 
 		JLabel fondo_pacientes = new JLabel("");
-		fondo_pacientes.setIcon(new ImageIcon(InicioSesion.class.getResource("/Iconos/Fondo 600X450.png")));
+		//fondo_pacientes.setIcon(new ImageIcon(InicioSesion.class.getResource("/Iconos/Fondo 600X450.png")));
 		fondo_pacientes.setBounds(0, 0, 600, 450);
 		contentPane.add(fondo_pacientes);
 	}
