@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="interfaz/Interfaz_DentiLax/src"/>
+	<classpathentry kind="lib" path="interfaz/Interfaz_DentiLax/Lib/jcalendar-1.4.jar"/>
+	<classpathentry kind="lib" path="interfaz/Interfaz_DentiLax/Lib/mysql-connector-java-5.1.47.jar"/>
+	<classpathentry kind="output" path="interfaz/Interfaz_DentiLax/bin"/>
+</classpath>
