@@ -116,10 +116,10 @@ public class Cita extends JDialog {
 			btnNewButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					cmb_Doctores.setEnabled(true);
+					cmb_Doctores.removeAllItems();
 					String trat = cmb_Tratamientos.getSelectedItem().toString();
 					ArrayList DatosFiltrados;
 					try {
-						cmb_Doctores.removeAll();
 						DatosFiltrados = new ArrayList(bbdd.consultaDoctoresFiltrado(trat));
 						for (int i = 0; i < DatosFiltrados.size(); i++) {
 							String valor = (String) DatosFiltrados.get(i);
@@ -133,6 +133,16 @@ public class Cita extends JDialog {
 			});
 			btnNewButton.setBounds(823, 11, 32, 23);
 			buttonPane.add(btnNewButton);
+			
+			JButton btn_filtrarTabla = new JButton("Filtrar tabla");
+			btn_filtrarTabla.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					String consulta=JOptionPane.showInputDialog("Ponga el DNI por el cual quiere filtrar la tabla");
+					bbdd.filtro(consulta, table_cita);
+				}
+			});
+			btn_filtrarTabla.setBounds(769, 103, 85, 20);
+			buttonPane.add(btn_filtrarTabla);
 
 			ArrayList Datos2;
 			try {
@@ -163,7 +173,7 @@ public class Cita extends JDialog {
 				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 				valores[3]= "'"+sdf.format(fechaCalendario.getDate())+"'";
 				valores[4]="'"+text_observacionesCita.getText()+"'";
-				bbdd.modificar("cita", valores, true);
+				bbdd.modificar("cita", valores, true, table_cita);
 			}
 		});
 		btn_modificarCita.setBounds(695, 485, 85, 20);

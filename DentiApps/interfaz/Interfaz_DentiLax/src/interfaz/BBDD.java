@@ -9,11 +9,14 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import javax.swing.JTable;
+import javax.swing.RowFilter;
+
 import java.util.Arrays;
 import java.util.Collection;
 
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 
 import com.mysql.jdbc.DatabaseMetaData;
 import com.mysql.jdbc.ResultSetMetaData;
@@ -196,9 +199,9 @@ public class BBDD {
 
 			for (int i = 0; i < valoresFinales.length; i++) {
 				String valor = ArrayC[i] + "=" + valoresFinales[i];
-				condicion += valor + ",";
+				condicion += valor + "AND ";
 			}
-			condicion = condicion.substring(0, condicion.length() - 1);
+			condicion = condicion.substring(0, condicion.length() - 4);
 
 			String query = "DELETE FROM bbdd_dentista." + tableName +" WHERE " + condicion;
 			Statement statement = cn.createStatement();
@@ -209,13 +212,15 @@ public class BBDD {
 		}
 	}
 
-	public void modificar(String tableName, String[] valoresFinales, boolean AutoInc) {
+	public void modificar(String tableName, String[] valoresFinales, boolean AutoInc, JTable table) {
 		conectar();
 		try {
 			DatabaseMetaData metaData = (DatabaseMetaData) cn.getMetaData();
 			ResultSet resultSet = metaData.getColumns(null, null, tableName, null);
 			String columnNames = "";
-			String valores = "";
+			String valoresNames = "";
+			String v ="";
+			String[] valores = SacarValoresTabla(table);
 			String[] ArrayC;
 			String condicion = "";
 			if (AutoInc == false) {
@@ -225,7 +230,6 @@ public class BBDD {
 				}
 				columnNames = columnNames.substring(0, columnNames.length() - 1);
 				ArrayC = columnNames.split(",");
-				valores = ArrayC[0] + "= '" + valoresFinales[0];
 			} else {
 				while (resultSet.next()) {
 					String columnName = resultSet.getString("COLUMN_NAME");
@@ -242,7 +246,6 @@ public class BBDD {
 				}
 				columnNames = str.substring(0, str.length() - 1);
 				ArrayC = columnNames.split(",");
-				valores = ArrayC[0] + "=" + valoresFinales[0];
 			}
 
 			for (int i = 0; i < valoresFinales.length; i++) {
@@ -250,8 +253,23 @@ public class BBDD {
 				condicion += valor + ",";
 			}
 			condicion = condicion.substring(0, condicion.length() - 1);
+			
+			ArrayList<String> val = new ArrayList<String>(Arrays.asList(valores));
+			val.remove(0);
+			StringBuilder str = new StringBuilder();
+			for (String ColumnasDefinitivas : val) {
+				str.append(ColumnasDefinitivas);
+				str.append(",");
+			}
+			valoresNames = str.substring(0, str.length() - 1);
+			valores = valoresNames.split(",");
+			for (int i = 0; i < valores.length; i++) {
+				String valor = ArrayC[i] + "= '" + valores[i]+"'";
+				v += valor + "AND ";
+			}
+			v = v.substring(0, v.length() - 4);
 
-			String query = "UPDATE bbdd_dentista." + tableName + " SET " + valores + " WHERE " + condicion;
+			String query = "UPDATE bbdd_dentista." + tableName + " SET " + condicion + " WHERE " + v;
 			Statement statement = cn.createStatement();
 			statement.executeUpdate(query);
 			statement.close();
@@ -324,4 +342,20 @@ public class BBDD {
 
 	}
 
+	public void filtro(String consulta, JTable jtableBuscar) {
+		DefaultTableModel dm = new DefaultTableModel();
+		dm = (DefaultTableModel) jtableBuscar.getModel();
+		TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(dm);
+		String[] colum = new String[6];
+		colum[0] = "DNI";
+		colum[1] = "Nombre";
+		colum[2] = "Direccion";
+		colum[3] = "Telefono";
+		colum[4] = "Edad";
+		colum[5] = "Email";
+		dm.addRow(colum);
+		jtableBuscar.setModel(dm);
+		jtableBuscar.setRowSorter(tr);
+		tr.setRowFilter(RowFilter.regexFilter(consulta));
+	}
 }
