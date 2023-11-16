@@ -8,6 +8,8 @@ import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -19,6 +21,8 @@ import java.util.Date;
 
 import javax.swing.JTextField;
 import javax.swing.ImageIcon;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Doctor extends JDialog {
 	private static final long serialVersionUID = 1L;
@@ -131,18 +135,63 @@ public class Doctor extends JDialog {
 		contentPanel.add(lblNewLabel);
 		{
 			JButton btn_modificarDoctor = new JButton("Modificar");
-			btn_modificarDoctor.setBounds(694, 485, 85, 20);
+			btn_modificarDoctor.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					if(text_nombreDoctor.getText().isBlank()) {
+						JOptionPane.showMessageDialog(null, "Rellena el campo nombre y Apellidos");
+					}else if(text_dniDoctor.getText().isBlank()){
+						JOptionPane.showMessageDialog(null, "Rellena el campo dni ");
+					}else if(text_direccionDoctor.getText().isBlank()) {
+						JOptionPane.showMessageDialog(null, "Rellena el campo direccion");
+					}else if(text_emailDoctor.getText().isBlank()) {
+						JOptionPane.showMessageDialog(null, "Rellena el campo email");
+					}else if(text_telefonoDoctor.getText().isBlank()) {
+						JOptionPane.showMessageDialog(null, "Rellena el campo telefono");
+					}else if(text_especialidadDoctor.getText().isBlank()){
+						JOptionPane.showMessageDialog(null, "Rellena el campo especialidad");
+					}else {
+					
+					JOptionPane.showMessageDialog(null, "Doctor Modificado");
+					
+					}
+				}
+			});
+			btn_modificarDoctor.setBounds(689, 485, 90, 20);
 			contentPanel.add(btn_modificarDoctor);
-			btn_modificarDoctor.setActionCommand("Cancel");
 		}
 		
 		JButton btn_agregarDoctor = new JButton("Agregar");
-		btn_agregarDoctor.setBounds(599, 485, 85, 20);
+		btn_agregarDoctor.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				if(text_nombreDoctor.getText().isBlank()) {
+					JOptionPane.showMessageDialog(null, "Rellena el campo nombre y Apellidos");
+				}else if(text_dniDoctor.getText().isBlank()){
+					JOptionPane.showMessageDialog(null, "Rellena el campo dni ");
+				}else if(text_direccionDoctor.getText().isBlank()) {
+					JOptionPane.showMessageDialog(null, "Rellena el campo direccion");
+				}else if(text_emailDoctor.getText().isBlank()) {
+					JOptionPane.showMessageDialog(null, "Rellena el campo email");
+				}else if(text_telefonoDoctor.getText().isBlank()) {
+					JOptionPane.showMessageDialog(null, "Rellena el campo telefono");
+				}else if(text_especialidadDoctor.getText().isBlank()){
+					JOptionPane.showMessageDialog(null, "Rellena el campo especialidad");
+				}else {
+				
+				JOptionPane.showMessageDialog(null, "Doctor Agregado");
+				
+				}
+			}
+		});
+		btn_agregarDoctor.setBounds(594, 485, 85, 20);
 		contentPanel.add(btn_agregarDoctor);
-		btn_agregarDoctor.setActionCommand("Cancel");
+
 		
 		JButton btn_bajaDoctor = new JButton("Baja");
-		btn_bajaDoctor.setActionCommand("Cancel");
+		btn_bajaDoctor.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		btn_bajaDoctor.setBounds(789, 485, 85, 20);
 		contentPanel.add(btn_bajaDoctor);
 		

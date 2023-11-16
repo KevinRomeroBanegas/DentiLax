@@ -139,22 +139,22 @@ public class Paciente extends JDialog {
 		JButton btn_modificarCliente = new JButton("Modificar");
 		btn_modificarCliente.addActionListener(new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
-			if(text_nombrePaciente.getText().isBlank()) {
-				JOptionPane.showMessageDialog(null, "Rellena el campo nombre");
-			}else if(text_dniPaciente.getText().isBlank()){
-				JOptionPane.showMessageDialog(null, "Rellena el campo dni");
-			}else if(text_direccionPaciente.getText().isBlank()) {
-				JOptionPane.showMessageDialog(null, "Rellena el campo direccion");
-			}else if(text_emailPaciente.getText().isBlank()) {
-				JOptionPane.showMessageDialog(null, "Rellena el campo email");
-			}else if(text_telefonoPaciente.getText().isBlank()) {
-				JOptionPane.showMessageDialog(null, "Rellena el campo telefono");
-			}else if(text_edadPaciente.getText().isBlank()){
-				JOptionPane.showMessageDialog(null, "Rellena el campo edad");
-			}else {
+				if(text_nombrePaciente.getText().isBlank()) {
+					JOptionPane.showMessageDialog(null, "Rellena el campo nombre");
+				}else if(text_dniPaciente.getText().isBlank()){
+					JOptionPane.showMessageDialog(null, "Rellena el campo dni");
+				}else if(text_direccionPaciente.getText().isBlank()) {
+					JOptionPane.showMessageDialog(null, "Rellena el campo direccion");
+				}else if(text_emailPaciente.getText().isBlank()) {
+					JOptionPane.showMessageDialog(null, "Rellena el campo email");
+				}else if(text_telefonoPaciente.getText().isBlank()) {
+					JOptionPane.showMessageDialog(null, "Rellena el campo telefono");
+				}else if(text_edadPaciente.getText().isBlank()){
+					JOptionPane.showMessageDialog(null, "Rellena el campo edad");
+				}else {
 				
 				JOptionPane.showMessageDialog(null, "Paciente Modificado");
-			}
+				}
 					
 			}
 		});
@@ -190,6 +190,8 @@ public class Paciente extends JDialog {
 		JButton btn_bajaCliente = new JButton("Baja");
 		btn_bajaCliente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				
 			}
 		});
 		btn_bajaCliente.setBounds(790, 485, 85, 20);
