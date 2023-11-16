@@ -1,6 +1,8 @@
 package interfaz;
 
 import java.awt.EventQueue;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -16,6 +18,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+import java.awt.event.KeyAdapter;
 
 public class PaginaPrincipal extends JFrame {
 
@@ -147,6 +150,10 @@ public class PaginaPrincipal extends JFrame {
 		menuBar.add(mnNewMenu_5);
 		
 		JMenuItem mntmNewMenuItem_3 = new JMenuItem("Gestión Cita");
+		
+		
+		
+		
 		mntmNewMenuItem_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Cita vPrincipalCita = new Cita();
@@ -162,6 +169,8 @@ public class PaginaPrincipal extends JFrame {
 		mnNewMenu_6.setFont(new Font("Segoe UI", Font.BOLD, 30));
 		menuBar.add(mnNewMenu_6);
 		contentPane = new JPanel();
+		contentPane.addKeyListener(new KeyAdapter() {
+			});
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		
 
@@ -337,7 +346,31 @@ public class PaginaPrincipal extends JFrame {
 		lbl_DNI.setFont(new Font("Tahoma", Font.BOLD, 20));
 		lbl_DNI.setBounds(1020, 396, 90, 20);
 		contentPane.add(lbl_DNI);
-		
 
+			}
+	public class KeyListenerExample implements KeyListener {
+		
+		
+		@Override
+		public void keyPressed(KeyEvent e) {
+		       if (e.getKeyCode() == KeyEvent.VK_CONTROL && e.getKeyCode() == KeyEvent.VK_P) {
+		    	   Paciente paciente=new Paciente();
+		    	   paciente.setVisible(true);
+		       }
+		       
+		}
+		@Override
+		public void keyTyped(KeyEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+		@Override
+		public void keyReleased(KeyEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+		}
+	
+	
 	}
-}
+
