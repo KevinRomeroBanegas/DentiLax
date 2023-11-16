@@ -13,6 +13,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import javax.swing.JTextField;
+import javax.swing.ImageIcon;
 
 public class Stock extends JDialog {
 
@@ -143,6 +144,11 @@ public class Stock extends JDialog {
 		table_stock=bbdd.MostrarTabla("Stock", table_stock);
 		
 		contentPanel.add(table_stock);
+		
+		JLabel Fondo_stock = new JLabel("");
+		Fondo_stock.setIcon(new ImageIcon("C:\\Users\\kevin\\Documents\\GitHub\\DentiLax\\DentiApps\\interfaz\\Interfaz_DentiLax\\Fondo 1200x800.png"));
+		Fondo_stock.setBounds(0, 0, 884, 660);
+		contentPanel.add(Fondo_stock);
 		
 	}
 }

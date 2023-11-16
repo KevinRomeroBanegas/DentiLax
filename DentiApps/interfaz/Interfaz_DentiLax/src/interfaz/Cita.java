@@ -29,6 +29,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JTextArea;
 import com.toedter.calendar.JDateChooser;
 import javax.swing.JComboBox;
+import javax.swing.ImageIcon;
 
 public class Cita extends JDialog {
 
@@ -251,6 +252,11 @@ public class Cita extends JDialog {
             }
         });
 		contentPanel.add(table_cita);
+		
+		JLabel Fondo_cita = new JLabel("");
+		Fondo_cita.setIcon(new ImageIcon("C:\\Users\\kevin\\Documents\\GitHub\\DentiLax\\DentiApps\\interfaz\\Interfaz_DentiLax\\Fondo 1200x800.png"));
+		Fondo_cita.setBounds(0, 0, 884, 660);
+		contentPanel.add(Fondo_cita);
 
 	}
 	private void selectItemInComboBox(JComboBox<String> comboBox, String value) {

@@ -20,6 +20,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.ActionEvent;
+import javax.swing.ImageIcon;
 
 public class Materiales extends JDialog implements ActionListener{
 
@@ -147,6 +148,11 @@ public class Materiales extends JDialog implements ActionListener{
             }
         });
 		contentPanel.add(table_material);
+		
+		JLabel Fondo_material = new JLabel("");
+		Fondo_material.setIcon(new ImageIcon("C:\\Users\\kevin\\Documents\\GitHub\\DentiLax\\DentiApps\\interfaz\\Interfaz_DentiLax\\Fondo 1200x800.png"));
+		Fondo_material.setBounds(0, 0, 884, 660);
+		contentPanel.add(Fondo_material);
 		
 	}
 

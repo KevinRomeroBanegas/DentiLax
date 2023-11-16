@@ -18,6 +18,7 @@ import java.awt.Toolkit;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.ImageIcon;
 
 public class Especialidad extends JDialog {
 
@@ -107,8 +108,13 @@ public class Especialidad extends JDialog {
 		contentPanel.add(btn_bajaMaterial);
 		
 		table_material = new JTable();
-		table_material.setBounds(10, 11, 864, 538);
+		table_material.setBounds(10, 11, 864, 552);
 		contentPanel.add(table_material);
+		
+		JLabel Fondo_especialidad = new JLabel("");
+		Fondo_especialidad.setIcon(new ImageIcon("C:\\Users\\kevin\\Documents\\GitHub\\DentiLax\\DentiApps\\interfaz\\Interfaz_DentiLax\\Fondo 1200x800.png"));
+		Fondo_especialidad.setBounds(0, 0, 884, 660);
+		contentPanel.add(Fondo_especialidad);
 		
 	}
 }

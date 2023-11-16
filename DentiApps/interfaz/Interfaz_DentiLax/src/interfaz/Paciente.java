@@ -20,6 +20,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.ActionEvent;
+import javax.swing.ImageIcon;
 
 public class Paciente extends JDialog {
 
@@ -196,6 +197,14 @@ public class Paciente extends JDialog {
         });
 		contentPanel.add(table_paciente);
 		
+		JLabel lblNewLabel_2 = new JLabel("");
+		lblNewLabel_2.setBounds(0, 0, 884, 660);
+		contentPanel.add(lblNewLabel_2);
+		
+		JLabel Fondo_paciente = new JLabel("");
+		Fondo_paciente.setIcon(new ImageIcon("C:\\Users\\kevin\\Documents\\GitHub\\DentiLax\\DentiApps\\interfaz\\Interfaz_DentiLax\\Fondo 1200x800.png"));
+		Fondo_paciente.setBounds(0, 0, 884, 660);
+		contentPanel.add(Fondo_paciente);
+		
 	}
-
 }

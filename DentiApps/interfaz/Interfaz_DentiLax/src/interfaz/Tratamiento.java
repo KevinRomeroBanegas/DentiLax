@@ -14,6 +14,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import javax.swing.JTextField;
+import javax.swing.ImageIcon;
 
 public class Tratamiento extends JDialog {
 
@@ -84,13 +85,13 @@ public class Tratamiento extends JDialog {
 			
 			text_dniProveedor = new JTextField();
 			text_dniProveedor.setColumns(10);
-			text_dniProveedor.setBounds(180, 40, 285, 20);
+			text_dniProveedor.setBounds(55, 79, 285, 20);
 			text_dniProveedor.setBounds(10, 40, 285, 20);
 			buttonPane.add(text_dniProveedor);
 			
 			text_direccionProveedor = new JTextField();
 			text_direccionProveedor.setColumns(10);
-			text_direccionProveedor.setBounds(180, 70, 285, 20);
+			text_direccionProveedor.setBounds(202, 86, 285, 20);
 			text_direccionProveedor.setBounds(510, 43, 285, 20);
 			buttonPane.add(text_direccionProveedor);
 			
@@ -147,6 +148,11 @@ public class Tratamiento extends JDialog {
             }
         });
 		contentPanel.add(table_tratamiento);
+		
+		JLabel Fondo_Tratamiento = new JLabel("");
+		Fondo_Tratamiento.setIcon(new ImageIcon("C:\\Users\\kevin\\Documents\\GitHub\\DentiLax\\DentiApps\\interfaz\\Interfaz_DentiLax\\Fondo 1200x800.png"));
+		Fondo_Tratamiento.setBounds(0, 0, 884, 660);
+		contentPanel.add(Fondo_Tratamiento);
 		
 	}
 }

@@ -13,6 +13,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import javax.swing.JTextField;
+import javax.swing.ImageIcon;
 
 public class Proveedor extends JDialog {
 
@@ -145,6 +146,11 @@ public class Proveedor extends JDialog {
             }
         });
 		contentPanel.add(table_proveedor);
+		
+		JLabel Fondo_proveedor = new JLabel("");
+		Fondo_proveedor.setIcon(new ImageIcon("C:\\Users\\kevin\\Documents\\GitHub\\DentiLax\\DentiApps\\interfaz\\Interfaz_DentiLax\\Fondo 1200x800.png"));
+		Fondo_proveedor.setBounds(0, 0, 884, 660);
+		contentPanel.add(Fondo_proveedor);
 		
 	}
 }

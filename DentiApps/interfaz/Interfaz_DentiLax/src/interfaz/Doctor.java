@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import javax.swing.JTextField;
+import javax.swing.ImageIcon;
 
 public class Doctor extends JDialog {
 	private static final long serialVersionUID = 1L;
@@ -102,7 +103,7 @@ public class Doctor extends JDialog {
 			
 			JLabel lblNewLabel_1 = new JLabel("Nº Telefono:");
 			lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 15));
-			lblNewLabel_1.setBounds(537, 10, 135, 20);
+			lblNewLabel_1.setBounds(537, 40, 135, 20);
 			buttonPane.add(lblNewLabel_1);
 			
 			JLabel lblNewLabel_1_1 = new JLabel("Especialidad:");
@@ -112,7 +113,7 @@ public class Doctor extends JDialog {
 			buttonPane.add(lblNewLabel_1_1);
 			
 			text_telefonoDoctor = new JTextField();
-			text_telefonoDoctor.setBounds(684, 10, 170, 20);
+			text_telefonoDoctor.setBounds(682, 42, 172, 20);
 			buttonPane.add(text_telefonoDoctor);
 			text_telefonoDoctor.setColumns(10);
 			
@@ -158,6 +159,11 @@ public class Doctor extends JDialog {
             }
         });
 		contentPanel.add(table_doctor);
+		
+		JLabel Fondo_doctor = new JLabel("");
+		Fondo_doctor.setIcon(new ImageIcon("C:\\Users\\kevin\\Documents\\GitHub\\DentiLax\\DentiApps\\interfaz\\Interfaz_DentiLax\\Fondo 1200x800.png"));
+		Fondo_doctor.setBounds(0, 0, 884, 660);
+		contentPanel.add(Fondo_doctor);
 		
 	}
 }
