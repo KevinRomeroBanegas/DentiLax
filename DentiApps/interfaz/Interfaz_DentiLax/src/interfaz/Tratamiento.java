@@ -38,6 +38,7 @@ public class Tratamiento extends JDialog {
 	}
 
 	public Tratamiento() {
+		setResizable(false);
 		BBDD bbdd=new BBDD();
 		setTitle("Tratamiento");
 		setBounds(100, 100, 900, 700);

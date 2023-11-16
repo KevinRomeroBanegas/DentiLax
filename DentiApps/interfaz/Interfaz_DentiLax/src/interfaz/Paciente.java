@@ -41,6 +41,7 @@ public class Paciente extends JDialog {
 	}
 
 	public Paciente() {
+		setResizable(false);
 		BBDD bbdd= new BBDD();
 		bbdd.conectar();
 		setTitle("Paciente");

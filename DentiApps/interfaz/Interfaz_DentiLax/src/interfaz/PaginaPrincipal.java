@@ -69,6 +69,7 @@ public class PaginaPrincipal extends JFrame {
 		JMenuItem mntmNewMenuItem = new JMenuItem("Gestón Paciente");
 		mntmNewMenuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+			
 				Paciente vPrincipalPaciente = new Paciente();
 				vPrincipalPaciente.setVisible(true);
 				vPrincipalPaciente.setModal(true);
@@ -158,7 +159,6 @@ public class PaginaPrincipal extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				Cita vPrincipalCita = new Cita();
 				vPrincipalCita.setVisible(true);
-				vPrincipalCita.setModal(true);
 				vPrincipalCita.setLocationRelativeTo(null);
 				vPrincipalCita.setLocation(370, 212);
 			}

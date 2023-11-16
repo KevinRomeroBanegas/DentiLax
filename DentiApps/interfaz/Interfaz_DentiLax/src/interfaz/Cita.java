@@ -48,6 +48,7 @@ public class Cita extends JDialog {
 	}
 
 	public Cita(){
+		setResizable(false);
 		setTitle("Cita");
 		BBDD bbdd = new BBDD();
 		bbdd.conectar();

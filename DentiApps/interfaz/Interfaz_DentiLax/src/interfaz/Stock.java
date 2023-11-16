@@ -38,6 +38,7 @@ public class Stock extends JDialog {
 	}
 
 	public Stock() {
+		setResizable(false);
 		BBDD bbdd=new BBDD();
 		setTitle("Stock");
 		setBounds(100, 100, 900, 700);

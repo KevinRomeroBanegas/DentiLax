@@ -37,6 +37,7 @@ public class Proveedor extends JDialog {
 	}
 
 	public Proveedor() {
+		setResizable(false);
 		BBDD bbdd=new BBDD();
 		setTitle("Proveedor");
 		setBounds(100, 100, 900, 700);

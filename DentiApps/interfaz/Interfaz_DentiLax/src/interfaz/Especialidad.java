@@ -35,6 +35,7 @@ public class Especialidad extends JDialog {
 	}
 
 	public Especialidad() {
+		setResizable(false);
 		
 		setTitle("Especialidad");
 		setBounds(100, 100, 900, 700);

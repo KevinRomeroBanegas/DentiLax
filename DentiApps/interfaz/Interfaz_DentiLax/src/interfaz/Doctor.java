@@ -42,6 +42,7 @@ public class Doctor extends JDialog {
 	}
 
 	public Doctor() {
+		setResizable(false);
 		BBDD bbdd=new BBDD();
 		bbdd.conectar();
 		setTitle("Doctor");

@@ -39,6 +39,7 @@ public class Materiales extends JDialog implements ActionListener{
 	}
 
 	public Materiales() {
+		setResizable(false);
 		BBDD bbdd=new BBDD();
 		setTitle("Materiales");
 		setBounds(100, 100, 900, 700);
