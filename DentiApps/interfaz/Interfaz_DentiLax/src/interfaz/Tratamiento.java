@@ -9,6 +9,10 @@ import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+
 import javax.swing.JTextField;
 
 public class Tratamiento extends JDialog {
@@ -33,6 +37,7 @@ public class Tratamiento extends JDialog {
 	}
 
 	public Tratamiento() {
+		BBDD bbdd=new BBDD();
 		setTitle("Tratamiento");
 		setBounds(100, 100, 900, 700);
 		getContentPane().setLayout(null);
@@ -61,12 +66,14 @@ public class Tratamiento extends JDialog {
 				JLabel lblNewLabel_1 = new JLabel("Descripción:");
 				lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 15));
 				lblNewLabel_1.setBounds(10, 70, 150, 20);
+				lblNewLabel_1.setBounds(510, 10, 150, 20);
 				buttonPane.add(lblNewLabel_1);
 			}
 			{
 				JLabel lblNewLabel_1 = new JLabel("Cantidad:");
 				lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 15));
 				lblNewLabel_1.setBounds(10, 100, 150, 20);
+				lblNewLabel_1.setBounds(510, 61, 150, 20);
 				buttonPane.add(lblNewLabel_1);
 			}
 			
@@ -78,16 +85,19 @@ public class Tratamiento extends JDialog {
 			text_dniProveedor = new JTextField();
 			text_dniProveedor.setColumns(10);
 			text_dniProveedor.setBounds(180, 40, 285, 20);
+			text_dniProveedor.setBounds(10, 40, 285, 20);
 			buttonPane.add(text_dniProveedor);
 			
 			text_direccionProveedor = new JTextField();
 			text_direccionProveedor.setColumns(10);
 			text_direccionProveedor.setBounds(180, 70, 285, 20);
+			text_direccionProveedor.setBounds(510, 43, 285, 20);
 			buttonPane.add(text_direccionProveedor);
 			
 			text_emailProveedor = new JTextField();
 			text_emailProveedor.setColumns(10);
 			text_emailProveedor.setBounds(180, 100, 285, 20);
+			text_emailProveedor.setBounds(510, 91, 285, 20);
 			buttonPane.add(text_emailProveedor);
 			
 			JLabel lblNewLabel_1 = new JLabel("Distribuidor:");
@@ -124,6 +134,18 @@ public class Tratamiento extends JDialog {
 		
 		table_tratamiento = new JTable();
 		table_tratamiento.setBounds(10, 11, 864, 463);
+		table_tratamiento=bbdd.MostrarTabla("tratamiento", table_tratamiento);
+		table_tratamiento.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if (e.getClickCount() == 2) {
+                    String[]valores=bbdd.SacarValoresTabla(table_tratamiento);
+                    text_dniProveedor.setText(valores[1].toString());
+                    text_direccionProveedor.setText(valores[2].toString());
+                    text_emailProveedor.setText(valores[3].toString());
+                }
+            }
+        });
 		contentPanel.add(table_tratamiento);
 		
 	}

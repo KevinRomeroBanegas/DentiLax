@@ -9,10 +9,17 @@ import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+
 import javax.swing.JTextField;
 
 public class Doctor extends JDialog {
-
 	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
 	private JTextField text_nombreDoctor;
@@ -34,6 +41,8 @@ public class Doctor extends JDialog {
 	}
 
 	public Doctor() {
+		BBDD bbdd=new BBDD();
+		bbdd.conectar();
 		setTitle("Doctor");
 		setBounds(100, 100, 900, 700);
 		getContentPane().setLayout(null);
@@ -99,6 +108,7 @@ public class Doctor extends JDialog {
 			JLabel lblNewLabel_1_1 = new JLabel("Especialidad:");
 			lblNewLabel_1_1.setFont(new Font("Tahoma", Font.BOLD, 15));
 			lblNewLabel_1_1.setBounds(537, 40, 135, 20);
+			lblNewLabel_1_1.setBounds(537, 10, 135, 20);
 			buttonPane.add(lblNewLabel_1_1);
 			
 			text_telefonoDoctor = new JTextField();
@@ -109,6 +119,7 @@ public class Doctor extends JDialog {
 			text_especialidadDoctor = new JTextField();
 			text_especialidadDoctor.setColumns(10);
 			text_especialidadDoctor.setBounds(684, 40, 170, 20);
+			text_especialidadDoctor.setBounds(684, 13, 170, 20);
 			buttonPane.add(text_especialidadDoctor);
 		}
 		
@@ -135,6 +146,17 @@ public class Doctor extends JDialog {
 		
 		table_doctor = new JTable();
 		table_doctor.setBounds(10, 11, 864, 463);
+		table_doctor=bbdd.MostrarTabla("Doctor", table_doctor);
+		table_doctor.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if (e.getClickCount() == 2) {
+                    String[]valores=bbdd.SacarValoresTabla(table_doctor);
+                    text_nombreDoctor.setText(valores[1].toString());
+                    text_especialidadDoctor.setText(valores[2].toString());
+                }
+            }
+        });
 		contentPanel.add(table_doctor);
 		
 	}

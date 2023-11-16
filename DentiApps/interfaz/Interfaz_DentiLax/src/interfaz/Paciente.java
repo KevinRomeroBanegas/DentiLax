@@ -17,6 +17,8 @@ import java.awt.Toolkit;
 
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.event.ActionEvent;
 
 public class Paciente extends JDialog {
@@ -38,7 +40,8 @@ public class Paciente extends JDialog {
 	}
 
 	public Paciente() {
-			
+		BBDD bbdd= new BBDD();
+		bbdd.conectar();
 		setTitle("Paciente");
 		setBounds(100, 100, 900, 700);
 		getContentPane().setLayout(null);
@@ -160,6 +163,21 @@ public class Paciente extends JDialog {
 		
 		table_paciente = new JTable();
 		table_paciente.setBounds(10, 11, 864, 463);
+		table_paciente=bbdd.MostrarTabla("Cliente", table_paciente);
+		table_paciente.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if (e.getClickCount() == 2) {
+                    String[]valores=bbdd.SacarValoresTabla(table_paciente);
+                    text_dniPaciente.setText(valores[0].toString());
+                    text_nombrePaciente.setText(valores[1].toString());
+                    text_direccionPaciente.setText(valores[2].toString());
+                    text_telefonoPaciente.setText(valores[3].toString());
+                    text_edadPaciente.setText(valores[4].toString());
+                    text_emailPaciente.setText(valores[5].toString());
+                }
+            }
+        });
 		contentPanel.add(table_paciente);
 		
 	}

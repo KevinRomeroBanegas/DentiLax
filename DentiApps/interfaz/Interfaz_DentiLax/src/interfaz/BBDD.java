@@ -2,13 +2,26 @@ package interfaz;
 
 import java.awt.Component;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import javax.swing.JTable;
+import javax.swing.RowFilter;
+
+import java.util.Arrays;
+import java.util.Collection;
+
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
+
+import com.mysql.jdbc.DatabaseMetaData;
+import com.mysql.jdbc.ResultSetMetaData;
 
 public class BBDD {
-
 	private static final String CONTROLADOR = "com.mysql.jdbc.Driver";
 	private static final String URL = "jdbc:mysql://localhost:3306/bbdd_dentista?useSSL=false";
 	private static final String USUARIO = "root";
@@ -42,5 +55,309 @@ public class BBDD {
 
 		return cn;
 	}
-	
+
+	public int entrar(String Nombre, String Cont) throws SQLException {
+		this.conectar();
+		int ent = 2;
+		Resultado = stm.executeQuery(
+				"SELECT RolAdmin FROM bbdd_dentista.usuario where DNI='" + Nombre + "' && Contraseña='" + Cont + "';");
+		if (Resultado.next()) {
+			boolean i = Resultado.getBoolean("RolAdmin");
+			if (i == true) {
+				ent = 1;
+			} else {
+				ent = 0;
+			}
+		} else {
+		}
+		return ent;
+	}
+
+	public ArrayList consultaTratamientos() throws SQLException {
+		ArrayList dato = new ArrayList();
+		this.conectar();
+		Resultado = stm.executeQuery("select * from bbdd_dentista.tratamiento");
+		while (Resultado.next()) {
+			String nombre_paciente = Resultado.getString("Nombre");
+			dato.add(nombre_paciente);
+		}
+		stm.close();
+		cn.close();
+
+		return dato;
+	}
+
+	public ArrayList consultaDoctores() throws SQLException {
+		ArrayList dato = new ArrayList();
+		this.conectar();
+		Resultado = stm.executeQuery("select * from bbdd_dentista.doctor");
+		while (Resultado.next()) {
+			String nombre_paciente = Resultado.getString("Nombre");
+			dato.add(nombre_paciente);
+		}
+		stm.close();
+		cn.close();
+
+		return dato;
+	}
+
+	public ArrayList consultaDoctoresFiltrado(String Tratamiento) throws SQLException {
+		ArrayList dato = new ArrayList();
+		this.conectar();
+		ResultSet ResultadoDoctor = stm.executeQuery(
+				"select * from bbdd_dentista.doctor where Especialidad_Doctor=(select Especialidad from bbdd_dentista.tratamiento where Nombre='"
+						+ Tratamiento + "')");
+		while (ResultadoDoctor.next()) {
+			String nombre_doctor = ResultadoDoctor.getString("Nombre");
+			dato.add(nombre_doctor);
+		}
+		stm.close();
+		cn.close();
+
+		return dato;
+	}
+
+	public void insertar(String tableName, String[] valores, boolean AutoInc) {
+		conectar();
+		try {
+			DatabaseMetaData metaData = (DatabaseMetaData) cn.getMetaData();
+			ResultSet resultSet = metaData.getColumns(null, null, tableName, null);
+			String columnNames = "";
+			String valoresFinales = "";
+
+			if (AutoInc == false) {
+				while (resultSet.next()) {
+					String columnName = resultSet.getString("COLUMN_NAME");
+					columnNames += columnName + ",";
+				}
+				columnNames = columnNames.substring(0, columnNames.length() - 1);
+			} else {
+				while (resultSet.next()) {
+					String columnName = resultSet.getString("COLUMN_NAME");
+					columnNames += columnName + ",";
+				}
+				columnNames = columnNames.substring(0, columnNames.length() - 1);
+				String[] ArrayC = columnNames.split(",");
+				ArrayList<String> Columnas = new ArrayList<String>(Arrays.asList(ArrayC));
+				Columnas.remove(0);
+				StringBuilder str = new StringBuilder();
+				for (String ColumnasDefinitivas : Columnas) {
+					str.append(ColumnasDefinitivas);
+					str.append(",");
+				}
+				columnNames = str.substring(0, str.length() - 1);
+			}
+
+			Statement statement = cn.createStatement();
+			for (int i = 0; i < valores.length; i++) {
+				String valor = valores[i].toString();
+				valoresFinales += valor + ",";
+			}
+			valoresFinales = valoresFinales.substring(0, valoresFinales.length() - 1);
+			String query = "INSERT INTO bbdd_dentista." + tableName + " (" + columnNames + ") VALUES (" + valoresFinales
+					+ ")";
+			statement.executeUpdate(query);
+			statement.close();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void borrar(String tableName, String[] valoresFinales, boolean AutoInc) {
+		conectar();
+		try {
+			DatabaseMetaData metaData = (DatabaseMetaData) cn.getMetaData();
+			ResultSet resultSet = metaData.getColumns(null, null, tableName, null);
+			String columnNames = "";
+			String[] ArrayC;
+			String condicion = "";
+			if (AutoInc == false) {
+				while (resultSet.next()) {
+					String columnName = resultSet.getString("COLUMN_NAME");
+					columnNames += columnName + ",";
+				}
+				columnNames = columnNames.substring(0, columnNames.length() - 1);
+				ArrayC = columnNames.split(",");
+			} else {
+				while (resultSet.next()) {
+					String columnName = resultSet.getString("COLUMN_NAME");
+					columnNames += columnName + ",";
+				}
+				columnNames = columnNames.substring(0, columnNames.length() - 1);
+				ArrayC = columnNames.split(",");
+				ArrayList<String> Columnas = new ArrayList<String>(Arrays.asList(ArrayC));
+				Columnas.remove(0);
+				StringBuilder str = new StringBuilder();
+				for (String ColumnasDefinitivas : Columnas) {
+					str.append(ColumnasDefinitivas);
+					str.append(",");
+				}
+				columnNames = str.substring(0, str.length() - 1);
+				ArrayC = columnNames.split(",");
+			}
+
+			for (int i = 0; i < valoresFinales.length; i++) {
+				String valor = ArrayC[i] + "=" + valoresFinales[i];
+				condicion += valor + ",";
+				condicion += valor + "AND ";
+			}
+			condicion = condicion.substring(0, condicion.length() - 1);
+			condicion = condicion.substring(0, condicion.length() - 4);
+
+			String query = "DELETE FROM bbdd_dentista." + tableName +" WHERE " + condicion;
+			Statement statement = cn.createStatement();
+			statement.executeUpdate(query);
+			statement.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void modificar(String tableName, String[] valoresFinales, boolean AutoInc, JTable table) {
+		conectar();
+		try {
+			DatabaseMetaData metaData = (DatabaseMetaData) cn.getMetaData();
+			ResultSet resultSet = metaData.getColumns(null, null, tableName, null);
+			String columnNames = "";
+			String valoresNames = "";
+			String v ="";
+			String[] valores = SacarValoresTabla(table);
+			String[] ArrayC;
+			String condicion = "";
+			if (AutoInc == false) {
+				while (resultSet.next()) {
+					String columnName = resultSet.getString("COLUMN_NAME");
+					columnNames += columnName + ",";
+				}
+				columnNames = columnNames.substring(0, columnNames.length() - 1);
+				ArrayC = columnNames.split(",");
+			} else {
+				while (resultSet.next()) {
+					String columnName = resultSet.getString("COLUMN_NAME");
+					columnNames += columnName + ",";
+				}
+				columnNames = columnNames.substring(0, columnNames.length() - 1);
+				ArrayC = columnNames.split(",");
+				ArrayList<String> Columnas = new ArrayList<String>(Arrays.asList(ArrayC));
+				Columnas.remove(0);
+				StringBuilder str = new StringBuilder();
+				for (String ColumnasDefinitivas : Columnas) {
+					str.append(ColumnasDefinitivas);
+					str.append(",");
+				}
+				columnNames = str.substring(0, str.length() - 1);
+				ArrayC = columnNames.split(",");
+			}
+
+			for (int i = 0; i < valoresFinales.length; i++) {
+				String valor = ArrayC[i] + "=" + valoresFinales[i];
+				condicion += valor + ",";
+			}
+			condicion = condicion.substring(0, condicion.length() - 1);
+			
+			ArrayList<String> val = new ArrayList<String>(Arrays.asList(valores));
+			val.remove(0);
+			StringBuilder str = new StringBuilder();
+			for (String ColumnasDefinitivas : val) {
+				str.append(ColumnasDefinitivas);
+				str.append(",");
+			}
+			valoresNames = str.substring(0, str.length() - 1);
+			valores = valoresNames.split(",");
+			for (int i = 0; i < valores.length; i++) {
+				String valor = ArrayC[i] + "= '" + valores[i]+"'";
+				v += valor + "AND ";
+			}
+			v = v.substring(0, v.length() - 4);
+
+			String query = "UPDATE bbdd_dentista." + tableName + " SET " + condicion + " WHERE " + v;
+			Statement statement = cn.createStatement();
+			statement.executeUpdate(query);
+			statement.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public JTable MostrarTabla(String TableName, JTable table) {
+		conectar();
+		try {
+			String sql = "SELECT * FROM bbdd_dentista." + TableName;
+			Statement st = cn.createStatement();
+			ResultSet res = st.executeQuery(sql);
+
+			DefaultTableModel model = new DefaultTableModel();
+
+			// Obtén metadatos para agregar columnas
+			ResultSetMetaData metaData = (ResultSetMetaData) res.getMetaData();
+			int columnCount = metaData.getColumnCount();
+			DatabaseMetaData Data = (DatabaseMetaData) cn.getMetaData();
+			ResultSet resultSet;
+			resultSet = Data.getColumns(null, null, TableName, null);
+
+			String columnNames = "";
+			while (resultSet.next()) {
+				String columnName = resultSet.getString("COLUMN_NAME");
+				columnNames += columnName + ",";
+				model.addColumn(columnName);
+			}
+			String[] Array = columnNames.split(",");
+
+			table.setModel(model);
+			model.addRow(Array);
+			// Agrega filas al modelo
+			while (res.next()) {
+				String[] rowData = new String[columnCount];
+				for (int i = 1; i <= columnCount; i++) {
+					rowData[i - 1] = res.getString(i);
+				}
+				model.addRow(rowData);
+			}
+
+			// Cierra recursos
+			res.close();
+			st.close();
+			cn.close();
+
+			// Establece el modelo en la tabla
+			table.setModel(model);
+			// Hace que no puedas editar la tabla
+			for (int i = 0; i < columnCount; i++) {
+				Class<?> col_class = table.getColumnClass(i);
+				table.setDefaultEditor(col_class, null); // remove editor
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return table;
+	}
+
+	public String[] SacarValoresTabla(JTable table) {
+		DefaultTableModel model = (DefaultTableModel) table.getModel();
+		String[] valores = new String[table.getColumnCount()];
+		for (int i = 0; i < valores.length; i++) {
+			valores[i] = String.valueOf(model.getValueAt(table.getSelectedRow(), i));
+		}
+		return valores;
+
+	}
+
+	public void filtro(String consulta, JTable jtableBuscar) {
+		DefaultTableModel dm = new DefaultTableModel();
+		dm = (DefaultTableModel) jtableBuscar.getModel();
+		TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(dm);
+		String[] colum = new String[6];
+		colum[0] = "DNI";
+		colum[1] = "Nombre";
+		colum[2] = "Direccion";
+		colum[3] = "Telefono";
+		colum[4] = "Edad";
+		colum[5] = "Email";
+		dm.addRow(colum);
+		jtableBuscar.setModel(dm);
+		jtableBuscar.setRowSorter(tr);
+		tr.setRowFilter(RowFilter.regexFilter(consulta));
+	}
 }

@@ -9,6 +9,9 @@ import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
 import javax.swing.JTextField;
 
 public class Proveedor extends JDialog {
@@ -33,6 +36,7 @@ public class Proveedor extends JDialog {
 	}
 
 	public Proveedor() {
+		BBDD bbdd=new BBDD();
 		setTitle("Proveedor");
 		setBounds(100, 100, 900, 700);
 		getContentPane().setLayout(null);
@@ -58,15 +62,16 @@ public class Proveedor extends JDialog {
 				buttonPane.add(lblNewLabel_1);
 			}
 			{
-				JLabel lblNewLabel_1 = new JLabel("Dirección:");
+				JLabel lblNewLabel_1 = new JLabel("Email:");
 				lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 15));
 				lblNewLabel_1.setBounds(10, 70, 150, 20);
 				buttonPane.add(lblNewLabel_1);
 			}
 			{
-				JLabel lblNewLabel_1 = new JLabel("Email:");
+				JLabel lblNewLabel_1 = new JLabel("Disponibilidad:");
 				lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 15));
 				lblNewLabel_1.setBounds(10, 100, 150, 20);
+				lblNewLabel_1.setBounds(538, 70, 150, 20);
 				buttonPane.add(lblNewLabel_1);
 			}
 			
@@ -88,6 +93,7 @@ public class Proveedor extends JDialog {
 			text_emailProveedor = new JTextField();
 			text_emailProveedor.setColumns(10);
 			text_emailProveedor.setBounds(180, 100, 285, 20);
+			text_emailProveedor.setBounds(684, 73, 170, 20);
 			buttonPane.add(text_emailProveedor);
 			
 			JLabel lblNewLabel_1 = new JLabel("Nº Telefono:");
@@ -124,6 +130,20 @@ public class Proveedor extends JDialog {
 		
 		table_proveedor = new JTable();
 		table_proveedor.setBounds(10, 11, 864, 463);
+		table_proveedor=bbdd.MostrarTabla("Proveedores", table_proveedor);
+		table_proveedor=bbdd.MostrarTabla("Proveedor", table_proveedor);
+		table_proveedor.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if (e.getClickCount() == 2) {
+                    String[]valores=bbdd.SacarValoresTabla(table_proveedor);
+                    text_nombreProveedor.setText(valores[1].toString());
+                    text_telefonoProveedor.setText(valores[2].toString());
+                    text_direccionProveedor.setText(valores[3].toString());
+                    text_emailProveedor.setText(valores[4].toString());
+                }
+            }
+        });
 		contentPanel.add(table_proveedor);
 		
 	}
