@@ -140,7 +140,7 @@ public class Paciente extends JDialog {
 					
 			}
 		});
-		btn_modificarCliente.setBounds(695, 485, 85, 20);
+		btn_modificarCliente.setBounds(685, 485, 95, 20);
 		contentPanel.add(btn_modificarCliente);
 		
 		
@@ -148,9 +148,25 @@ public class Paciente extends JDialog {
 		btn_agregarCliente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
+				if(text_nombrePaciente.getText().isBlank()) {
+					JOptionPane.showMessageDialog(null, "Rellena el campo nombre");
+				}else if(text_dniPaciente.getText().isBlank()){
+					JOptionPane.showMessageDialog(null, "Rellena el campo dni");
+				}else if(text_direccionPaciente.getText().isBlank()) {
+					JOptionPane.showMessageDialog(null, "Rellena el campo direccion");
+				}else if(text_emailPaciente.getText().isBlank()) {
+					JOptionPane.showMessageDialog(null, "Rellena el campo email");
+				}else if(text_telefonoPaciente.getText().isBlank()) {
+					JOptionPane.showMessageDialog(null, "Rellena el campo telefono");
+				}else if(text_edadPaciente.getText().isBlank()){
+					JOptionPane.showMessageDialog(null, "Rellena el campo edad");
+				}else {
+					
+				}
+				
 			}
 		});
-		btn_agregarCliente.setBounds(600, 485, 85, 20);
+		btn_agregarCliente.setBounds(590, 485, 85, 20);
 		contentPanel.add(btn_agregarCliente);
 		
 		JButton btn_bajaCliente = new JButton("Baja");
