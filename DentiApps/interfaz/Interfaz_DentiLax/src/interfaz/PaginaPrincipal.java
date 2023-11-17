@@ -19,6 +19,8 @@ import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import java.awt.event.KeyAdapter;
+import javax.swing.KeyStroke;
+import java.awt.event.InputEvent;
 
 public class PaginaPrincipal extends JFrame {
 
@@ -67,6 +69,7 @@ public class PaginaPrincipal extends JFrame {
 		menuBar.add(mnNewMenu);
 		
 		JMenuItem mntmNewMenuItem = new JMenuItem("Gestón Paciente");
+		mntmNewMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_P, InputEvent.CTRL_DOWN_MASK));
 		mntmNewMenuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			
@@ -84,6 +87,7 @@ public class PaginaPrincipal extends JFrame {
 		menuBar.add(mnNewMenu_1);
 		
 		JMenuItem mntmGestionDoctores = new JMenuItem("Gestión Doctores");
+		mntmGestionDoctores.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_D, InputEvent.CTRL_DOWN_MASK));
 		mntmGestionDoctores.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Doctor vPrincipalDoctor = new Doctor();
@@ -100,6 +104,7 @@ public class PaginaPrincipal extends JFrame {
 		menuBar.add(mnNewMenu_2);
 		
 		JMenuItem mntmNewMenuItem_1 = new JMenuItem("Gestión Tratamientos");
+		mntmNewMenuItem_1.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_T, InputEvent.CTRL_DOWN_MASK));
 		mntmNewMenuItem_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Tratamiento vPrincipalTratamiento = new Tratamiento();
@@ -116,6 +121,7 @@ public class PaginaPrincipal extends JFrame {
 		menuBar.add(mnNewMenu_3);
 		
 		JMenuItem mntmNewMenuItem_2 = new JMenuItem("Gestión Facturación");
+		mntmNewMenuItem_2.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_E, InputEvent.CTRL_DOWN_MASK));
 		mntmNewMenuItem_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Especialidad vPrincipalEspecialidad = new Especialidad();
@@ -132,6 +138,7 @@ public class PaginaPrincipal extends JFrame {
 		menuBar.add(mnNewMenu_4);
 		
 		JMenuItem mntmNewMenuItem_4 = new JMenuItem("Gestión Material");
+		mntmNewMenuItem_4.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_M, InputEvent.CTRL_DOWN_MASK));
 		mntmNewMenuItem_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -151,6 +158,7 @@ public class PaginaPrincipal extends JFrame {
 		menuBar.add(mnNewMenu_5);
 		
 		JMenuItem mntmNewMenuItem_3 = new JMenuItem("Gestión Cita");
+		mntmNewMenuItem_3.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_C, InputEvent.CTRL_DOWN_MASK));
 		
 		
 		
