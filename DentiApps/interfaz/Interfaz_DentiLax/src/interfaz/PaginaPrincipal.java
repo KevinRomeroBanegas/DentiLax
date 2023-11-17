@@ -194,9 +194,32 @@ public class PaginaPrincipal extends JFrame {
 		
 		JMenuItem paciente = new JMenuItem("Gestion Paciente");
 		popupMenu.add(paciente);
+		paciente.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				Paciente paciente= new Paciente();
+				paciente.setVisible(true);
+				paciente.setLocationRelativeTo(null);
+				paciente.setLocation(370, 212);
+			}
+		});
+		paciente.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0));
+	
+		
 		
 		JMenuItem Doctores = new JMenuItem("Gestion de doctores");
 		popupMenu.add(Doctores);
+		Doctores.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				Doctor doctor= new Doctor();
+				doctor.setVisible(true);
+				doctor.setLocationRelativeTo(null);
+				doctor.setLocation(370, 212);
+				
+			}
+		});
+
 		
 		JMenuItem Tratamiento = new JMenuItem("Tratamientos");
 		popupMenu.add(Tratamiento);
