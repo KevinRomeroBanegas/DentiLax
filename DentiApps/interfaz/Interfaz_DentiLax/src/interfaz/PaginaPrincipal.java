@@ -21,6 +21,10 @@ import javax.swing.JTextField;
 import java.awt.event.KeyAdapter;
 import javax.swing.KeyStroke;
 import java.awt.event.InputEvent;
+import javax.swing.JPopupMenu;
+import java.awt.Component;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class PaginaPrincipal extends JFrame {
 
@@ -184,6 +188,30 @@ public class PaginaPrincipal extends JFrame {
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		
+		JPopupMenu popupMenu = new JPopupMenu();
+		addPopup(contentPane, popupMenu);
+		
+		JMenuItem paciente = new JMenuItem("Gestion Paciente");
+		popupMenu.add(paciente);
+		
+		JMenuItem Doctores = new JMenuItem("Gestion de doctores");
+		popupMenu.add(Doctores);
+		
+		JMenuItem Tratamiento = new JMenuItem("Tratamientos");
+		popupMenu.add(Tratamiento);
+		
+		JMenuItem especialidad = new JMenuItem("Especialidad");
+		popupMenu.add(especialidad);
+		
+		JMenuItem material = new JMenuItem("Material");
+		popupMenu.add(material);
+		
+		JMenuItem mntmNewMenuItem_11 = new JMenuItem("Cita");
+		popupMenu.add(mntmNewMenuItem_11);
+		
+		JMenuItem mntmNewMenuItem_8 = new JMenuItem("Facturacion");
+		popupMenu.add(mntmNewMenuItem_8);
 		
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setBounds(920, 10, 250, 250);
@@ -378,7 +406,22 @@ public class PaginaPrincipal extends JFrame {
 			
 		}
 		}
-	
-	
+	private static void addPopup(Component component, final JPopupMenu popup) {
+		component.addMouseListener(new MouseAdapter() {
+			public void mousePressed(MouseEvent e) {
+				if (e.isPopupTrigger()) {
+					showMenu(e);
+				}
+			}
+			public void mouseReleased(MouseEvent e) {
+				if (e.isPopupTrigger()) {
+					showMenu(e);
+				}
+			}
+			private void showMenu(MouseEvent e) {
+				popup.show(e.getComponent(), e.getX(), e.getY());
+			}
+		});
+	}
 	}
 
