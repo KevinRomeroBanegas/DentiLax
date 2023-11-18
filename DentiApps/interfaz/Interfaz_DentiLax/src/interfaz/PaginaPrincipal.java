@@ -124,7 +124,7 @@ public class PaginaPrincipal extends JFrame {
 		});
 		mnNewMenu_2.add(mntmNewMenuItem_1);
 		
-		JMenu mnNewMenu_3 = new JMenu("Especialidad");
+		/*JMenu mnNewMenu_3 = new JMenu("Especialidad");
 		mnNewMenu_3.setFont(new Font("Segoe UI", Font.BOLD, 30));
 		menuBar.add(mnNewMenu_3);
 		
@@ -138,7 +138,7 @@ public class PaginaPrincipal extends JFrame {
 				vPrincipalEspecialidad.setLocation(370, 212);
 			}
 		});
-		mnNewMenu_3.add(mntmNewMenuItem_2);
+		mnNewMenu_3.add(mntmNewMenuItem_2);*/
 		
 		JMenu mnNewMenu_4 = new JMenu("Materiales");
 		mnNewMenu_4.setFont(new Font("Segoe UI", Font.BOLD, 30));
@@ -312,7 +312,7 @@ public class PaginaPrincipal extends JFrame {
 		//condición para deshabilitar partes de menu a doctores
 		if(lbl_ROL.getText().equals("Doctor")) {
 			mnNewMenu_1.setEnabled(false);
-			mnNewMenu_3.setEnabled(false);
+			//mnNewMenu_3.setEnabled(false);
 			mnNewMenu_5.setEnabled(false);
 			mnNewMenu_6.setEnabled(false);
 		}
