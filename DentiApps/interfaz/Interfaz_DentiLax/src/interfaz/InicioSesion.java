@@ -67,7 +67,7 @@ public class InicioSesion extends JFrame {
 
 		JButton btn_Aceptar = new JButton("Aceptar");
 		btn_Aceptar.setForeground(new Color(255, 255, 255));
-		btn_Aceptar.setBackground(new Color(0, 206, 209));
+		btn_Aceptar.setBackground(new Color(184, 249, 254));
 		btn_Aceptar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String nombre = txt_Usuario.getText();
@@ -155,18 +155,19 @@ public class InicioSesion extends JFrame {
 		// (1).png")));
 		lbl_contra.setBounds(120, 240, 32, 32);
 		contentPane.add(lbl_contra);
-		
-		
-				JLabel fondo_pacientes = new JLabel("");
-				// fondo_pacientes.setIcon(new
-				// ImageIcon(InicioSesion.class.getResource("/Iconos/Fondo 600X450.png")));
-				// fondo_pacientes.setIcon(new
-				// ImageIcon(InicioSesion.class.getResource("/Iconos/Fondo 600X450.png")));
-				fondo_pacientes.setBounds(0, 0, 600, 450);
-				contentPane.add(fondo_pacientes);
 				
 				Labeltitulo lbltlInicioDeSesin = new Labeltitulo();
-				lbltlInicioDeSesin.setBounds(203, 60, 204, 49);
+				lbltlInicioDeSesin.setBounds(203, 76, 204, 49);
 				contentPane.add(lbltlInicioDeSesin);
+				
+				
+						JLabel fondo_pacientes = new JLabel("");
+						fondo_pacientes.setIcon(new ImageIcon(InicioSesion.class.getResource("/imagenes/fondo_inicio_transparente.png")));
+						// fondo_pacientes.setIcon(new
+						// ImageIcon(InicioSesion.class.getResource("/Iconos/Fondo 600X450.png")));
+						// fondo_pacientes.setIcon(new
+						// ImageIcon(InicioSesion.class.getResource("/Iconos/Fondo 600X450.png")));
+						fondo_pacientes.setBounds(0, 0, 600, 450);
+						contentPane.add(fondo_pacientes);
 	}
 }
