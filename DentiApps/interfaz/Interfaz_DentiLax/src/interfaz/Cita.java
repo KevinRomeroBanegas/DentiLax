@@ -179,7 +179,13 @@ public class Cita extends JDialog {
 				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 				valores[3]= "'"+sdf.format(fechaCalendario.getDate())+"'";
 				valores[4]="'"+text_observacionesCita.getText()+"'";
-				bbdd.modificar("cita", valores, true, table_cita);
+				int result = JOptionPane.showConfirmDialog(null,"¿Quieres modificar esta cita?", "MODIFICAR CITA",
+			               JOptionPane.YES_NO_OPTION,
+			               JOptionPane.QUESTION_MESSAGE);
+			            if(result == JOptionPane.YES_OPTION){
+			            	JOptionPane.showMessageDialog(null, "Cita modificada");
+			            	bbdd.modificar("cita", valores, true, table_cita);
+			            }
 			}
 		});
 		btn_modificarCita.setBounds(695, 485, 85, 20);
@@ -195,7 +201,13 @@ public class Cita extends JDialog {
 				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 				valores[3]= "'"+sdf.format(fechaCalendario.getDate())+"'";
 				valores[4]="'"+text_observacionesCita.getText()+"'";
-				bbdd.insertar("cita", valores, true);
+				int result = JOptionPane.showConfirmDialog(null,"¿Quieres insertar esta cita?", "INSERTAR CITA",
+			               JOptionPane.YES_NO_OPTION,
+			               JOptionPane.QUESTION_MESSAGE);
+			            if(result == JOptionPane.YES_OPTION){
+			            	JOptionPane.showMessageDialog(null, "Cita insertada");
+			            	bbdd.insertar("cita", valores, true);
+			            }
 			}
 		});
 		btn_agregarCita.setBounds(600, 485, 85, 20);
@@ -211,7 +223,13 @@ public class Cita extends JDialog {
 				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 				valores[3]= "'"+sdf.format(fechaCalendario.getDate())+"'";
 				valores[4]="'"+text_observacionesCita.getText()+"'";
-				bbdd.borrar("cita", valores, true);
+				int result = JOptionPane.showConfirmDialog(null,"¿Quieres dar de baja esta cita?", "DAR BAJA CITA",
+			               JOptionPane.YES_NO_OPTION,
+			               JOptionPane.QUESTION_MESSAGE);
+			            if(result == JOptionPane.YES_OPTION){
+			            	JOptionPane.showMessageDialog(null, "Cita dadad de baja");
+			            	bbdd.borrar("cita", valores, true);
+			            }
 			}
 		});
 		btn_bajaCita.setBounds(790, 485, 85, 20);

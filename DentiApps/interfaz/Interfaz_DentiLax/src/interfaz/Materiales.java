@@ -102,7 +102,7 @@ public class Materiales extends JDialog implements ActionListener{
 		}
 		
 		JLabel lblNewLabel = new JLabel("Datos Material");
-		lblNewLabel.setBounds(10, 515, 105, 20);
+		lblNewLabel.setBounds(10, 515, 153, 20);
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 15));
 		contentPanel.add(lblNewLabel);
 		

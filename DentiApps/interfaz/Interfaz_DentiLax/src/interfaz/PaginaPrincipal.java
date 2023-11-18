@@ -55,6 +55,7 @@ public class PaginaPrincipal extends JFrame {
 	}
 
 	public PaginaPrincipal(String usuario, String rol) {
+		setTitle("DENTIAPP");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(PaginaPrincipal.class.getResource("/imagenes/diente.png")));
 		setResizable(false);
 		BBDD bbdd = new BBDD();
@@ -307,6 +308,15 @@ public class PaginaPrincipal extends JFrame {
 		imagen_fondo.setIcon(new ImageIcon(PaginaPrincipal.class.getResource("/imagenes/Fondo 1200x800.png")));
 		imagen_fondo.setBounds(0, 0, 1200, 800);
 		contentPane.add(imagen_fondo);
+		
+		//condición para deshabilitar partes de menu a doctores
+		if(lbl_ROL.getText().equals("Doctor")) {
+			mnNewMenu_1.setEnabled(false);
+			mnNewMenu_3.setEnabled(false);
+			mnNewMenu_5.setEnabled(false);
+			mnNewMenu_6.setEnabled(false);
+		}
+		
 
 	}
 	//metodo que no se para que esta creado pq no se llama en ningun momento
