@@ -8,12 +8,16 @@ import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import javax.swing.JTextField;
 import javax.swing.ImageIcon;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Stock extends JDialog {
 
@@ -93,17 +97,58 @@ public class Stock extends JDialog {
 		contentPanel.add(lblNewLabel);
 		{
 			JButton btn_modificarProducto = new JButton("Modificar");
+			btn_modificarProducto.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					if(text_nombreProducto.getText().isBlank()) {
+						JOptionPane.showMessageDialog(null, "Rellena el campo Nombre");
+					}else if(text_destribuidorProducto.getText().isBlank()){
+						JOptionPane.showMessageDialog(null, "Rellena el campo id Proveedor");
+					}else if(text_precioProducto.getText().isBlank()){
+						JOptionPane.showMessageDialog(null, "Rellena el campo Precio");
+					}else {
+					
+					JOptionPane.showMessageDialog(null, "Producto Modificado");
+					
+					}
+				}
+			});
 			btn_modificarProducto.setBounds(694, 549, 85, 20);
 			contentPanel.add(btn_modificarProducto);
 			btn_modificarProducto.setActionCommand("Cancel");
 		}
 		
 		JButton btn_agregarProducto = new JButton("Agregar");
+		btn_agregarProducto.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(text_nombreProducto.getText().isBlank()) {
+					JOptionPane.showMessageDialog(null, "Rellena el campo Nombre");
+				}else if(text_destribuidorProducto.getText().isBlank()){
+					JOptionPane.showMessageDialog(null, "Rellena el campo id Proveedor");
+				}else if(text_precioProducto.getText().isBlank()){
+					JOptionPane.showMessageDialog(null, "Rellena el campo Precio");
+				}else {
+				
+				JOptionPane.showMessageDialog(null, "Producto Agregado");
+				
+				}
+			}
+		});
 		btn_agregarProducto.setBounds(599, 549, 85, 20);
 		contentPanel.add(btn_agregarProducto);
 		btn_agregarProducto.setActionCommand("Cancel");
 		
 		JButton btn_bajaProducto = new JButton("Baja");
+		btn_bajaProducto.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(text_nombreProducto.getText().isBlank()) {
+					JOptionPane.showMessageDialog(null, "Rellena el campo Nombre");
+				}else {
+				
+				JOptionPane.showMessageDialog(null, "Producto dado de Baja");
+				
+				}
+			}
+		});
 		btn_bajaProducto.setActionCommand("Cancel");
 		btn_bajaProducto.setBounds(789, 549, 85, 20);
 		contentPanel.add(btn_bajaProducto);
