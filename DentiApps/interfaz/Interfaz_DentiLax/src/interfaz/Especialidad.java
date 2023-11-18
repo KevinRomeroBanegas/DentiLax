@@ -81,32 +81,56 @@ public class Especialidad extends JDialog {
 		
 		
 		
-		JButton btn_modificarMaterial = new JButton("Modificar");
-		btn_modificarMaterial.addActionListener(new ActionListener() {
+		JButton btn_modificarEspecialidad = new JButton("Modificar");
+		btn_modificarEspecialidad.addActionListener(new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
-					
+			if(text_nombreDoctor.getText().isBlank()) {
+				JOptionPane.showMessageDialog(null, "Rellena el campo Nombre Doctor");
+			}else if(text_Especialidadl.getText().isBlank()){
+				JOptionPane.showMessageDialog(null, "Rellena el campo Especialidad");
+			}else {
+				JOptionPane.showMessageDialog(null, "Especialidad Modificada");
+			}
 			}
 		});
-		btn_modificarMaterial.setBounds(695, 574, 85, 20);
-		contentPanel.add(btn_modificarMaterial);
+		btn_modificarEspecialidad.setBounds(695, 574, 85, 20);
+		contentPanel.add(btn_modificarEspecialidad);
 		
 		
-		JButton btn_agregarMaterial = new JButton("Agregar");
-		btn_agregarMaterial.addActionListener(new ActionListener() {
+		JButton btn_agregarEspecialidad = new JButton("Agregar");
+		btn_agregarEspecialidad.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if(text_nombreDoctor.getText().isBlank()) {
+					JOptionPane.showMessageDialog(null, "Rellena el campo Nombre Doctor");
+				}else if(text_Especialidadl.getText().isBlank()){
+					JOptionPane.showMessageDialog(null, "Rellena el campo Especialidad");
+				}else {
+				
+				JOptionPane.showMessageDialog(null, "Especialidad Agregada");
+					
+				}
 				
 			}
 		});
-		btn_agregarMaterial.setBounds(600, 574, 85, 20);
-		contentPanel.add(btn_agregarMaterial);
+		btn_agregarEspecialidad.setBounds(600, 574, 85, 20);
+		contentPanel.add(btn_agregarEspecialidad);
 		
-		JButton btn_bajaMaterial = new JButton("Baja");
-		btn_bajaMaterial.addActionListener(new ActionListener() {
+		JButton btn_bajaEspecialidad = new JButton("Baja");
+		btn_bajaEspecialidad.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if(text_nombreDoctor.getText().isBlank()) {
+					JOptionPane.showMessageDialog(null, "Rellena el campo Nombre Doctor");
+				}else if(text_Especialidadl.getText().isBlank()){
+					JOptionPane.showMessageDialog(null, "Rellena el campo Especialidad");
+				}else {
+				
+				JOptionPane.showMessageDialog(null, "Especialidad dada de Baja");
+					
+				}
 			}
 		});
-		btn_bajaMaterial.setBounds(790, 574, 85, 20);
-		contentPanel.add(btn_bajaMaterial);
+		btn_bajaEspecialidad.setBounds(790, 574, 85, 20);
+		contentPanel.add(btn_bajaEspecialidad);
 		
 		table_material = new JTable();
 		table_material.setBounds(10, 11, 864, 552);
