@@ -190,6 +190,8 @@ public class Doctor extends JDialog {
 		JButton btn_bajaDoctor = new JButton("Baja");
 		btn_bajaDoctor.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				JOptionPane.showMessageDialog(null, "Doctor dado de baja");
 			}
 		});
 		btn_bajaDoctor.setBounds(789, 485, 85, 20);
