@@ -23,6 +23,7 @@ import javax.swing.JTextField;
 import javax.swing.ImageIcon;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Dialog.ModalityType;
 
 public class Doctor extends JDialog {
 	private static final long serialVersionUID = 1L;
@@ -46,6 +47,8 @@ public class Doctor extends JDialog {
 	}
 
 	public Doctor() {
+		setModalityType(ModalityType.DOCUMENT_MODAL);
+		setModal(true);
 		setResizable(false);
 		BBDD bbdd=new BBDD();
 		bbdd.conectar();

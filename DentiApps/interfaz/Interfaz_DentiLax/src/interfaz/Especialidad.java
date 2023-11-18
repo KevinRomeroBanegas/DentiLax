@@ -19,6 +19,7 @@ import javax.swing.JTextField;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.ImageIcon;
+import java.awt.Dialog.ModalityType;
 
 public class Especialidad extends JDialog {
 
@@ -35,6 +36,8 @@ public class Especialidad extends JDialog {
 	}
 
 	public Especialidad() {
+		setModalityType(ModalityType.DOCUMENT_MODAL);
+		setModal(true);
 		setResizable(false);
 		
 		setTitle("Especialidad");

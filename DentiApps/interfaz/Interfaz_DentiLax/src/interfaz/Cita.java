@@ -30,6 +30,7 @@ import javax.swing.JTextArea;
 import com.toedter.calendar.JDateChooser;
 import javax.swing.JComboBox;
 import javax.swing.ImageIcon;
+import java.awt.Dialog.ModalityType;
 
 public class Cita extends JDialog {
 
@@ -48,6 +49,8 @@ public class Cita extends JDialog {
 	}
 
 	public Cita(){
+		setModalityType(ModalityType.DOCUMENT_MODAL);
+		setModal(true);
 		setResizable(false);
 		setTitle("Cita");
 		BBDD bbdd = new BBDD();

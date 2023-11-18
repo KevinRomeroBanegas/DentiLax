@@ -49,6 +49,7 @@ public class InicioSesion extends JFrame {
 	 * @throws SQLException
 	 */
 	public InicioSesion() throws SQLException {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(InicioSesion.class.getResource("/imagenes/diente.png")));
 		setResizable(false);
 		BBDD bbdd = new BBDD();
 		bbdd.conectar();
@@ -80,19 +81,20 @@ public class InicioSesion extends JFrame {
 								JOptionPane.ERROR_MESSAGE);
 					} else {
 						if (i == 1) {
-							if (i == 1) {
-								JOptionPane.showMessageDialog(null,
-										"Has iniciado sesion correctamente como administrador");
-								PaginaPrincipal frameLobby = new PaginaPrincipal(nombre);
-								frameLobby.setVisible(true);
-								dispose();
-							} else {
-								JOptionPane.showMessageDialog(null, "Has iniciado sesion correctamente como doctor");
-								PaginaPrincipal frameLobby = new PaginaPrincipal(nombre);
-								frameLobby.setVisible(true);
-								dispose();
-							}
+							JOptionPane.showMessageDialog(null,
+									"Has iniciado sesion correctamente como administrador");
+							String rol="Admin";
+							PaginaPrincipal frameLobby = new PaginaPrincipal(nombre, rol);
+							frameLobby.setVisible(true);
+							dispose();
+						} else if (i == 0){
+							JOptionPane.showMessageDialog(null, "Has iniciado sesion correctamente como doctor");
+							String rol="Doctor";
+							PaginaPrincipal frameLobby = new PaginaPrincipal(nombre, rol);
+							frameLobby.setVisible(true);
+							dispose();
 						}
+						
 					}
 				} catch (SQLException e1) {
 					e1.printStackTrace();

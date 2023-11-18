@@ -15,6 +15,7 @@ import java.awt.event.MouseListener;
 
 import javax.swing.JTextField;
 import javax.swing.ImageIcon;
+import java.awt.Dialog.ModalityType;
 
 public class Tratamiento extends JDialog {
 
@@ -38,6 +39,8 @@ public class Tratamiento extends JDialog {
 	}
 
 	public Tratamiento() {
+		setModalityType(ModalityType.DOCUMENT_MODAL);
+		setModal(true);
 		setResizable(false);
 		BBDD bbdd=new BBDD();
 		setTitle("Tratamiento");

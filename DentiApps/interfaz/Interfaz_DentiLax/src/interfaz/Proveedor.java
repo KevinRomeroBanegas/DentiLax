@@ -14,6 +14,7 @@ import java.awt.event.MouseEvent;
 
 import javax.swing.JTextField;
 import javax.swing.ImageIcon;
+import java.awt.Dialog.ModalityType;
 
 public class Proveedor extends JDialog {
 
@@ -37,6 +38,8 @@ public class Proveedor extends JDialog {
 	}
 
 	public Proveedor() {
+		setModalityType(ModalityType.DOCUMENT_MODAL);
+		setModal(true);
 		setResizable(false);
 		BBDD bbdd=new BBDD();
 		setTitle("Proveedor");

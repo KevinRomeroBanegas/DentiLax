@@ -18,6 +18,7 @@ import javax.swing.JTextField;
 import javax.swing.ImageIcon;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Dialog.ModalityType;
 
 public class Stock extends JDialog {
 
@@ -40,6 +41,8 @@ public class Stock extends JDialog {
 	}
 
 	public Stock() {
+		setModalityType(ModalityType.DOCUMENT_MODAL);
+		setModal(true);
 		setResizable(false);
 		BBDD bbdd=new BBDD();
 		setTitle("Stock");

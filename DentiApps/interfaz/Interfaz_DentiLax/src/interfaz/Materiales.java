@@ -21,6 +21,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.ActionEvent;
 import javax.swing.ImageIcon;
+import java.awt.Dialog.ModalityType;
 
 public class Materiales extends JDialog implements ActionListener{
 
@@ -39,6 +40,8 @@ public class Materiales extends JDialog implements ActionListener{
 	}
 
 	public Materiales() {
+		setModalityType(ModalityType.DOCUMENT_MODAL);
+		setModal(true);
 		setResizable(false);
 		BBDD bbdd=new BBDD();
 		setTitle("Materiales");

@@ -21,6 +21,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.ActionEvent;
 import javax.swing.ImageIcon;
+import java.awt.Dialog.ModalityType;
 
 public class Paciente extends JDialog {
 
@@ -41,6 +42,8 @@ public class Paciente extends JDialog {
 	}
 
 	public Paciente() {
+		setModalityType(ModalityType.DOCUMENT_MODAL);
+		setModal(true);
 		setResizable(false);
 		BBDD bbdd= new BBDD();
 		bbdd.conectar();

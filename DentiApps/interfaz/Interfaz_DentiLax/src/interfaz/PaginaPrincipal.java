@@ -26,6 +26,8 @@ import java.awt.Component;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JButton;
+import javax.swing.ImageIcon;
+import java.awt.Toolkit;
 
 public class PaginaPrincipal extends JFrame {
 
@@ -33,12 +35,15 @@ public class PaginaPrincipal extends JFrame {
 	private JPanel contentPane;
 	private JTextField textField;
 	private JTextField textField_1;
+	private static String usuario;
+	private static String rol;
+	private static PaginaPrincipal frame;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					PaginaPrincipal frame = new PaginaPrincipal();
+					frame = new PaginaPrincipal(usuario, rol);
 					frame.setVisible(true);
 					frame.setLocationRelativeTo(null);
 				} catch (Exception e) {
@@ -49,7 +54,8 @@ public class PaginaPrincipal extends JFrame {
 		
 	}
 
-	public PaginaPrincipal() {
+	public PaginaPrincipal(String usuario, String rol) {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(PaginaPrincipal.class.getResource("/imagenes/diente.png")));
 		setResizable(false);
 		BBDD bbdd = new BBDD();
 		bbdd.conectar();
@@ -73,14 +79,12 @@ public class PaginaPrincipal extends JFrame {
 		mnNewMenu.setFont(new Font("Segoe UI", Font.BOLD, 30));
 		menuBar.add(mnNewMenu);
 		
-		JMenuItem mntmNewMenuItem = new JMenuItem("Gestón Paciente");
+		JMenuItem mntmNewMenuItem = new JMenuItem("Gestión Paciente");
 		mntmNewMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_P, InputEvent.CTRL_DOWN_MASK));
 		mntmNewMenuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			
 				Paciente vPrincipalPaciente = new Paciente();
 				vPrincipalPaciente.setVisible(true);
-				vPrincipalPaciente.setModal(true);
 				vPrincipalPaciente.setLocationRelativeTo(null);
 				vPrincipalPaciente.setLocation(370, 212);
 			}
@@ -97,7 +101,6 @@ public class PaginaPrincipal extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				Doctor vPrincipalDoctor = new Doctor();
 				vPrincipalDoctor.setVisible(true);
-				vPrincipalDoctor.setModal(true);
 				vPrincipalDoctor.setLocationRelativeTo(null);
 				vPrincipalDoctor.setLocation(370, 212);
 			}
@@ -114,7 +117,6 @@ public class PaginaPrincipal extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				Tratamiento vPrincipalTratamiento = new Tratamiento();
 				vPrincipalTratamiento.setVisible(true);
-				vPrincipalTratamiento.setModal(true);
 				vPrincipalTratamiento.setLocationRelativeTo(null);
 				vPrincipalTratamiento.setLocation(370, 212);
 			}
@@ -131,7 +133,6 @@ public class PaginaPrincipal extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				Especialidad vPrincipalEspecialidad = new Especialidad();
 				vPrincipalEspecialidad.setVisible(true);
-				vPrincipalEspecialidad.setModal(true);
 				vPrincipalEspecialidad.setLocationRelativeTo(null);
 				vPrincipalEspecialidad.setLocation(370, 212);
 			}
@@ -149,7 +150,6 @@ public class PaginaPrincipal extends JFrame {
 				
 				Materiales vPrincipalMateriales = new Materiales();
 				vPrincipalMateriales.setVisible(true);
-				vPrincipalMateriales.setModal(true);
 				vPrincipalMateriales.setLocationRelativeTo(null);
 				vPrincipalMateriales.setLocation(370, 212);
 			}
@@ -285,20 +285,32 @@ public class PaginaPrincipal extends JFrame {
 		JLabel lblNewLabel_1 = new JLabel("Usuario: ");
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 20));
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 17));
-		lblNewLabel_1.setBounds(920, 396, 90, 20);
+		lblNewLabel_1.setBounds(920, 554, 90, 20);
 		contentPane.add(lblNewLabel_1);
 		
-		JLabel lblNewLabel_1_1 = new JLabel("Rol:            Administrador");
+		JLabel lblNewLabel_1_1 = new JLabel("Rol:");
 		lblNewLabel_1_1.setFont(new Font("Tahoma", Font.BOLD, 17));
-		lblNewLabel_1_1.setBounds(920, 439, 250, 20);
+		lblNewLabel_1_1.setBounds(920, 597, 72, 20);
 		contentPane.add(lblNewLabel_1_1);
 		
-		JLabel lbl_DNI = new JLabel("DNIUSUARIO");
+		JLabel lbl_DNI = new JLabel(usuario);
 		lbl_DNI.setFont(new Font("Tahoma", Font.BOLD, 17));
-		lbl_DNI.setBounds(1020, 396, 150, 20);
+		lbl_DNI.setBounds(1005, 554, 181, 20);
 		contentPane.add(lbl_DNI);
+		
+		JLabel lbl_ROL = new JLabel(rol);
+		lbl_ROL.setFont(new Font("Tahoma", Font.BOLD, 17));
+		lbl_ROL.setBounds(1005, 597, 181, 20);
+		contentPane.add(lbl_ROL);
+		
+		JLabel imagen_fondo = new JLabel("");
+		imagen_fondo.setIcon(new ImageIcon(PaginaPrincipal.class.getResource("/imagenes/Fondo 1200x800.png")));
+		imagen_fondo.setBounds(0, 0, 1200, 800);
+		contentPane.add(imagen_fondo);
 
 	}
+	//metodo que no se para que esta creado pq no se llama en ningun momento
+	/*
 	public PaginaPrincipal(String DNI) {
 		setResizable(false);
 		BBDD bbdd = new BBDD();
@@ -448,7 +460,7 @@ public class PaginaPrincipal extends JFrame {
 		lbl_DNI.setBounds(1020, 396, 90, 20);
 		contentPane.add(lbl_DNI);
 
-			}
+			}*/
 	public class KeyListenerExample implements KeyListener {
 		
 		
