@@ -25,6 +25,7 @@ import javax.swing.JPopupMenu;
 import java.awt.Component;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import javax.swing.JButton;
 
 public class PaginaPrincipal extends JFrame {
 
@@ -222,18 +223,59 @@ public class PaginaPrincipal extends JFrame {
 
 		
 		JMenuItem Tratamiento = new JMenuItem("Tratamientos");
+		Tratamiento.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				Tratamiento tratamiento= new Tratamiento();
+				tratamiento.setVisible(true);
+				tratamiento.setLocationRelativeTo(null);
+				tratamiento.setLocation(370, 212);
+			}
+		});
 		popupMenu.add(Tratamiento);
 		
 		JMenuItem especialidad = new JMenuItem("Especialidad");
+		especialidad.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+			Especialidad especialidad= new Especialidad();
+			especialidad.setVisible(true);
+			especialidad.setLocationRelativeTo(null);
+			especialidad.setLocation(370,212);
+			}
+		});
 		popupMenu.add(especialidad);
 		
 		JMenuItem material = new JMenuItem("Material");
+		material.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				Materiales material= new Materiales();
+				material.setVisible(true);
+				material.setLocationRelativeTo(null);
+				material.setLocation(370,212);
+			}
+		});
 		popupMenu.add(material);
 		
 		JMenuItem mntmNewMenuItem_11 = new JMenuItem("Cita");
+		mntmNewMenuItem_11.addMouseListener(new MouseAdapter() {
+		
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				Cita cita= new Cita();
+				cita.setVisible(true);
+				cita.setLocationRelativeTo(null);
+				cita.setLocation(370,212);
+			}
+		});
 		popupMenu.add(mntmNewMenuItem_11);
 		
 		JMenuItem mntmNewMenuItem_8 = new JMenuItem("Facturacion");
+		mntmNewMenuItem_8.addMouseListener(new MouseAdapter() {
+			
+		});
 		popupMenu.add(mntmNewMenuItem_8);
 		
 		JLabel lblNewLabel = new JLabel("");
