@@ -18,6 +18,7 @@ import java.awt.event.KeyListener;
 import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 import javax.swing.JPasswordField;
+import labeltitulo.Labeltitulo;
 
 public class InicioSesion extends JFrame {
 
@@ -137,12 +138,6 @@ public class InicioSesion extends JFrame {
 		contentPane.add(txt_Usuario);
 		txt_Usuario.setColumns(10);
 
-		JLabel lbl_InicioSesion = new JLabel("INICIO DE SESIÓN");
-		lbl_InicioSesion.setForeground(new Color(255, 255, 255));
-		lbl_InicioSesion.setFont(new Font("Tahoma", Font.BOLD, 24));
-		lbl_InicioSesion.setBounds(186, 26, 333, 41);
-		contentPane.add(lbl_InicioSesion);
-
 		JLabel lbl_usuario = new JLabel("");
 		// lbl_usuario.setIcon(new
 		// ImageIcon(InicioSesion.class.getResource("/Iconos/usuario (1).png")));
@@ -160,13 +155,18 @@ public class InicioSesion extends JFrame {
 		// (1).png")));
 		lbl_contra.setBounds(120, 240, 32, 32);
 		contentPane.add(lbl_contra);
-
-		JLabel fondo_pacientes = new JLabel("");
-		// fondo_pacientes.setIcon(new
-		// ImageIcon(InicioSesion.class.getResource("/Iconos/Fondo 600X450.png")));
-		// fondo_pacientes.setIcon(new
-		// ImageIcon(InicioSesion.class.getResource("/Iconos/Fondo 600X450.png")));
-		fondo_pacientes.setBounds(0, 0, 600, 450);
-		contentPane.add(fondo_pacientes);
+		
+		
+				JLabel fondo_pacientes = new JLabel("");
+				// fondo_pacientes.setIcon(new
+				// ImageIcon(InicioSesion.class.getResource("/Iconos/Fondo 600X450.png")));
+				// fondo_pacientes.setIcon(new
+				// ImageIcon(InicioSesion.class.getResource("/Iconos/Fondo 600X450.png")));
+				fondo_pacientes.setBounds(0, 0, 600, 450);
+				contentPane.add(fondo_pacientes);
+				
+				Labeltitulo lbltlInicioDeSesin = new Labeltitulo();
+				lbltlInicioDeSesin.setBounds(203, 60, 204, 49);
+				contentPane.add(lbltlInicioDeSesin);
 	}
 }
