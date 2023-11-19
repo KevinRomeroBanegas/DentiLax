@@ -15,6 +15,8 @@ import java.awt.event.MouseEvent;
 import javax.swing.JTextField;
 import javax.swing.ImageIcon;
 import java.awt.Dialog.ModalityType;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Proveedor extends JDialog {
 
@@ -118,17 +120,32 @@ public class Proveedor extends JDialog {
 		contentPanel.add(lblNewLabel);
 		{
 			JButton btn_modificarProveedor = new JButton("Modificar");
+			btn_modificarProveedor.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					table_proveedor=bbdd.MostrarTabla("Cita", table_proveedor);
+				}
+			});
 			btn_modificarProveedor.setBounds(694, 485, 85, 20);
 			contentPanel.add(btn_modificarProveedor);
 			btn_modificarProveedor.setActionCommand("Cancel");
 		}
 		
 		JButton btn_agregarProveedor = new JButton("Agregar");
+		btn_agregarProveedor.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				table_proveedor=bbdd.MostrarTabla("Cita", table_proveedor);
+			}
+		});
 		btn_agregarProveedor.setBounds(599, 485, 85, 20);
 		contentPanel.add(btn_agregarProveedor);
 		btn_agregarProveedor.setActionCommand("Cancel");
 		
 		JButton btnBajaProveedor = new JButton("Baja");
+		btnBajaProveedor.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				table_proveedor=bbdd.MostrarTabla("Cita", table_proveedor);
+			}
+		});
 		btnBajaProveedor.setActionCommand("Cancel");
 		btnBajaProveedor.setBounds(789, 485, 85, 20);
 		contentPanel.add(btnBajaProveedor);

@@ -155,6 +155,7 @@ public class Doctor extends JDialog {
 					}else {
 					
 					JOptionPane.showMessageDialog(null, "Doctor Modificado");
+					table_doctor=bbdd.MostrarTabla("Cita", table_doctor);
 					
 					}
 				}
@@ -182,6 +183,7 @@ public class Doctor extends JDialog {
 				}else {
 				
 				JOptionPane.showMessageDialog(null, "Doctor Agregado");
+				table_doctor=bbdd.MostrarTabla("Cita", table_doctor);
 				
 				}
 			}
@@ -195,6 +197,7 @@ public class Doctor extends JDialog {
 			public void actionPerformed(ActionEvent e) {
 				
 				JOptionPane.showMessageDialog(null, "Doctor dado de baja");
+				table_doctor=bbdd.MostrarTabla("Cita", table_doctor);
 			}
 		});
 		btn_bajaDoctor.setBounds(789, 485, 85, 20);

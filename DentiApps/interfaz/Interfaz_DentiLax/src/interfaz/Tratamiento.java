@@ -16,6 +16,8 @@ import java.awt.event.MouseListener;
 import javax.swing.JTextField;
 import javax.swing.ImageIcon;
 import java.awt.Dialog.ModalityType;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Tratamiento extends JDialog {
 
@@ -122,17 +124,32 @@ public class Tratamiento extends JDialog {
 		contentPanel.add(lblNewLabel);
 		{
 			JButton btn_modificarTratamiento = new JButton("Modificar");
+			btn_modificarTratamiento.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					table_tratamiento=bbdd.MostrarTabla("Cita", table_tratamiento);
+				}
+			});
 			btn_modificarTratamiento.setBounds(694, 485, 85, 20);
 			contentPanel.add(btn_modificarTratamiento);
 			btn_modificarTratamiento.setActionCommand("Cancel");
 		}
 		
 		JButton btn_agregarTratamiento = new JButton("Agregar");
+		btn_agregarTratamiento.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				table_tratamiento=bbdd.MostrarTabla("Cita", table_tratamiento);
+			}
+		});
 		btn_agregarTratamiento.setBounds(599, 485, 85, 20);
 		contentPanel.add(btn_agregarTratamiento);
 		btn_agregarTratamiento.setActionCommand("Cancel");
 		
 		JButton btn_bajaTratamiento = new JButton("Baja");
+		btn_bajaTratamiento.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				table_tratamiento=bbdd.MostrarTabla("Cita", table_tratamiento);
+			}
+		});
 		btn_bajaTratamiento.setActionCommand("Cancel");
 		btn_bajaTratamiento.setBounds(789, 485, 85, 20);
 		contentPanel.add(btn_bajaTratamiento);

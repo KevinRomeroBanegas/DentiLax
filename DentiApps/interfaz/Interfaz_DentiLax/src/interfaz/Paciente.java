@@ -157,6 +157,7 @@ public class Paciente extends JDialog {
 				}else {
 				
 				JOptionPane.showMessageDialog(null, "Paciente Modificado");
+				table_paciente=bbdd.MostrarTabla("Cita", table_paciente);
 				}
 					
 			}
@@ -183,6 +184,7 @@ public class Paciente extends JDialog {
 					JOptionPane.showMessageDialog(null, "Rellena el campo edad");
 				}else {
 					JOptionPane.showMessageDialog(null, "Paciente Agregado");
+					table_paciente=bbdd.MostrarTabla("Cita", table_paciente);
 				}
 				
 			}
@@ -194,7 +196,7 @@ public class Paciente extends JDialog {
 		btn_bajaCliente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				
+				table_paciente=bbdd.MostrarTabla("Cita", table_paciente);
 			}
 		});
 		btn_bajaCliente.setBounds(790, 485, 85, 20);

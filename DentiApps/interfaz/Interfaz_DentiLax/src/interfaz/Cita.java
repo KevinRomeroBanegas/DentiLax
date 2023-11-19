@@ -185,6 +185,8 @@ public class Cita extends JDialog {
 			            if(result == JOptionPane.YES_OPTION){
 			            	JOptionPane.showMessageDialog(null, "Cita modificada");
 			            	bbdd.modificar("cita", valores, true, table_cita);
+			            	table_cita=bbdd.MostrarTabla("Cita", table_cita);
+			            	
 			            }
 			}
 		});
@@ -207,6 +209,7 @@ public class Cita extends JDialog {
 			            if(result == JOptionPane.YES_OPTION){
 			            	JOptionPane.showMessageDialog(null, "Cita insertada");
 			            	bbdd.insertar("cita", valores, true);
+			            	table_cita=bbdd.MostrarTabla("Cita", table_cita);
 			            }
 			}
 		});
@@ -229,6 +232,7 @@ public class Cita extends JDialog {
 			            if(result == JOptionPane.YES_OPTION){
 			            	JOptionPane.showMessageDialog(null, "Cita dadad de baja");
 			            	bbdd.borrar("cita", valores, true);
+			            	table_cita=bbdd.MostrarTabla("Cita", table_cita);
 			            }
 			}
 		});
