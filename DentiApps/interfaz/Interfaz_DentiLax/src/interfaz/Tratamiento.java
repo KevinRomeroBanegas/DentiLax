@@ -8,6 +8,8 @@ import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -23,12 +25,11 @@ public class Tratamiento extends JDialog {
 
 	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
-	private JTextField text_nombreProveedor;
-	private JTextField text_dniProveedor;
-	private JTextField text_direccionProveedor;
-	private JTextField text_emailProveedor;
-	private JTextField text_telefonoProveedor;
+	private JTextField text_NombreTrat;
+	private JTextField text_Especialidad;
+	private JTextField text_Precio;
 	private JTable table_tratamiento;
+	private JTextField textField;
 
 	public static void main(String[] args) {
 		try {
@@ -53,6 +54,7 @@ public class Tratamiento extends JDialog {
 		getContentPane().add(contentPanel);
 		contentPanel.setLayout(null);
 		{
+			
 			JPanel buttonPane = new JPanel();
 			buttonPane.setBounds(10, 516, 864, 133);
 			contentPanel.add(buttonPane);
@@ -64,58 +66,41 @@ public class Tratamiento extends JDialog {
 				buttonPane.add(lblNewLabel_1);
 			}
 			{
-				JLabel lblNewLabel_1 = new JLabel("P/N:");
-				lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 15));
-				lblNewLabel_1.setBounds(10, 40, 150, 20);
-				buttonPane.add(lblNewLabel_1);
-			}
-			{
-				JLabel lblNewLabel_1 = new JLabel("Descripción:");
-				lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 15));
-				lblNewLabel_1.setBounds(10, 70, 150, 20);
-				lblNewLabel_1.setBounds(510, 10, 150, 20);
-				buttonPane.add(lblNewLabel_1);
-			}
-			{
-				JLabel lblNewLabel_1 = new JLabel("Cantidad:");
-				lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 15));
-				lblNewLabel_1.setBounds(10, 100, 150, 20);
-				lblNewLabel_1.setBounds(510, 61, 150, 20);
-				buttonPane.add(lblNewLabel_1);
+				JButton btn_filtrarTabla = new JButton("Filtrar tabla");
+				btn_filtrarTabla.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						String consulta=JOptionPane.showInputDialog("Ponga el ID por el cual quiere filtrar la tabla");
+						bbdd.filtro(consulta, table_tratamiento);
+					}
+				});
+				btn_filtrarTabla.setBounds(769, 103, 85, 20);
+				buttonPane.add(btn_filtrarTabla);
 			}
 			
-			text_nombreProveedor = new JTextField();
-			text_nombreProveedor.setBounds(180, 10, 285, 20);
-			buttonPane.add(text_nombreProveedor);
-			text_nombreProveedor.setColumns(10);
+			text_NombreTrat = new JTextField();
+			text_NombreTrat.setBounds(180, 10, 285, 20);
+			buttonPane.add(text_NombreTrat);
+			text_NombreTrat.setColumns(10);
 			
-			text_dniProveedor = new JTextField();
-			text_dniProveedor.setColumns(10);
-			text_dniProveedor.setBounds(55, 79, 285, 20);
-			text_dniProveedor.setBounds(10, 40, 285, 20);
-			buttonPane.add(text_dniProveedor);
+			text_Especialidad = new JTextField();
+			text_Especialidad.setColumns(10);
+			text_Especialidad.setBounds(180, 77, 285, 20);
+			buttonPane.add(text_Especialidad);
 			
-			text_direccionProveedor = new JTextField();
-			text_direccionProveedor.setColumns(10);
-			text_direccionProveedor.setBounds(202, 86, 285, 20);
-			text_direccionProveedor.setBounds(510, 43, 285, 20);
-			buttonPane.add(text_direccionProveedor);
-			
-			text_emailProveedor = new JTextField();
-			text_emailProveedor.setColumns(10);
-			text_emailProveedor.setBounds(180, 100, 285, 20);
-			text_emailProveedor.setBounds(510, 91, 285, 20);
-			buttonPane.add(text_emailProveedor);
-			
-			JLabel lblNewLabel_1 = new JLabel("Distribuidor:");
+			JLabel lblNewLabel_1 = new JLabel("Especialidad:");
 			lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 15));
-			lblNewLabel_1.setBounds(537, 10, 135, 20);
+			lblNewLabel_1.setBounds(10, 77, 150, 20);
 			buttonPane.add(lblNewLabel_1);
 			
-			text_telefonoProveedor = new JTextField();
-			text_telefonoProveedor.setBounds(684, 10, 170, 20);
-			buttonPane.add(text_telefonoProveedor);
-			text_telefonoProveedor.setColumns(10);
+			JLabel lblNewLabel_1_1 = new JLabel("Precio:");
+			lblNewLabel_1_1.setFont(new Font("Tahoma", Font.BOLD, 15));
+			lblNewLabel_1_1.setBounds(506, 10, 150, 20);
+			buttonPane.add(lblNewLabel_1_1);
+			
+			text_Precio = new JTextField();
+			text_Precio.setColumns(10);
+			text_Precio.setBounds(594, 10, 260, 20);
+			buttonPane.add(text_Precio);
 		}
 		
 		JLabel lblNewLabel = new JLabel("Datos tratamiento");
@@ -162,9 +147,9 @@ public class Tratamiento extends JDialog {
             public void mouseClicked(MouseEvent e) {
                 if (e.getClickCount() == 2) {
                     String[]valores=bbdd.SacarValoresTabla(table_tratamiento);
-                    text_dniProveedor.setText(valores[1].toString());
-                    text_direccionProveedor.setText(valores[2].toString());
-                    text_emailProveedor.setText(valores[3].toString());
+                    text_NombreTrat.setText(valores[1].toString());
+                    text_Especialidad.setText(valores[2].toString());
+                    text_Precio.setText(valores[3].toString());
                 }
             }
         });

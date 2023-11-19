@@ -73,6 +73,11 @@ public class Materiales extends JDialog implements ActionListener{
 				lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 15));
 				lblNewLabel_1.setBounds(10, 70, 150, 20);
 				buttonPane.add(lblNewLabel_1);
+				
+				
+			}
+			{
+				
 			}
 			
 			text_nombreMaterial = new JTextField();
@@ -92,13 +97,25 @@ public class Materiales extends JDialog implements ActionListener{
 			
 			JLabel lblNewLabel_1_1 = new JLabel("Precio:");
 			lblNewLabel_1_1.setFont(new Font("Tahoma", Font.BOLD, 15));
-			lblNewLabel_1_1.setBounds(537, 70, 135, 20);
+			lblNewLabel_1_1.setBounds(533, 10, 135, 20);
 			buttonPane.add(lblNewLabel_1_1);
 			
 			text_precioMaterial = new JTextField();
 			text_precioMaterial.setColumns(10);
-			text_precioMaterial.setBounds(684, 70, 170, 20);
+			text_precioMaterial.setBounds(684, 13, 170, 20);
 			buttonPane.add(text_precioMaterial);
+			
+			JButton btn_filtrarTabla = new JButton("Filtrar tabla");
+			btn_filtrarTabla.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					String consulta=JOptionPane.showInputDialog("Ponga el ID por el cual quiere filtrar la tabla");
+					bbdd.filtro(consulta, table_material);
+				}
+			});
+			btn_filtrarTabla.setBounds(769, 72, 85, 20);
+			buttonPane.add(btn_filtrarTabla);
+			
+			
 		}
 		
 		JLabel lblNewLabel = new JLabel("Datos Material");

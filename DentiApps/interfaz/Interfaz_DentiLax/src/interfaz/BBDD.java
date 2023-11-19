@@ -348,16 +348,10 @@ public class BBDD {
 		DefaultTableModel dm = new DefaultTableModel();
 		dm = (DefaultTableModel) jtableBuscar.getModel();
 		TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(dm);
-		String[] colum = new String[6];
-		colum[0] = "DNI";
-		colum[1] = "Nombre";
-		colum[2] = "Direccion";
-		colum[3] = "Telefono";
-		colum[4] = "Edad";
-		colum[5] = "Email";
-		dm.addRow(colum);
 		jtableBuscar.setModel(dm);
 		jtableBuscar.setRowSorter(tr);
-		tr.setRowFilter(RowFilter.regexFilter(consulta));
+        int[] indices = {0}; // Aquí, 0 representa la primera columna
+        tr.setRowFilter(RowFilter.regexFilter(consulta, indices));
+		
 	}
 }

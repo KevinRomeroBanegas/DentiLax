@@ -8,6 +8,8 @@ import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -57,6 +59,17 @@ public class Proveedor extends JDialog {
 			contentPanel.add(buttonPane);
 			buttonPane.setLayout(null);
 			{
+				
+				JButton btn_filtrarTabla = new JButton("Filtrar tabla");
+				btn_filtrarTabla.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						String consulta=JOptionPane.showInputDialog("Ponga el ID por el cual quiere filtrar la tabla");
+						bbdd.filtro(consulta, table_proveedor);
+					}
+				});
+				btn_filtrarTabla.setBounds(769, 103, 85, 20);
+				buttonPane.add(btn_filtrarTabla);
+				
 				JLabel lblNewLabel_1 = new JLabel("Nombre:");
 				lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 15));
 				lblNewLabel_1.setBounds(10, 10, 150, 20);

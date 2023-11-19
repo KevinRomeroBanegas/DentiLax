@@ -126,8 +126,18 @@ public class Paciente extends JDialog {
 			
 			JButton btn_odontograma = new JButton("Odontograma");
 			btn_odontograma.setFont(new Font("Tahoma", Font.BOLD, 15));
-			btn_odontograma.setBounds(535, 87, 320, 35);
+			btn_odontograma.setBounds(537, 93, 213, 35);
 			buttonPane.add(btn_odontograma);
+			
+			JButton btn_filtrarTabla = new JButton("Filtrar tabla");
+			btn_filtrarTabla.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					String consulta=JOptionPane.showInputDialog("Ponga el DNI por el cual quiere filtrar la tabla");
+					bbdd.filtro(consulta, table_paciente);
+				}
+			});
+			btn_filtrarTabla.setBounds(769, 103, 85, 20);
+			buttonPane.add(btn_filtrarTabla);
 		}
 		
 		JLabel lblNewLabel = new JLabel("Datos Cliente");

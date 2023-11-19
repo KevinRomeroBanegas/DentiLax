@@ -130,6 +130,16 @@ public class Doctor extends JDialog {
 			text_especialidadDoctor.setBounds(684, 40, 170, 20);
 			text_especialidadDoctor.setBounds(684, 13, 170, 20);
 			buttonPane.add(text_especialidadDoctor);
+			
+			JButton btn_filtrarTabla = new JButton("Filtrar tabla");
+			btn_filtrarTabla.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					String consulta=JOptionPane.showInputDialog("Ponga el ID por el cual quiere filtrar la tabla");
+					bbdd.filtro(consulta, table_doctor);
+				}
+			});
+			btn_filtrarTabla.setBounds(769, 103, 85, 20);
+			buttonPane.add(btn_filtrarTabla);
 		}
 		
 		JLabel lblNewLabel = new JLabel("Datos Doctor");
@@ -203,6 +213,8 @@ public class Doctor extends JDialog {
 		btn_bajaDoctor.setBounds(789, 485, 85, 20);
 		contentPanel.add(btn_bajaDoctor);
 		
+		
+		
 		table_doctor = new JTable();
 		table_doctor.setBounds(10, 11, 864, 463);
 		table_doctor=bbdd.MostrarTabla("Doctor", table_doctor);
@@ -217,6 +229,8 @@ public class Doctor extends JDialog {
             }
         });
 		contentPanel.add(table_doctor);
+		
+		
 		
 		JLabel Fondo_doctor = new JLabel("");
 		Fondo_doctor.setIcon(new ImageIcon("C:\\Users\\kevin\\Documents\\GitHub\\DentiLax\\DentiApps\\interfaz\\Interfaz_DentiLax\\Fondo 1200x800.png"));
