@@ -174,7 +174,7 @@ public class Paciente extends JDialog {
 					valores[3]= ""+text_telefonoPaciente.getText()+" ";
 					valores[4]=""+text_edadPaciente.getText()+" ";
 					valores[5]="'"+text_emailPaciente.getText()+"'";
-					int result = JOptionPane.showConfirmDialog(null,"¿Quieres insertar esta paciente?", "INSERTAR PACIENTE",
+					int result = JOptionPane.showConfirmDialog(null,"¿Quieres modificar esta paciente?", "MODIFICAR PACIENTE",
 				               JOptionPane.YES_NO_OPTION,
 				               JOptionPane.QUESTION_MESSAGE);
 				            if(result == JOptionPane.YES_OPTION){
@@ -220,7 +220,6 @@ public class Paciente extends JDialog {
 				            	JOptionPane.showMessageDialog(null, "Paciente insertado");
 				            	bbdd.insertar("cliente", valores, false);
 				            }
-					JOptionPane.showMessageDialog(null, "Paciente Agregado");
 					
 					table_paciente=bbdd.MostrarTabla("cliente", table_paciente);
 				}
@@ -240,11 +239,11 @@ public class Paciente extends JDialog {
 				valores[3]= ""+text_telefonoPaciente.getText()+"";
 				valores[4]=""+text_edadPaciente.getText()+"";
 				valores[5]="'"+text_emailPaciente.getText()+"'";
-				int result = JOptionPane.showConfirmDialog(null,"¿Quieres insertar esta paciente?", "INSERTAR PACIENTE",
+				int result = JOptionPane.showConfirmDialog(null,"¿Quieres eliminar esta paciente?", "ELIMINAR PACIENTE",
 			               JOptionPane.YES_NO_OPTION,
 			               JOptionPane.QUESTION_MESSAGE);
 			            if(result == JOptionPane.YES_OPTION){
-			            	JOptionPane.showMessageDialog(null, "Paciente insertado");
+			            	JOptionPane.showMessageDialog(null, "Paciente eliminado");
 			            	bbdd.borrar("cliente", valores, false);
 			            }
 				table_paciente=bbdd.MostrarTabla("cliente", table_paciente);

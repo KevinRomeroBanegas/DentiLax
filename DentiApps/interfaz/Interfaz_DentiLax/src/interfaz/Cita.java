@@ -253,7 +253,7 @@ public class Cita extends JDialog {
 			               JOptionPane.YES_NO_OPTION,
 			               JOptionPane.QUESTION_MESSAGE);
 			            if(result == JOptionPane.YES_OPTION){
-			            	JOptionPane.showMessageDialog(null, "Cita dadad de baja");
+			            	JOptionPane.showMessageDialog(null, "Cita dada de baja");
 			            	bbdd.borrar("cita", valores, true);
 			            	table_cita=bbdd.MostrarTabla("Cita", table_cita);
 			            }
