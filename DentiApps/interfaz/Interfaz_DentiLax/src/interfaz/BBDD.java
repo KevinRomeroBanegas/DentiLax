@@ -86,7 +86,7 @@ public class BBDD {
 
 		return dato;
 	}
-	
+
 	public ArrayList consultaEspecialidades() throws SQLException {
 		ArrayList dato = new ArrayList();
 		this.conectar();
@@ -170,7 +170,7 @@ public class BBDD {
 			valoresFinales = valoresFinales.substring(0, valoresFinales.length() - 1);
 			String query = "INSERT INTO bbdd_dentista." + tableName + " (" + columnNames + ") VALUES (" + valoresFinales
 					+ ")";
-			
+
 			statement.executeUpdate(query);
 			statement.close();
 
@@ -218,7 +218,7 @@ public class BBDD {
 			}
 			condicion = condicion.substring(0, condicion.length() - 4);
 
-			String query = "DELETE FROM bbdd_dentista." + tableName +" WHERE " + condicion;
+			String query = "DELETE FROM bbdd_dentista." + tableName + " WHERE " + condicion;
 			System.out.println(query);
 			Statement statement = cn.createStatement();
 			statement.executeUpdate(query);
@@ -235,7 +235,7 @@ public class BBDD {
 			ResultSet resultSet = metaData.getColumns(null, null, tableName, null);
 			String columnNames = "";
 			String valoresNames = "";
-			String v ="";
+			String v = "";
 			String[] valores = SacarValoresTabla(table);
 			String[] ArrayC;
 			String condicion = "";
@@ -286,16 +286,14 @@ public class BBDD {
 				condicion += valor + ",";
 			}
 			condicion = condicion.substring(0, condicion.length() - 1);
-			
-			
+
 			for (int i = 0; i < valores.length; i++) {
-				String valor = ArrayC[i] + "= '" + valores[i]+"'";
+				String valor = ArrayC[i] + "= '" + valores[i] + "'";
 				v += valor + "AND ";
 			}
 			v = v.substring(0, v.length() - 4);
 
 			String query = "UPDATE bbdd_dentista." + tableName + " SET " + condicion + " WHERE " + v;
-			System.out.println(query);
 			Statement statement = cn.createStatement();
 			statement.executeUpdate(query);
 			statement.close();
@@ -374,8 +372,25 @@ public class BBDD {
 		TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(dm);
 		jtableBuscar.setModel(dm);
 		jtableBuscar.setRowSorter(tr);
-        int[] indices = {0}; // Aquí, 0 representa la primera columna
-        tr.setRowFilter(RowFilter.regexFilter(consulta, indices));
-		
+		int[] indices = { 0 }; // Aquí, 0 representa la primera columna
+		tr.setRowFilter(RowFilter.regexFilter(consulta, indices));
+
+	}
+
+	public void CambiarContraseña(String DNI) {
+		this.conectar();
+		try {
+			String contraseña = "'" + JOptionPane.showInputDialog("Añada la nueva contraseña") + "'";
+			String query = "UPDATE bbdd_dentista.usuario SET Contraseña=" + contraseña + " WHERE DNI='" + DNI + "'";
+			Statement statement;
+
+			statement = cn.createStatement();
+
+			statement.executeUpdate(query);
+			statement.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }

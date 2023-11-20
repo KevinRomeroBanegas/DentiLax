@@ -77,6 +77,10 @@ public class Especialidad extends JDialog {
 					JOptionPane.showMessageDialog(null, "Rellena el campo Nombre Doctor");
 				} else {
 					JOptionPane.showMessageDialog(null, "Especialidad Modificada");
+					String []valores=new String [1];
+					valores[0]=text_nombreDoctor.getText();
+					bbdd.modificar("especialidad", valores, false, table_especialidad);
+					table_especialidad=bbdd.MostrarTabla("especialidad", table_especialidad);
 				}
 			}
 		});
@@ -93,6 +97,7 @@ public class Especialidad extends JDialog {
 					valores[0]=text_nombreDoctor.getText();
 					bbdd.insertar("especialidad", valores, false);
 					JOptionPane.showMessageDialog(null, "Especialidad Agregada");
+					table_especialidad=bbdd.MostrarTabla("especialidad", table_especialidad);
 
 				}
 
@@ -108,8 +113,11 @@ public class Especialidad extends JDialog {
 					JOptionPane.showMessageDialog(null, "Rellena el campo Nombre Doctor");
 
 				} else {
-
+					String []valores=new String [1];
+					valores[0]=text_nombreDoctor.getText();
+					bbdd.borrar("especialidad", valores, false);
 					JOptionPane.showMessageDialog(null, "Especialidad dada de Baja");
+					table_especialidad=bbdd.MostrarTabla("especialidad", table_especialidad);
 
 				}
 			}

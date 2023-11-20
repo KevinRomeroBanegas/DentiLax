@@ -30,10 +30,6 @@ public class Doctor extends JDialog {
 	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
 	private JTextField text_nombreDoctor;
-	private JTextField text_dniDoctor;
-	private JTextField text_direccionDoctor;
-	private JTextField text_emailDoctor;
-	private JTextField text_telefonoDoctor;
 	private JComboBox cmb_Especialidad;
 	private JTable table_doctor;
 
@@ -62,7 +58,7 @@ public class Doctor extends JDialog {
 		contentPanel.setLayout(null);
 		{
 			JPanel buttonPane = new JPanel();
-			buttonPane.setBounds(10, 516, 864, 133);
+			buttonPane.setBounds(10, 570, 864, 79);
 			contentPanel.add(buttonPane);
 			buttonPane.setLayout(null);
 			{
@@ -71,60 +67,16 @@ public class Doctor extends JDialog {
 				lblNewLabel_1.setBounds(10, 10, 172, 20);
 				buttonPane.add(lblNewLabel_1);
 			}
-			{
-				JLabel lblNewLabel_1 = new JLabel("Dni:");
-				lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 15));
-				lblNewLabel_1.setBounds(10, 40, 150, 20);
-				buttonPane.add(lblNewLabel_1);
-			}
-			{
-				JLabel lblNewLabel_1 = new JLabel("Dirección:");
-				lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 15));
-				lblNewLabel_1.setBounds(10, 70, 150, 20);
-				buttonPane.add(lblNewLabel_1);
-			}
-			{
-				JLabel lblNewLabel_1 = new JLabel("Email:");
-				lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 15));
-				lblNewLabel_1.setBounds(10, 100, 150, 20);
-				buttonPane.add(lblNewLabel_1);
-			}
 			
 			text_nombreDoctor = new JTextField();
 			text_nombreDoctor.setBounds(180, 10, 285, 20);
 			buttonPane.add(text_nombreDoctor);
 			text_nombreDoctor.setColumns(10);
 			
-			text_dniDoctor = new JTextField();
-			text_dniDoctor.setColumns(10);
-			text_dniDoctor.setBounds(180, 40, 285, 20);
-			buttonPane.add(text_dniDoctor);
-			
-			text_direccionDoctor = new JTextField();
-			text_direccionDoctor.setColumns(10);
-			text_direccionDoctor.setBounds(180, 70, 285, 20);
-			buttonPane.add(text_direccionDoctor);
-			
-			text_emailDoctor = new JTextField();
-			text_emailDoctor.setColumns(10);
-			text_emailDoctor.setBounds(180, 100, 285, 20);
-			buttonPane.add(text_emailDoctor);
-			
-			JLabel lblNewLabel_1 = new JLabel("Nº Telefono:");
-			lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 15));
-			lblNewLabel_1.setBounds(537, 40, 135, 20);
-			buttonPane.add(lblNewLabel_1);
-			
 			JLabel lblNewLabel_1_1 = new JLabel("Especialidad:");
 			lblNewLabel_1_1.setFont(new Font("Tahoma", Font.BOLD, 15));
-			lblNewLabel_1_1.setBounds(537, 40, 135, 20);
 			lblNewLabel_1_1.setBounds(537, 10, 135, 20);
 			buttonPane.add(lblNewLabel_1_1);
-			
-			text_telefonoDoctor = new JTextField();
-			text_telefonoDoctor.setBounds(682, 42, 172, 20);
-			buttonPane.add(text_telefonoDoctor);
-			text_telefonoDoctor.setColumns(10);
 			
 			JButton btn_filtrarTabla = new JButton("Filtrar tabla");
 			btn_filtrarTabla.addActionListener(new ActionListener() {
@@ -133,7 +85,7 @@ public class Doctor extends JDialog {
 					bbdd.filtro(consulta, table_doctor);
 				}
 			});
-			btn_filtrarTabla.setBounds(769, 103, 85, 20);
+			btn_filtrarTabla.setBounds(749, 49, 105, 20);
 			buttonPane.add(btn_filtrarTabla);
 			
 			cmb_Especialidad = new JComboBox();
@@ -153,7 +105,7 @@ public class Doctor extends JDialog {
 		}
 		
 		JLabel lblNewLabel = new JLabel("Datos Doctor");
-		lblNewLabel.setBounds(10, 485, 105, 20);
+		lblNewLabel.setBounds(10, 536, 105, 20);
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 15));
 		contentPanel.add(lblNewLabel);
 		{
@@ -162,25 +114,21 @@ public class Doctor extends JDialog {
 				public void actionPerformed(ActionEvent e) {
 					if(text_nombreDoctor.getText().isBlank()) {
 						JOptionPane.showMessageDialog(null, "Rellena el campo nombre y Apellidos");
-					}else if(text_dniDoctor.getText().isBlank()){
-						JOptionPane.showMessageDialog(null, "Rellena el campo dni ");
-					}else if(text_direccionDoctor.getText().isBlank()) {
-						JOptionPane.showMessageDialog(null, "Rellena el campo direccion");
-					}else if(text_emailDoctor.getText().isBlank()) {
-						JOptionPane.showMessageDialog(null, "Rellena el campo email");
-					}else if(text_telefonoDoctor.getText().isBlank()) {
-						JOptionPane.showMessageDialog(null, "Rellena el campo telefono");
 					}else if(cmb_Especialidad.getSelectedItem().equals(null)){
 						JOptionPane.showMessageDialog(null, "Rellena el campo especialidad");
 					}else {
 					
 					JOptionPane.showMessageDialog(null, "Doctor Modificado");
-					table_doctor=bbdd.MostrarTabla("Cita", table_doctor);
+					String valores[]=new String [2]; 
+					valores[0]="'"+text_nombreDoctor.getText()+"'";
+	            	valores[1]="'"+cmb_Especialidad.getSelectedItem().toString()+"'";
+	            	bbdd.modificar("doctor", valores, true,table_doctor);
+					table_doctor=bbdd.MostrarTabla("doctor", table_doctor);
 					
 					}
 				}
 			});
-			btn_modificarDoctor.setBounds(689, 485, 90, 20);
+			btn_modificarDoctor.setBounds(689, 536, 90, 20);
 			contentPanel.add(btn_modificarDoctor);
 		}
 		
@@ -190,25 +138,34 @@ public class Doctor extends JDialog {
 				
 				if(text_nombreDoctor.getText().isBlank()) {
 					JOptionPane.showMessageDialog(null, "Rellena el campo nombre y Apellidos");
-				}else if(text_dniDoctor.getText().isBlank()){
-					JOptionPane.showMessageDialog(null, "Rellena el campo dni ");
-				}else if(text_direccionDoctor.getText().isBlank()) {
-					JOptionPane.showMessageDialog(null, "Rellena el campo direccion");
-				}else if(text_emailDoctor.getText().isBlank()) {
-					JOptionPane.showMessageDialog(null, "Rellena el campo email");
-				}else if(text_telefonoDoctor.getText().isBlank()) {
-					JOptionPane.showMessageDialog(null, "Rellena el campo telefono");
 				}else if(cmb_Especialidad.getSelectedItem().equals(null)){
 					JOptionPane.showMessageDialog(null, "Rellena el campo especialidad");
 				}else {
 				
 				JOptionPane.showMessageDialog(null, "Doctor Agregado");
-				table_doctor=bbdd.MostrarTabla("Cita", table_doctor);
+				String valores[]=new String [2]; 
+				valores[0]="'"+text_nombreDoctor.getText()+"'";
+            	valores[1]="'"+cmb_Especialidad.getSelectedItem().toString()+"'";
+            	bbdd.insertar("doctor", valores, true);
+				table_doctor=bbdd.MostrarTabla("doctor", table_doctor);
+				int result = JOptionPane.showConfirmDialog(null,"¿Quieres añadir este doctor como usuario?", "USUARIO",
+			               JOptionPane.YES_NO_OPTION,
+			               JOptionPane.QUESTION_MESSAGE);
+			            if(result == JOptionPane.YES_OPTION){
+			            	String valoresUsuario[]=new String [4];
+			            	valoresUsuario[0]="'"+JOptionPane.showInputDialog("Añada el DNI")+"'";
+			            	valoresUsuario[2]="'"+JOptionPane.showInputDialog("Añada la contraseña")+"'";
+			            	valoresUsuario[1]="'"+text_nombreDoctor.getText()+"'";
+			            	valoresUsuario[3]="0";
+			            	bbdd.insertar("usuario", valoresUsuario, false);
+			            	table_doctor=bbdd.MostrarTabla("doctor", table_doctor);
+			            	
+			            }
 				
 				}
 			}
 		});
-		btn_agregarDoctor.setBounds(594, 485, 85, 20);
+		btn_agregarDoctor.setBounds(594, 536, 85, 20);
 		contentPanel.add(btn_agregarDoctor);
 
 		
@@ -217,16 +174,20 @@ public class Doctor extends JDialog {
 			public void actionPerformed(ActionEvent e) {
 				
 				JOptionPane.showMessageDialog(null, "Doctor dado de baja");
-				table_doctor=bbdd.MostrarTabla("Cita", table_doctor);
+				String valores[]=new String [2]; 
+				valores[0]="'"+text_nombreDoctor.getText()+"'";
+            	valores[1]="'"+cmb_Especialidad.getSelectedItem().toString()+"'";
+            	bbdd.borrar("doctor", valores, true);
+				table_doctor=bbdd.MostrarTabla("doctor", table_doctor);
 			}
 		});
-		btn_bajaDoctor.setBounds(789, 485, 85, 20);
+		btn_bajaDoctor.setBounds(789, 536, 85, 20);
 		contentPanel.add(btn_bajaDoctor);
 		
 		
 		
 		table_doctor = new JTable();
-		table_doctor.setBounds(10, 11, 864, 463);
+		table_doctor.setBounds(10, 11, 864, 515);
 		table_doctor=bbdd.MostrarTabla("Doctor", table_doctor);
 		table_doctor.addMouseListener(new MouseAdapter() {
             @Override

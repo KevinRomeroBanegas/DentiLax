@@ -103,6 +103,22 @@ public class InicioSesion extends JFrame {
 				}
 			}
 		});
+		
+		JButton BotonContraseña = new JButton("Restablecer contraseña");
+		BotonContraseña.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(txt_Usuario.equals(null)) {
+					JOptionPane.showMessageDialog(null, "Tienes que poner el DNI", "ERROR",
+							JOptionPane.ERROR_MESSAGE);
+				} else {
+					bbdd.CambiarContraseña(txt_Usuario.getText());
+				}
+			}
+		});
+		BotonContraseña.setForeground(new Color(255, 255, 255));
+		BotonContraseña.setBackground(new Color(184, 249, 254));
+		BotonContraseña.setBounds(10, 421, 154, 21);
+		contentPane.add(BotonContraseña);
 		btn_Aceptar.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btn_Aceptar.setBounds(252, 332, 115, 41);
 		contentPane.add(btn_Aceptar);

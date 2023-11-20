@@ -148,7 +148,7 @@ public class Cita extends JDialog {
 					bbdd.filtro(consulta, table_cita);
 				}
 			});
-			btn_filtrarTabla.setBounds(769, 103, 85, 20);
+			btn_filtrarTabla.setBounds(749, 103, 105, 20);
 			buttonPane.add(btn_filtrarTabla);
 			
 			JLabel lbl_Fecha_1 = new JLabel("Hora:");

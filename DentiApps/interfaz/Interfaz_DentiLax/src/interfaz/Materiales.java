@@ -130,7 +130,7 @@ public class Materiales extends JDialog implements ActionListener{
 		JButton btn_modificarMaterial = new JButton("Modificar");
 		btn_modificarMaterial.addActionListener(new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
-			table_material=bbdd.MostrarTabla("Cita", table_material);
+			table_material=bbdd.MostrarTabla("Stock", table_material);
 			}
 		});
 		btn_modificarMaterial.setBounds(695, 515, 85, 20);
@@ -140,8 +140,11 @@ public class Materiales extends JDialog implements ActionListener{
 		JButton btn_agregarMaterial = new JButton("Agregar");
 		btn_agregarMaterial.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-				table_material=bbdd.MostrarTabla("Cita", table_material);
+				/*String valores[]=new String [2]; 
+				valores[0]="'"+text_nombreDoctor.getText()+"'";
+            	valores[1]="'"+cmb_Especialidad.getSelectedItem().toString()+"'";
+            	bbdd.insertar("doctor", valores, true);*/
+				table_material=bbdd.MostrarTabla("Stock", table_material);
 				
 			}
 		});
@@ -151,7 +154,7 @@ public class Materiales extends JDialog implements ActionListener{
 		JButton btn_bajaMaterial = new JButton("Baja");
 		btn_bajaMaterial.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				table_material=bbdd.MostrarTabla("Cita", table_material);
+				table_material=bbdd.MostrarTabla("Stock", table_material);
 			}
 		});
 		btn_bajaMaterial.setBounds(790, 515, 85, 20);
