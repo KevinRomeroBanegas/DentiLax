@@ -19,6 +19,7 @@ import javax.swing.JTextField;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.text.SimpleDateFormat;
 import java.awt.event.ActionEvent;
 import javax.swing.ImageIcon;
 import java.awt.Dialog.ModalityType;
@@ -193,7 +194,22 @@ public class Paciente extends JDialog {
 				}else if(text_edadPaciente.getText().isBlank()){
 					JOptionPane.showMessageDialog(null, "Rellena el campo edad");
 				}else {
+					String [] valores= new String[6];
+					valores[1]="'"+text_nombrePaciente.getText()+"'";
+					valores[0]="'"+text_dniPaciente.getText()+"'";
+					valores[2]="'"+text_direccionPaciente.getText()+"'";
+					valores[3]= ""+text_telefonoPaciente.getText()+"";
+					valores[4]=""+text_edadPaciente.getText()+"";
+					valores[5]="'"+text_emailPaciente.getText()+"'";
+					int result = JOptionPane.showConfirmDialog(null,"¿Quieres insertar esta cita?", "INSERTAR CITA",
+				               JOptionPane.YES_NO_OPTION,
+				               JOptionPane.QUESTION_MESSAGE);
+				            if(result == JOptionPane.YES_OPTION){
+				            	JOptionPane.showMessageDialog(null, "Cita insertada");
+				            	bbdd.insertar("cita", valores, true);
+				            }
 					JOptionPane.showMessageDialog(null, "Paciente Agregado");
+					
 					table_paciente=bbdd.MostrarTabla("Cita", table_paciente);
 				}
 				

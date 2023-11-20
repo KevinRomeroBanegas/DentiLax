@@ -85,6 +85,7 @@ public class InicioSesion extends JFrame {
 									"Has iniciado sesion correctamente como administrador");
 							String rol="Admin";
 							PaginaPrincipal frameLobby = new PaginaPrincipal(nombre, rol);
+							frameLobby.setLocationRelativeTo(null);
 							frameLobby.setVisible(true);
 							dispose();
 						} else if (i == 0){

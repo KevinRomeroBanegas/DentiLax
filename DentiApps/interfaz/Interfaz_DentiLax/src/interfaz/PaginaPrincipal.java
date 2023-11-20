@@ -43,9 +43,10 @@ public class PaginaPrincipal extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					frame = new PaginaPrincipal(usuario, rol);
-					frame.setVisible(true);
+					/*frame = new PaginaPrincipal(usuario, rol);
 					frame.setLocationRelativeTo(null);
+					frame.setVisible(true);*/
+					
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -55,6 +56,7 @@ public class PaginaPrincipal extends JFrame {
 	}
 
 	public PaginaPrincipal(String usuario, String rol) {
+		
 		setTitle("DENTIAPP");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(PaginaPrincipal.class.getResource("/imagenes/diente.png")));
 		setResizable(false);
@@ -85,9 +87,10 @@ public class PaginaPrincipal extends JFrame {
 		mntmNewMenuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Paciente vPrincipalPaciente = new Paciente();
-				vPrincipalPaciente.setVisible(true);
 				vPrincipalPaciente.setLocationRelativeTo(null);
 				vPrincipalPaciente.setLocation(370, 212);
+				vPrincipalPaciente.setVisible(true);
+				
 			}
 		});
 		mnNewMenu.add(mntmNewMenuItem);
@@ -101,9 +104,10 @@ public class PaginaPrincipal extends JFrame {
 		mntmGestionDoctores.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Doctor vPrincipalDoctor = new Doctor();
-				vPrincipalDoctor.setVisible(true);
 				vPrincipalDoctor.setLocationRelativeTo(null);
 				vPrincipalDoctor.setLocation(370, 212);
+				vPrincipalDoctor.setVisible(true);
+				
 			}
 		});
 		mnNewMenu_1.add(mntmGestionDoctores);
@@ -117,9 +121,10 @@ public class PaginaPrincipal extends JFrame {
 		mntmNewMenuItem_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Tratamiento vPrincipalTratamiento = new Tratamiento();
-				vPrincipalTratamiento.setVisible(true);
 				vPrincipalTratamiento.setLocationRelativeTo(null);
 				vPrincipalTratamiento.setLocation(370, 212);
+				vPrincipalTratamiento.setVisible(true);
+				
 			}
 		});
 		mnNewMenu_2.add(mntmNewMenuItem_1);
@@ -148,13 +153,11 @@ public class PaginaPrincipal extends JFrame {
 		mntmNewMenuItem_4.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_M, InputEvent.CTRL_DOWN_MASK));
 		mntmNewMenuItem_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
 				Materiales vPrincipalMateriales = new Materiales();
-				vPrincipalMateriales.setVisible(true);
 				vPrincipalMateriales.setLocationRelativeTo(null);
 				vPrincipalMateriales.setLocation(370, 212);
+				vPrincipalMateriales.setVisible(true);
 			}
-			
 			
 		});
 		mnNewMenu_4.add(mntmNewMenuItem_4);
@@ -172,9 +175,10 @@ public class PaginaPrincipal extends JFrame {
 		mntmNewMenuItem_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Cita vPrincipalCita = new Cita();
-				vPrincipalCita.setVisible(true);
 				vPrincipalCita.setLocationRelativeTo(null);
 				vPrincipalCita.setLocation(370, 212);
+				vPrincipalCita.setVisible(true);
+				
 			}
 		});
 		mnNewMenu_5.add(mntmNewMenuItem_3);
@@ -200,9 +204,10 @@ public class PaginaPrincipal extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				Paciente paciente= new Paciente();
-				paciente.setVisible(true);
 				paciente.setLocationRelativeTo(null);
 				paciente.setLocation(370, 212);
+				paciente.setVisible(true);
+				
 			}
 		});
 		paciente.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0));
@@ -215,10 +220,9 @@ public class PaginaPrincipal extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				Doctor doctor= new Doctor();
-				doctor.setVisible(true);
 				doctor.setLocationRelativeTo(null);
 				doctor.setLocation(370, 212);
-				
+				doctor.setVisible(true);
 			}
 		});
 
@@ -228,9 +232,10 @@ public class PaginaPrincipal extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				Tratamiento tratamiento= new Tratamiento();
-				tratamiento.setVisible(true);
 				tratamiento.setLocationRelativeTo(null);
 				tratamiento.setLocation(370, 212);
+				tratamiento.setVisible(true);
+				
 			}
 		});
 		popupMenu.add(Tratamiento);
@@ -241,9 +246,10 @@ public class PaginaPrincipal extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				
 			Especialidad especialidad= new Especialidad();
-			especialidad.setVisible(true);
 			especialidad.setLocationRelativeTo(null);
 			especialidad.setLocation(370,212);
+			especialidad.setVisible(true);
+			
 			}
 		});
 		popupMenu.add(especialidad);
@@ -253,9 +259,10 @@ public class PaginaPrincipal extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				Materiales material= new Materiales();
-				material.setVisible(true);
 				material.setLocationRelativeTo(null);
 				material.setLocation(370,212);
+				material.setVisible(true);
+				
 			}
 		});
 		popupMenu.add(material);
@@ -266,9 +273,10 @@ public class PaginaPrincipal extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				Cita cita= new Cita();
-				cita.setVisible(true);
 				cita.setLocationRelativeTo(null);
 				cita.setLocation(370,212);
+				cita.setVisible(true);
+				
 			}
 		});
 		popupMenu.add(mntmNewMenuItem_11);
