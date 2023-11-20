@@ -92,7 +92,6 @@ public class InicioSesion extends JFrame {
 							JOptionPane.showMessageDialog(null, "Has iniciado sesion correctamente como doctor");
 							String rol="Doctor";
 							PaginaPrincipal frameLobby = new PaginaPrincipal(nombre, rol);
-							frameLobby.setLocationRelativeTo(null);
 							frameLobby.setVisible(true);
 							dispose();
 						}
