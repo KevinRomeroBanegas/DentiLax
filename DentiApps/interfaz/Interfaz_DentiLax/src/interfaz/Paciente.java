@@ -210,7 +210,7 @@ public class Paciente extends JDialog {
 					valores[1]="'"+text_nombrePaciente.getText()+"'";
 					valores[0]="'"+text_dniPaciente.getText()+"'";
 					valores[2]="'"+text_direccionPaciente.getText()+"'";
-					valores[3]= ""+text_telefonoPaciente.getText()+"";
+					valores[3]=""+text_telefonoPaciente.getText()+"";
 					valores[4]=""+text_edadPaciente.getText()+"";
 					valores[5]="'"+text_emailPaciente.getText()+"'";
 					int result = JOptionPane.showConfirmDialog(null,"¿Quieres insertar esta paciente?", "INSERTAR PACIENTE",

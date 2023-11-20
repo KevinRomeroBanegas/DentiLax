@@ -42,6 +42,7 @@ public class Cita extends JDialog {
 	private JTable table_cita;
 	private JComboBox cmb_Tratamientos;
 	private JComboBox cmb_Doctores;
+	private JComboBox<String> cmb_Hora;
 	private JDateChooser fechaCalendario;
 
 	public static void main(String[] args) {
@@ -149,6 +150,27 @@ public class Cita extends JDialog {
 			});
 			btn_filtrarTabla.setBounds(769, 103, 85, 20);
 			buttonPane.add(btn_filtrarTabla);
+			
+			JLabel lbl_Fecha_1 = new JLabel("Hora:");
+			lbl_Fecha_1.setFont(new Font("Tahoma", Font.BOLD, 15));
+			lbl_Fecha_1.setBounds(537, 75, 135, 20);
+			buttonPane.add(lbl_Fecha_1);
+			
+			cmb_Hora = new JComboBox();
+			cmb_Hora.setBounds(655, 71, 150, 22);
+			
+			cmb_Hora.addItem("09:00");
+			cmb_Hora.addItem("10:00");
+			cmb_Hora.addItem("11:00");
+			cmb_Hora.addItem("12:00");
+			cmb_Hora.addItem("13:00");
+			cmb_Hora.addItem("16:00");
+			cmb_Hora.addItem("17:00");
+			cmb_Hora.addItem("18:00");
+			cmb_Hora.addItem("19:00");
+			cmb_Hora.addItem("20:00");
+			cmb_Hora.addItem("21:00");
+			buttonPane.add(cmb_Hora);
 
 			ArrayList Datos2;
 			try {
@@ -196,13 +218,14 @@ public class Cita extends JDialog {
 		JButton btn_agregarCita = new JButton("Agregar");
 		btn_agregarCita.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String [] valores= new String[5];
+				String [] valores= new String[6];
 				valores[0]="'"+text_nombrePaciente.getText()+"'";
 				valores[1]="'"+cmb_Doctores.getSelectedItem().toString()+"'";
 				valores[2]="'"+cmb_Tratamientos.getSelectedItem().toString()+"'";
 				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 				valores[3]= "'"+sdf.format(fechaCalendario.getDate())+"'";
-				valores[4]="'"+text_observacionesCita.getText()+"'";
+				valores[4]="'"+cmb_Hora.getSelectedItem().toString()+"'";
+				valores[5]="'"+text_observacionesCita.getText()+"'";
 				int result = JOptionPane.showConfirmDialog(null,"¿Quieres insertar esta cita?", "INSERTAR CITA",
 			               JOptionPane.YES_NO_OPTION,
 			               JOptionPane.QUESTION_MESSAGE);
@@ -273,7 +296,8 @@ public class Cita extends JDialog {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
-                    text_observacionesCita.setText(valores[5].toString());
+					selectItemInComboBox(cmb_Hora, valores[5]);
+                    text_observacionesCita.setText(valores[6].toString());
                 }
             }
         });

@@ -86,6 +86,20 @@ public class BBDD {
 
 		return dato;
 	}
+	
+	public ArrayList consultaEspecialidades() throws SQLException {
+		ArrayList dato = new ArrayList();
+		this.conectar();
+		Resultado = stm.executeQuery("select * from bbdd_dentista.especialidad");
+		while (Resultado.next()) {
+			String nombre_paciente = Resultado.getString("Nombre");
+			dato.add(nombre_paciente);
+		}
+		stm.close();
+		cn.close();
+
+		return dato;
+	}
 
 	public ArrayList consultaDoctores() throws SQLException {
 		ArrayList dato = new ArrayList();
@@ -105,7 +119,7 @@ public class BBDD {
 		ArrayList dato = new ArrayList();
 		this.conectar();
 		ResultSet ResultadoDoctor = stm.executeQuery(
-				"select * from bbdd_dentista.doctor where Especialidad_Doctor=(select Especialidad from bbdd_dentista.tratamiento where Nombre='"
+				"select * from bbdd_dentista.doctor where especialidad_Nombre=(select Especialidad from bbdd_dentista.tratamiento where Nombre='"
 						+ Tratamiento + "')");
 		while (ResultadoDoctor.next()) {
 			String nombre_doctor = ResultadoDoctor.getString("Nombre");

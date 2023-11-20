@@ -129,7 +129,7 @@ public class PaginaPrincipal extends JFrame {
 		});
 		mnNewMenu_2.add(mntmNewMenuItem_1);
 		
-		/*JMenu mnNewMenu_3 = new JMenu("Especialidad");
+		JMenu mnNewMenu_3 = new JMenu("Especialidad");
 		mnNewMenu_3.setFont(new Font("Segoe UI", Font.BOLD, 30));
 		menuBar.add(mnNewMenu_3);
 		
@@ -143,7 +143,7 @@ public class PaginaPrincipal extends JFrame {
 				vPrincipalEspecialidad.setLocation(370, 212);
 			}
 		});
-		mnNewMenu_3.add(mntmNewMenuItem_2);*/
+		mnNewMenu_3.add(mntmNewMenuItem_2);
 		
 		JMenu mnNewMenu_4 = new JMenu("Materiales");
 		mnNewMenu_4.setFont(new Font("Segoe UI", Font.BOLD, 30));

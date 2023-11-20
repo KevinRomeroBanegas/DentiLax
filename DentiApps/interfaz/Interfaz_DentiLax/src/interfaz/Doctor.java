@@ -24,6 +24,7 @@ import javax.swing.ImageIcon;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Dialog.ModalityType;
+import javax.swing.JComboBox;
 
 public class Doctor extends JDialog {
 	private static final long serialVersionUID = 1L;
@@ -33,7 +34,7 @@ public class Doctor extends JDialog {
 	private JTextField text_direccionDoctor;
 	private JTextField text_emailDoctor;
 	private JTextField text_telefonoDoctor;
-	private JTextField text_especialidadDoctor;
+	private JComboBox cmb_Especialidad;
 	private JTable table_doctor;
 
 	public static void main(String[] args) {
@@ -125,12 +126,6 @@ public class Doctor extends JDialog {
 			buttonPane.add(text_telefonoDoctor);
 			text_telefonoDoctor.setColumns(10);
 			
-			text_especialidadDoctor = new JTextField();
-			text_especialidadDoctor.setColumns(10);
-			text_especialidadDoctor.setBounds(684, 40, 170, 20);
-			text_especialidadDoctor.setBounds(684, 13, 170, 20);
-			buttonPane.add(text_especialidadDoctor);
-			
 			JButton btn_filtrarTabla = new JButton("Filtrar tabla");
 			btn_filtrarTabla.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
@@ -140,6 +135,21 @@ public class Doctor extends JDialog {
 			});
 			btn_filtrarTabla.setBounds(769, 103, 85, 20);
 			buttonPane.add(btn_filtrarTabla);
+			
+			cmb_Especialidad = new JComboBox();
+			cmb_Especialidad.setBounds(682, 11, 172, 22);
+			ArrayList Datos2;
+			try {
+				Datos2 = new ArrayList(bbdd.consultaEspecialidades());
+				for (int i = 0; i < Datos2.size(); i++) {
+					String valor2 = (String) Datos2.get(i);
+					cmb_Especialidad.addItem(valor2);
+				}
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			buttonPane.add(cmb_Especialidad);
 		}
 		
 		JLabel lblNewLabel = new JLabel("Datos Doctor");
@@ -160,7 +170,7 @@ public class Doctor extends JDialog {
 						JOptionPane.showMessageDialog(null, "Rellena el campo email");
 					}else if(text_telefonoDoctor.getText().isBlank()) {
 						JOptionPane.showMessageDialog(null, "Rellena el campo telefono");
-					}else if(text_especialidadDoctor.getText().isBlank()){
+					}else if(cmb_Especialidad.getSelectedItem().equals(null)){
 						JOptionPane.showMessageDialog(null, "Rellena el campo especialidad");
 					}else {
 					
@@ -188,7 +198,7 @@ public class Doctor extends JDialog {
 					JOptionPane.showMessageDialog(null, "Rellena el campo email");
 				}else if(text_telefonoDoctor.getText().isBlank()) {
 					JOptionPane.showMessageDialog(null, "Rellena el campo telefono");
-				}else if(text_especialidadDoctor.getText().isBlank()){
+				}else if(cmb_Especialidad.getSelectedItem().equals(null)){
 					JOptionPane.showMessageDialog(null, "Rellena el campo especialidad");
 				}else {
 				
@@ -224,7 +234,7 @@ public class Doctor extends JDialog {
                 if (e.getClickCount() == 2) {
                     String[]valores=bbdd.SacarValoresTabla(table_doctor);
                     text_nombreDoctor.setText(valores[1].toString());
-                    text_especialidadDoctor.setText(valores[2].toString());
+                    selectItemInComboBox(cmb_Especialidad, valores[2]);
                 }
             }
         });
@@ -237,5 +247,14 @@ public class Doctor extends JDialog {
 		Fondo_doctor.setBounds(0, 0, 884, 660);
 		contentPanel.add(Fondo_doctor);
 		
+	}
+	
+	private void selectItemInComboBox(JComboBox<String> comboBox, String value) {
+	    for (int i = 0; i < comboBox.getItemCount(); i++) {
+	        if (comboBox.getItemAt(i).equals(value)) {
+	            comboBox.setSelectedIndex(i);
+	            return; // Sal del bucle si se encuentra el elemento
+	        }
+	    }
 	}
 }

@@ -14,21 +14,24 @@ import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.swing.JTextField;
 import javax.swing.ImageIcon;
 import java.awt.Dialog.ModalityType;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JComboBox;
 
 public class Tratamiento extends JDialog {
 
 	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
 	private JTextField text_NombreTrat;
-	private JTextField text_Especialidad;
 	private JTextField text_Precio;
 	private JTable table_tratamiento;
+	private JComboBox cmb_Especialidad;
 	private JTextField textField;
 
 	public static void main(String[] args) {
@@ -82,11 +85,6 @@ public class Tratamiento extends JDialog {
 			buttonPane.add(text_NombreTrat);
 			text_NombreTrat.setColumns(10);
 			
-			text_Especialidad = new JTextField();
-			text_Especialidad.setColumns(10);
-			text_Especialidad.setBounds(180, 77, 285, 20);
-			buttonPane.add(text_Especialidad);
-			
 			JLabel lblNewLabel_1 = new JLabel("Especialidad:");
 			lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 15));
 			lblNewLabel_1.setBounds(10, 77, 150, 20);
@@ -101,6 +99,21 @@ public class Tratamiento extends JDialog {
 			text_Precio.setColumns(10);
 			text_Precio.setBounds(594, 10, 260, 20);
 			buttonPane.add(text_Precio);
+			
+			cmb_Especialidad = new JComboBox();
+			cmb_Especialidad.setBounds(180, 78, 285, 22);
+			ArrayList Datos2;
+			try {
+				Datos2 = new ArrayList(bbdd.consultaEspecialidades());
+				for (int i = 0; i < Datos2.size(); i++) {
+					String valor2 = (String) Datos2.get(i);
+					cmb_Especialidad.addItem(valor2);
+				}
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			buttonPane.add(cmb_Especialidad);
 		}
 		
 		JLabel lblNewLabel = new JLabel("Datos tratamiento");
@@ -148,7 +161,7 @@ public class Tratamiento extends JDialog {
                 if (e.getClickCount() == 2) {
                     String[]valores=bbdd.SacarValoresTabla(table_tratamiento);
                     text_NombreTrat.setText(valores[1].toString());
-                    text_Especialidad.setText(valores[2].toString());
+                    selectItemInComboBox(cmb_Especialidad, valores[2]);
                     text_Precio.setText(valores[3].toString());
                 }
             }
@@ -160,5 +173,14 @@ public class Tratamiento extends JDialog {
 		Fondo_Tratamiento.setBounds(0, 0, 884, 660);
 		contentPanel.add(Fondo_Tratamiento);
 		
+	}
+	
+	private void selectItemInComboBox(JComboBox<String> comboBox, String value) {
+	    for (int i = 0; i < comboBox.getItemCount(); i++) {
+	        if (comboBox.getItemAt(i).equals(value)) {
+	            comboBox.setSelectedIndex(i);
+	            return; // Sal del bucle si se encuentra el elemento
+	        }
+	    }
 	}
 }
