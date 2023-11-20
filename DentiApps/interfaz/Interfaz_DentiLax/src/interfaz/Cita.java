@@ -212,7 +212,7 @@ public class Cita extends JDialog {
 			            }
 			}
 		});
-		btn_modificarCita.setBounds(695, 485, 85, 20);
+		btn_modificarCita.setBounds(687, 485, 93, 20);
 		contentPanel.add(btn_modificarCita);
 
 		JButton btn_agregarCita = new JButton("Agregar");
@@ -236,7 +236,7 @@ public class Cita extends JDialog {
 			            }
 			}
 		});
-		btn_agregarCita.setBounds(600, 485, 85, 20);
+		btn_agregarCita.setBounds(592, 485, 85, 20);
 		contentPanel.add(btn_agregarCita);
 
 		JButton btn_bajaCita = new JButton("Baja");

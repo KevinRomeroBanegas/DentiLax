@@ -68,7 +68,7 @@ public class Doctor extends JDialog {
 			{
 				JLabel lblNewLabel_1 = new JLabel("Nombre y Apellidos:");
 				lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 15));
-				lblNewLabel_1.setBounds(10, 10, 150, 20);
+				lblNewLabel_1.setBounds(10, 10, 172, 20);
 				buttonPane.add(lblNewLabel_1);
 			}
 			{
