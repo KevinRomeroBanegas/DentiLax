@@ -199,26 +199,26 @@ public class PaginaPrincipal extends JFrame {
 		addPopup(contentPane, popupMenu);
 		
 		JMenuItem paciente = new JMenuItem("Gestion Paciente");
-		popupMenu.add(paciente);
-		paciente.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
+		paciente.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
 				Paciente paciente= new Paciente();
 				paciente.setLocationRelativeTo(null);
 				paciente.setLocation(370, 212);
 				paciente.setVisible(true);
-				
 			}
 		});
+		popupMenu.add(paciente);
+	
+		;
 		paciente.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0));
 	
 		
 		
 		JMenuItem Doctores = new JMenuItem("Gestion de doctores");
 		popupMenu.add(Doctores);
-		Doctores.addMouseListener(new MouseAdapter() {
+		Doctores.addActionListener(new ActionListener() {
 			@Override
-			public void mouseClicked(MouseEvent e) {
+			public void actionPerformed(ActionEvent e) {
 				Doctor doctor= new Doctor();
 				doctor.setLocationRelativeTo(null);
 				doctor.setLocation(370, 212);
@@ -228,9 +228,9 @@ public class PaginaPrincipal extends JFrame {
 
 		
 		JMenuItem Tratamiento = new JMenuItem("Tratamientos");
-		Tratamiento.addMouseListener(new MouseAdapter() {
+		Tratamiento.addActionListener(new ActionListener() {
 			@Override
-			public void mouseClicked(MouseEvent e) {
+			public void actionPerformed(ActionEvent e) {
 				Tratamiento tratamiento= new Tratamiento();
 				tratamiento.setLocationRelativeTo(null);
 				tratamiento.setLocation(370, 212);
@@ -241,23 +241,22 @@ public class PaginaPrincipal extends JFrame {
 		popupMenu.add(Tratamiento);
 		
 		JMenuItem especialidad = new JMenuItem("Especialidad");
-		especialidad.addMouseListener(new MouseAdapter() {
+		especialidad.addActionListener(new ActionListener() {
 			@Override
-			public void mouseClicked(MouseEvent e) {
+			public void actionPerformed(ActionEvent e) {
 				
-			Especialidad especialidad= new Especialidad();
-			especialidad.setLocationRelativeTo(null);
-			especialidad.setLocation(370,212);
-			especialidad.setVisible(true);
+				Especialidad especialidad= new Especialidad();
+				especialidad.setVisible(true);
+				especialidad.setLocation(370,212);
 			
 			}
 		});
 		popupMenu.add(especialidad);
 		
 		JMenuItem material = new JMenuItem("Material");
-		material.addMouseListener(new MouseAdapter() {
+		material.addActionListener(new ActionListener() {
 			@Override
-			public void mouseClicked(MouseEvent e) {
+			public void actionPerformed(ActionEvent e) {
 				Materiales material= new Materiales();
 				material.setLocationRelativeTo(null);
 				material.setLocation(370,212);
@@ -268,10 +267,9 @@ public class PaginaPrincipal extends JFrame {
 		popupMenu.add(material);
 		
 		JMenuItem mntmNewMenuItem_11 = new JMenuItem("Cita");
-		mntmNewMenuItem_11.addMouseListener(new MouseAdapter() {
-		
+		mntmNewMenuItem_11.addActionListener(new ActionListener() {
 			@Override
-			public void mouseClicked(MouseEvent e) {
+			public void actionPerformed(ActionEvent e) {
 				Cita cita= new Cita();
 				cita.setLocationRelativeTo(null);
 				cita.setLocation(370,212);
