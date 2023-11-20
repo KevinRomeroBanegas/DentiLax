@@ -107,6 +107,7 @@ public class Cita extends JDialog {
 
 			fechaCalendario = new JDateChooser();
 			fechaCalendario.setBounds(655, 40, 200, 20);
+			fechaCalendario.setMinSelectableDate(new Date());
 			buttonPane.add(fechaCalendario);
 
 			cmb_Doctores = new JComboBox();
