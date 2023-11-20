@@ -393,4 +393,21 @@ public class BBDD {
 			e.printStackTrace();
 		}
 	}
+
+	public int sacarIdCita(JTable table) {
+		this.conectar();
+		int idCita = 0;
+
+			DefaultTableModel model = (DefaultTableModel) table.getModel();
+			int rowCount = model.getRowCount();
+
+			if (rowCount > 0) {
+				for (int i = 0; i < 1; i++) {
+					Object valor = model.getValueAt(rowCount - 1, i);
+					idCita=Integer.parseInt(valor.toString());
+				}
+			}
+		return idCita;
+	}
+
 }

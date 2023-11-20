@@ -158,7 +158,6 @@ public class Doctor extends JDialog {
 			            	valoresUsuario[1]="'"+text_nombreDoctor.getText()+"'";
 			            	valoresUsuario[3]="0";
 			            	bbdd.insertar("usuario", valoresUsuario, false);
-			            	table_doctor=bbdd.MostrarTabla("doctor", table_doctor);
 			            	
 			            }
 				

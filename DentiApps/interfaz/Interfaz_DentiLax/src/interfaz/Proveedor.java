@@ -25,9 +25,8 @@ public class Proveedor extends JDialog {
 	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
 	private JTextField text_nombreProveedor;
-	private JTextField text_dniProveedor;
-	private JTextField text_direccionProveedor;
 	private JTextField text_emailProveedor;
+	private JTextField text_disponibilidadProveedor;
 	private JTextField text_telefonoProveedor;
 	private JTable table_proveedor;
 
@@ -76,12 +75,6 @@ public class Proveedor extends JDialog {
 				buttonPane.add(lblNewLabel_1);
 			}
 			{
-				JLabel lblNewLabel_1 = new JLabel("Cif:");
-				lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 15));
-				lblNewLabel_1.setBounds(10, 40, 150, 20);
-				buttonPane.add(lblNewLabel_1);
-			}
-			{
 				JLabel lblNewLabel_1 = new JLabel("Email:");
 				lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 15));
 				lblNewLabel_1.setBounds(10, 70, 150, 20);
@@ -100,21 +93,16 @@ public class Proveedor extends JDialog {
 			buttonPane.add(text_nombreProveedor);
 			text_nombreProveedor.setColumns(10);
 			
-			text_dniProveedor = new JTextField();
-			text_dniProveedor.setColumns(10);
-			text_dniProveedor.setBounds(180, 40, 285, 20);
-			buttonPane.add(text_dniProveedor);
-			
-			text_direccionProveedor = new JTextField();
-			text_direccionProveedor.setColumns(10);
-			text_direccionProveedor.setBounds(180, 70, 285, 20);
-			buttonPane.add(text_direccionProveedor);
-			
 			text_emailProveedor = new JTextField();
 			text_emailProveedor.setColumns(10);
-			text_emailProveedor.setBounds(180, 100, 285, 20);
-			text_emailProveedor.setBounds(684, 73, 170, 20);
+			text_emailProveedor.setBounds(180, 70, 285, 20);
 			buttonPane.add(text_emailProveedor);
+			
+			text_disponibilidadProveedor = new JTextField();
+			text_disponibilidadProveedor.setColumns(10);
+			text_disponibilidadProveedor.setBounds(180, 100, 285, 20);
+			text_disponibilidadProveedor.setBounds(684, 73, 170, 20);
+			buttonPane.add(text_disponibilidadProveedor);
 			
 			JLabel lblNewLabel_1 = new JLabel("Nº Telefono:");
 			lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 15));
@@ -135,7 +123,17 @@ public class Proveedor extends JDialog {
 			JButton btn_modificarProveedor = new JButton("Modificar");
 			btn_modificarProveedor.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					table_proveedor=bbdd.MostrarTabla("Cita", table_proveedor);
+					String []valores=new String[4];
+					valores[0]="'"+text_nombreProveedor.getText()+"'";
+					valores[1]="'"+text_telefonoProveedor.getText()+"'";
+					valores[2]="'"+text_emailProveedor.getText()+"'";
+					if(text_disponibilidadProveedor.getText()=="Si"||text_disponibilidadProveedor.getText()=="si") {
+						valores[3]="1";
+					}else {
+						valores[3]="0";
+					}
+					bbdd.modificar("Proveedor", valores, true,table_proveedor);
+					table_proveedor=bbdd.MostrarTabla("Proveedor", table_proveedor);
 				}
 			});
 			btn_modificarProveedor.setBounds(694, 485, 85, 20);
@@ -146,7 +144,17 @@ public class Proveedor extends JDialog {
 		JButton btn_agregarProveedor = new JButton("Agregar");
 		btn_agregarProveedor.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				table_proveedor=bbdd.MostrarTabla("Cita", table_proveedor);
+				String []valores=new String[4];
+				valores[0]="'"+text_nombreProveedor.getText()+"'";
+				valores[1]="'"+text_telefonoProveedor.getText()+"'";
+				valores[2]="'"+text_emailProveedor.getText()+"'";
+				if(text_disponibilidadProveedor.getText()=="Si"||text_disponibilidadProveedor.getText()=="si") {
+					valores[3]="1";
+				}else {
+					valores[3]="0";
+				}
+				bbdd.insertar("Proveedor", valores, true);
+				table_proveedor=bbdd.MostrarTabla("Proveedor", table_proveedor);
 			}
 		});
 		btn_agregarProveedor.setBounds(599, 485, 85, 20);
@@ -156,7 +164,17 @@ public class Proveedor extends JDialog {
 		JButton btnBajaProveedor = new JButton("Baja");
 		btnBajaProveedor.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				table_proveedor=bbdd.MostrarTabla("Cita", table_proveedor);
+				String []valores=new String[4];
+				valores[0]="'"+text_nombreProveedor.getText()+"'";
+				valores[1]="'"+text_telefonoProveedor.getText()+"'";
+				valores[2]="'"+text_emailProveedor.getText()+"'";
+				if(text_disponibilidadProveedor.getText()=="Si"||text_disponibilidadProveedor.getText()=="si") {
+					valores[3]="1";
+				}else {
+					valores[3]="0";
+				}
+				bbdd.borrar("Proveedor", valores, true);
+				table_proveedor=bbdd.MostrarTabla("Proveedor", table_proveedor);
 			}
 		});
 		btnBajaProveedor.setActionCommand("Cancel");
@@ -165,7 +183,6 @@ public class Proveedor extends JDialog {
 		
 		table_proveedor = new JTable();
 		table_proveedor.setBounds(10, 11, 864, 463);
-		table_proveedor=bbdd.MostrarTabla("Proveedores", table_proveedor);
 		table_proveedor=bbdd.MostrarTabla("Proveedor", table_proveedor);
 		table_proveedor.addMouseListener(new MouseAdapter() {
             @Override
@@ -174,8 +191,12 @@ public class Proveedor extends JDialog {
                     String[]valores=bbdd.SacarValoresTabla(table_proveedor);
                     text_nombreProveedor.setText(valores[1].toString());
                     text_telefonoProveedor.setText(valores[2].toString());
-                    text_direccionProveedor.setText(valores[3].toString());
-                    text_emailProveedor.setText(valores[4].toString());
+                    text_emailProveedor.setText(valores[3].toString());
+                    if(valores[4].equals("1")) {
+                    	text_disponibilidadProveedor.setText("Si");
+                    } else {
+                    	text_disponibilidadProveedor.setText("No");
+                    }
                 }
             }
         });

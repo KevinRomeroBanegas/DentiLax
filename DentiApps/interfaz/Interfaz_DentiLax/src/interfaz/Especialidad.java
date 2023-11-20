@@ -63,6 +63,16 @@ public class Especialidad extends JDialog {
 			text_nombreDoctor.setBounds(180, 10, 285, 20);
 			buttonPane.add(text_nombreDoctor);
 			text_nombreDoctor.setColumns(10);
+			
+			JButton btn_filtrarTabla = new JButton("Filtrar tabla");
+			btn_filtrarTabla.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					String consulta=JOptionPane.showInputDialog("Ponga el nombre por el cual quiere filtrar la tabla");
+					bbdd.filtro(consulta, table_especialidad);
+				}
+			});
+			btn_filtrarTabla.setBounds(749, 12, 105, 20);
+			buttonPane.add(btn_filtrarTabla);
 		}
 
 		JLabel lblNewLabel = new JLabel("Datos Especialidad");

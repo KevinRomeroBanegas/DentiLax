@@ -30,7 +30,6 @@ public class Materiales extends JDialog implements ActionListener{
 	
 	
 	private JTextField text_nombreMaterial;
-	private JTextField text_codigoMaterial;
 	private JTextField text_proveedorMaterial;
 	private JTextField text_precioMaterial;
 	private JTable table_material;
@@ -63,12 +62,6 @@ public class Materiales extends JDialog implements ActionListener{
 				buttonPane.add(lblNewLabel_1);
 			}
 			{
-				JLabel lblNewLabel_1 = new JLabel("Codigo:");
-				lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 15));
-				lblNewLabel_1.setBounds(10, 40, 150, 20);
-				buttonPane.add(lblNewLabel_1);
-			}
-			{
 				JLabel lblNewLabel_1 = new JLabel("Proveedor:");
 				lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 15));
 				lblNewLabel_1.setBounds(10, 70, 150, 20);
@@ -84,11 +77,6 @@ public class Materiales extends JDialog implements ActionListener{
 			text_nombreMaterial.setBounds(180, 10, 285, 20);
 			buttonPane.add(text_nombreMaterial);
 			text_nombreMaterial.setColumns(10);
-			
-			text_codigoMaterial = new JTextField();
-			text_codigoMaterial.setColumns(10);
-			text_codigoMaterial.setBounds(180, 40, 285, 20);
-			buttonPane.add(text_codigoMaterial);
 			
 			text_proveedorMaterial = new JTextField();
 			text_proveedorMaterial.setColumns(10);
@@ -130,6 +118,11 @@ public class Materiales extends JDialog implements ActionListener{
 		JButton btn_modificarMaterial = new JButton("Modificar");
 		btn_modificarMaterial.addActionListener(new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
+			String valores[]=new String [3]; 
+			valores[0]="'"+text_nombreMaterial.getText()+"'";
+        	valores[1]="'"+text_proveedorMaterial.getText()+"'";
+        	valores[2]=""+text_precioMaterial.getText()+"";
+        	bbdd.modificar("Stock", valores, true,table_material);
 			table_material=bbdd.MostrarTabla("Stock", table_material);
 			}
 		});
@@ -140,10 +133,11 @@ public class Materiales extends JDialog implements ActionListener{
 		JButton btn_agregarMaterial = new JButton("Agregar");
 		btn_agregarMaterial.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				/*String valores[]=new String [2]; 
-				valores[0]="'"+text_nombreDoctor.getText()+"'";
-            	valores[1]="'"+cmb_Especialidad.getSelectedItem().toString()+"'";
-            	bbdd.insertar("doctor", valores, true);*/
+				String valores[]=new String [3]; 
+				valores[0]="'"+text_nombreMaterial.getText()+"'";
+            	valores[1]="'"+text_proveedorMaterial.getText()+"'";
+            	valores[2]=""+text_precioMaterial.getText()+"";
+            	bbdd.insertar("Stock", valores, true);
 				table_material=bbdd.MostrarTabla("Stock", table_material);
 				
 			}
@@ -154,6 +148,11 @@ public class Materiales extends JDialog implements ActionListener{
 		JButton btn_bajaMaterial = new JButton("Baja");
 		btn_bajaMaterial.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				String valores[]=new String [3]; 
+				valores[0]="'"+text_nombreMaterial.getText()+"'";
+            	valores[1]="'"+text_proveedorMaterial.getText()+"'";
+            	valores[2]=""+text_precioMaterial.getText()+"";
+            	bbdd.borrar("Stock", valores, true);
 				table_material=bbdd.MostrarTabla("Stock", table_material);
 			}
 		});

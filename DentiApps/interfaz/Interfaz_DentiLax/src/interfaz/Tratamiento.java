@@ -76,7 +76,7 @@ public class Tratamiento extends JDialog {
 						bbdd.filtro(consulta, table_tratamiento);
 					}
 				});
-				btn_filtrarTabla.setBounds(769, 103, 85, 20);
+				btn_filtrarTabla.setBounds(749, 103, 105, 20);
 				buttonPane.add(btn_filtrarTabla);
 			}
 			
@@ -124,7 +124,12 @@ public class Tratamiento extends JDialog {
 			JButton btn_modificarTratamiento = new JButton("Modificar");
 			btn_modificarTratamiento.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					table_tratamiento=bbdd.MostrarTabla("Cita", table_tratamiento);
+					String []valores=new String[3];
+					valores[0]="'"+text_NombreTrat.getText()+"'";
+					valores[1]="'"+cmb_Especialidad.getSelectedItem().toString()+"'";
+					valores[2]=""+text_Precio+"";
+					bbdd.modificar("tratamiento", valores, true,table_tratamiento);
+					table_tratamiento=bbdd.MostrarTabla("tratamiento", table_tratamiento);
 				}
 			});
 			btn_modificarTratamiento.setBounds(694, 485, 85, 20);
@@ -135,7 +140,12 @@ public class Tratamiento extends JDialog {
 		JButton btn_agregarTratamiento = new JButton("Agregar");
 		btn_agregarTratamiento.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				table_tratamiento=bbdd.MostrarTabla("Cita", table_tratamiento);
+				String []valores=new String[3];
+				valores[0]="'"+text_NombreTrat.getText()+"'";
+				valores[1]="'"+cmb_Especialidad.getSelectedItem().toString()+"'";
+				valores[2]=""+text_Precio+"";
+				bbdd.insertar("tratamiento", valores, true);
+				table_tratamiento=bbdd.MostrarTabla("tratamiento", table_tratamiento);
 			}
 		});
 		btn_agregarTratamiento.setBounds(599, 485, 85, 20);
@@ -145,7 +155,12 @@ public class Tratamiento extends JDialog {
 		JButton btn_bajaTratamiento = new JButton("Baja");
 		btn_bajaTratamiento.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				table_tratamiento=bbdd.MostrarTabla("Cita", table_tratamiento);
+				String []valores=new String[3];
+				valores[0]="'"+text_NombreTrat.getText()+"'";
+				valores[1]="'"+cmb_Especialidad.getSelectedItem().toString()+"'";
+				valores[2]=""+text_Precio+"";
+				bbdd.borrar("tratamiento", valores, true);
+				table_tratamiento=bbdd.MostrarTabla("tratamiento", table_tratamiento);
 			}
 		});
 		btn_bajaTratamiento.setActionCommand("Cancel");

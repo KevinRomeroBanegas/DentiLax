@@ -233,6 +233,14 @@ public class Cita extends JDialog {
 			            	JOptionPane.showMessageDialog(null, "Cita insertada");
 			            	bbdd.insertar("cita", valores, true);
 			            	table_cita=bbdd.MostrarTabla("Cita", table_cita);
+			            	int result2 = JOptionPane.showConfirmDialog(null,"¿Quieres crear una factura?", "INSERTAR FACTURA",
+						               JOptionPane.YES_NO_OPTION,
+						               JOptionPane.QUESTION_MESSAGE);
+			            	if(result2 == JOptionPane.YES_OPTION){
+				            	String valoresUsuario[]=new String [1];
+				            	valoresUsuario[0]=""+bbdd.sacarIdCita(table_cita);
+				            	bbdd.insertar("factura", valoresUsuario, false);
+				            }
 			            }
 			}
 		});

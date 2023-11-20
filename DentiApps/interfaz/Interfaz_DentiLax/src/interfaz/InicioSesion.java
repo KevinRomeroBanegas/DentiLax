@@ -68,7 +68,7 @@ public class InicioSesion extends JFrame {
 
 		JButton btn_Aceptar = new JButton("Aceptar");
 		btn_Aceptar.setForeground(new Color(255, 255, 255));
-		btn_Aceptar.setBackground(new Color(184, 249, 254));
+		btn_Aceptar.setBackground(new Color(100, 149, 237));
 		btn_Aceptar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String nombre = txt_Usuario.getText();
@@ -116,8 +116,8 @@ public class InicioSesion extends JFrame {
 			}
 		});
 		BotonContraseña.setForeground(new Color(255, 255, 255));
-		BotonContraseña.setBackground(new Color(184, 249, 254));
-		BotonContraseña.setBounds(10, 421, 154, 21);
+		BotonContraseña.setBackground(new Color(100, 149, 237));
+		BotonContraseña.setBounds(10, 421, 179, 21);
 		contentPane.add(BotonContraseña);
 		btn_Aceptar.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btn_Aceptar.setBounds(252, 332, 115, 41);

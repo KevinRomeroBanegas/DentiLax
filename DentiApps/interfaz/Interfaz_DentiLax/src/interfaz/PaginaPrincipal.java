@@ -191,6 +191,23 @@ public class PaginaPrincipal extends JFrame {
 			});
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		
+		JMenuItem mntmNewMenuItem5 = new JMenuItem("Gestión Facturacion");
+		mntmNewMenuItem5.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F, InputEvent.CTRL_DOWN_MASK));
+		
+		
+		
+		
+		mntmNewMenuItem5.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Factura vPrincipalCita = new Factura();
+				vPrincipalCita.setLocationRelativeTo(null);
+				vPrincipalCita.setLocation(370, 212);
+				vPrincipalCita.setVisible(true);
+				
+			}
+		});
+		mnNewMenu_6.add(mntmNewMenuItem5);
+		
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
