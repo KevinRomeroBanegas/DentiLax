@@ -167,10 +167,22 @@ public class Paciente extends JDialog {
 					JOptionPane.showMessageDialog(null, "Rellena el campo edad");
 				}else {
 				
-				JOptionPane.showMessageDialog(null, "Paciente Modificado");
-				table_paciente=bbdd.MostrarTabla("Cita", table_paciente);
+					String [] valores= new String[6];
+					valores[1]="'"+text_nombrePaciente.getText()+"'";
+					valores[0]="'"+text_dniPaciente.getText()+"'";
+					valores[2]="'"+text_direccionPaciente.getText()+"'";
+					valores[3]= ""+text_telefonoPaciente.getText()+" ";
+					valores[4]=""+text_edadPaciente.getText()+" ";
+					valores[5]="'"+text_emailPaciente.getText()+"'";
+					int result = JOptionPane.showConfirmDialog(null,"¿Quieres insertar esta paciente?", "INSERTAR PACIENTE",
+				               JOptionPane.YES_NO_OPTION,
+				               JOptionPane.QUESTION_MESSAGE);
+				            if(result == JOptionPane.YES_OPTION){
+				            	JOptionPane.showMessageDialog(null, "Paciente Modificado");
+				            	bbdd.modificar("cliente", valores, false, table_paciente);
+				            }
+					table_paciente=bbdd.MostrarTabla("cliente", table_paciente);
 				}
-					
 			}
 		});
 		btn_modificarCliente.setBounds(685, 485, 95, 20);
@@ -201,16 +213,16 @@ public class Paciente extends JDialog {
 					valores[3]= ""+text_telefonoPaciente.getText()+"";
 					valores[4]=""+text_edadPaciente.getText()+"";
 					valores[5]="'"+text_emailPaciente.getText()+"'";
-					int result = JOptionPane.showConfirmDialog(null,"¿Quieres insertar esta cita?", "INSERTAR CITA",
+					int result = JOptionPane.showConfirmDialog(null,"¿Quieres insertar esta paciente?", "INSERTAR PACIENTE",
 				               JOptionPane.YES_NO_OPTION,
 				               JOptionPane.QUESTION_MESSAGE);
 				            if(result == JOptionPane.YES_OPTION){
-				            	JOptionPane.showMessageDialog(null, "Cita insertada");
-				            	bbdd.insertar("cita", valores, true);
+				            	JOptionPane.showMessageDialog(null, "Paciente insertado");
+				            	bbdd.insertar("cliente", valores, false);
 				            }
 					JOptionPane.showMessageDialog(null, "Paciente Agregado");
 					
-					table_paciente=bbdd.MostrarTabla("Cita", table_paciente);
+					table_paciente=bbdd.MostrarTabla("cliente", table_paciente);
 				}
 				
 			}
@@ -221,8 +233,21 @@ public class Paciente extends JDialog {
 		JButton btn_bajaCliente = new JButton("Baja");
 		btn_bajaCliente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-				table_paciente=bbdd.MostrarTabla("Cita", table_paciente);
+				String [] valores= new String[6];
+				valores[1]="'"+text_nombrePaciente.getText()+"'";
+				valores[0]="'"+text_dniPaciente.getText()+"'";
+				valores[2]="'"+text_direccionPaciente.getText()+"'";
+				valores[3]= ""+text_telefonoPaciente.getText()+"";
+				valores[4]=""+text_edadPaciente.getText()+"";
+				valores[5]="'"+text_emailPaciente.getText()+"'";
+				int result = JOptionPane.showConfirmDialog(null,"¿Quieres insertar esta paciente?", "INSERTAR PACIENTE",
+			               JOptionPane.YES_NO_OPTION,
+			               JOptionPane.QUESTION_MESSAGE);
+			            if(result == JOptionPane.YES_OPTION){
+			            	JOptionPane.showMessageDialog(null, "Paciente insertado");
+			            	bbdd.borrar("cliente", valores, false);
+			            }
+				table_paciente=bbdd.MostrarTabla("cliente", table_paciente);
 			}
 		});
 		btn_bajaCliente.setBounds(790, 485, 85, 20);

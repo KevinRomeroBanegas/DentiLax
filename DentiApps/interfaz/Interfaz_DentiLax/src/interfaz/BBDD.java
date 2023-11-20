@@ -156,6 +156,7 @@ public class BBDD {
 			valoresFinales = valoresFinales.substring(0, valoresFinales.length() - 1);
 			String query = "INSERT INTO bbdd_dentista." + tableName + " (" + columnNames + ") VALUES (" + valoresFinales
 					+ ")";
+			
 			statement.executeUpdate(query);
 			statement.close();
 
@@ -199,13 +200,12 @@ public class BBDD {
 
 			for (int i = 0; i < valoresFinales.length; i++) {
 				String valor = ArrayC[i] + "=" + valoresFinales[i];
-				condicion += valor + ",";
-				condicion += valor + "AND ";
+				condicion += valor + " AND ";
 			}
-			condicion = condicion.substring(0, condicion.length() - 1);
 			condicion = condicion.substring(0, condicion.length() - 4);
 
 			String query = "DELETE FROM bbdd_dentista." + tableName +" WHERE " + condicion;
+			System.out.println(query);
 			Statement statement = cn.createStatement();
 			statement.executeUpdate(query);
 			statement.close();
@@ -232,7 +232,24 @@ public class BBDD {
 				}
 				columnNames = columnNames.substring(0, columnNames.length() - 1);
 				ArrayC = columnNames.split(",");
+				ArrayList<String> val = new ArrayList<String>(Arrays.asList(valores));
+				StringBuilder str = new StringBuilder();
+				for (String ColumnasDefinitivas : val) {
+					str.append(ColumnasDefinitivas);
+					str.append(",");
+				}
+				valoresNames = str.substring(0, str.length() - 1);
+				valores = valoresNames.split(",");
 			} else {
+				ArrayList<String> val = new ArrayList<String>(Arrays.asList(valores));
+				val.remove(0);
+				StringBuilder str = new StringBuilder();
+				for (String ColumnasDefinitivas : val) {
+					str.append(ColumnasDefinitivas);
+					str.append(",");
+				}
+				valoresNames = str.substring(0, str.length() - 1);
+				valores = valoresNames.split(",");
 				while (resultSet.next()) {
 					String columnName = resultSet.getString("COLUMN_NAME");
 					columnNames += columnName + ",";
@@ -241,12 +258,12 @@ public class BBDD {
 				ArrayC = columnNames.split(",");
 				ArrayList<String> Columnas = new ArrayList<String>(Arrays.asList(ArrayC));
 				Columnas.remove(0);
-				StringBuilder str = new StringBuilder();
+				StringBuilder strColumnas = new StringBuilder();
 				for (String ColumnasDefinitivas : Columnas) {
-					str.append(ColumnasDefinitivas);
-					str.append(",");
+					strColumnas.append(ColumnasDefinitivas);
+					strColumnas.append(",");
 				}
-				columnNames = str.substring(0, str.length() - 1);
+				columnNames = strColumnas.substring(0, strColumnas.length() - 1);
 				ArrayC = columnNames.split(",");
 			}
 
@@ -256,15 +273,7 @@ public class BBDD {
 			}
 			condicion = condicion.substring(0, condicion.length() - 1);
 			
-			ArrayList<String> val = new ArrayList<String>(Arrays.asList(valores));
-			val.remove(0);
-			StringBuilder str = new StringBuilder();
-			for (String ColumnasDefinitivas : val) {
-				str.append(ColumnasDefinitivas);
-				str.append(",");
-			}
-			valoresNames = str.substring(0, str.length() - 1);
-			valores = valoresNames.split(",");
+			
 			for (int i = 0; i < valores.length; i++) {
 				String valor = ArrayC[i] + "= '" + valores[i]+"'";
 				v += valor + "AND ";
@@ -272,6 +281,7 @@ public class BBDD {
 			v = v.substring(0, v.length() - 4);
 
 			String query = "UPDATE bbdd_dentista." + tableName + " SET " + condicion + " WHERE " + v;
+			System.out.println(query);
 			Statement statement = cn.createStatement();
 			statement.executeUpdate(query);
 			statement.close();
