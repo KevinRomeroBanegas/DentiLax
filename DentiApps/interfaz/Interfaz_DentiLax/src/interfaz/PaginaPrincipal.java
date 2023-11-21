@@ -138,9 +138,10 @@ public class PaginaPrincipal extends JFrame {
 		mntmNewMenuItem_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Especialidad vPrincipalEspecialidad = new Especialidad();
-				vPrincipalEspecialidad.setVisible(true);
 				vPrincipalEspecialidad.setLocationRelativeTo(null);
 				vPrincipalEspecialidad.setLocation(370, 212);
+				vPrincipalEspecialidad.setVisible(true);
+				
 			}
 		});
 		mnNewMenu_3.add(mntmNewMenuItem_2);
