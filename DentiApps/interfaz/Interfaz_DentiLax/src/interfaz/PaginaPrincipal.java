@@ -133,7 +133,7 @@ public class PaginaPrincipal extends JFrame {
 		mnNewMenu_3.setFont(new Font("Segoe UI", Font.BOLD, 30));
 		menuBar.add(mnNewMenu_3);
 		
-		JMenuItem mntmNewMenuItem_2 = new JMenuItem("Gestión Facturación");
+		JMenuItem mntmNewMenuItem_2 = new JMenuItem("Gestión Especialidad");
 		mntmNewMenuItem_2.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_E, InputEvent.CTRL_DOWN_MASK));
 		mntmNewMenuItem_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
