@@ -232,17 +232,24 @@ public class Cita extends JDialog {
 				int result = JOptionPane.showConfirmDialog(null, "¿Quieres insertar esta cita?", "INSERTAR CITA",
 						JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 				if (result == JOptionPane.YES_OPTION) {
-					JOptionPane.showMessageDialog(null, "Cita insertada");
-					bbdd.insertar("cita", valores, true);
-					table_cita = bbdd.MostrarTabla("Cita", table_cita);
-					int result2 = JOptionPane.showConfirmDialog(null, "¿Quieres crear una factura?", "INSERTAR FACTURA",
-							JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-					if (result2 == JOptionPane.YES_OPTION) {
-						String valoresUsuario[] = new String[1];
-						valoresUsuario[0] = "" + bbdd.sacarIdCita(table_cita);
-						bbdd.insertar("factura", valoresUsuario, false);
-					}
-				}
+					//boolean Existe = bbdd.existeCita(valores);
+					//if (Existe = false) {
+						JOptionPane.showMessageDialog(null, "Cita insertada");
+						bbdd.insertar("cita", valores, true);
+						table_cita = bbdd.MostrarTabla("Cita", table_cita);
+						int result2 = JOptionPane.showConfirmDialog(null, "¿Quieres crear una factura?",
+								"INSERTAR FACTURA", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+						if (result2 == JOptionPane.YES_OPTION) {
+							String valoresUsuario[] = new String[1];
+							valoresUsuario[0] = "" + bbdd.sacarIdCita(table_cita);
+							bbdd.insertar("factura", valoresUsuario, false);
+						}
+					} /*else {
+						JOptionPane.showMessageDialog(null,
+								"No se puede añadir la cita, porque ya existe", "ERROR",
+								JOptionPane.ERROR_MESSAGE);
+					}*/
+				//} 
 			}
 		});
 		btn_agregarCita.setBounds(592, 485, 85, 20);
@@ -267,7 +274,8 @@ public class Cita extends JDialog {
 						JOptionPane.showMessageDialog(null, "Cita dada de baja");
 						table_cita = bbdd.MostrarTabla("cita", table_cita);
 					} else {
-						JOptionPane.showMessageDialog(null, "No se puede borrar la cita, porque ya pertenece al historial", "ERROR",
+						JOptionPane.showMessageDialog(null,
+								"No se puede borrar la cita, porque ya pertenece al historial", "ERROR",
 								JOptionPane.ERROR_MESSAGE);
 					}
 				}

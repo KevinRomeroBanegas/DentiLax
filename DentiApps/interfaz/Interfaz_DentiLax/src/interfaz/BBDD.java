@@ -4,6 +4,7 @@ import java.awt.Component;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -275,7 +276,7 @@ public class BBDD {
 
 			for (int i = 0; i < valores.length; i++) {
 				String valor = ArrayC[i] + "= '" + valores[i] + "'";
-				
+
 				v += valor + "AND ";
 			}
 			v = v.substring(0, v.length() - 4);
@@ -401,7 +402,7 @@ public class BBDD {
 	public String buscarCliente(String Nombre) {
 		this.conectar();
 		ResultSet Resultado;
-		String DNI_cliente="";
+		String DNI_cliente = "";
 		int contador = 0;
 		try {
 			Resultado = stm.executeQuery("select DNI from bbdd_dentista.cliente WHERE Nombre='" + Nombre + "'");
@@ -409,13 +410,16 @@ public class BBDD {
 				DNI_cliente = Resultado.getString("DNI");
 				contador++;
 			}
-			if(contador>=2) {
-				String Edad=""+JOptionPane.showInputDialog("Vaya, parece que hay más de un cliente con ese nombre, escriba la edad para filtrar con más exactitud")+"";
-				Resultado = stm.executeQuery("select DNI from bbdd_dentista.cliente WHERE Nombre='" + Nombre + "' AND Edad="+Edad+"");
+			if (contador >= 2) {
+				String Edad = "" + JOptionPane.showInputDialog(
+						"Vaya, parece que hay más de un cliente con ese nombre, escriba la edad para filtrar con más exactitud")
+						+ "";
+				Resultado = stm.executeQuery(
+						"select DNI from bbdd_dentista.cliente WHERE Nombre='" + Nombre + "' AND Edad=" + Edad + "");
 				while (Resultado.next()) {
 					DNI_cliente = Resultado.getString("DNI");
 				}
-			} else if(contador==0) {
+			} else if (contador == 0) {
 				JOptionPane.showMessageDialog(null, "No existe ningún usuario con ese nombre", "ERROR",
 						JOptionPane.ERROR_MESSAGE);
 			}
@@ -426,9 +430,35 @@ public class BBDD {
 			e.printStackTrace();
 		}
 		return DNI_cliente;
-		
+
 	}
-	
-	
+
+	public boolean existeCita(String[] valores) {
+	    boolean existe = false;
+	    this.conectar();
+
+	    try {
+	        String query = "SELECT * FROM bbdd_dentista.cita WHERE DniClientes=" + valores[0]
+	                + " AND NombreDoctor=" + valores[1] + " AND NombreTrat=" + valores[2] + " AND Fecha="
+	                + valores[3] + " AND Hora=" + valores[4] + " AND Observaciones=" + valores[5] + "";
+	        
+	        System.out.println(query);
+	        
+	        Resultado = stm.executeQuery(query);
+
+	        if (Resultado.next()) {
+	            existe = true;
+	        } else {
+	            existe = false;
+	        }
+
+	    } catch (SQLException e) {
+	        // Manejar la excepción de manera adecuada
+	        e.printStackTrace();
+	    }
+	    return existe;
+	}
+
+
 
 }
