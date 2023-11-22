@@ -49,7 +49,7 @@ public class Cita extends JDialog {
 
 	}
 
-	public Cita(){
+	public Cita() {
 		setModalityType(ModalityType.DOCUMENT_MODAL);
 		setModal(true);
 		setResizable(false);
@@ -120,7 +120,8 @@ public class Cita extends JDialog {
 			buttonPane.add(cmb_Tratamientos);
 
 			JButton btnNewButton = new JButton("");
-			btnNewButton.setIcon(new ImageIcon(Cita.class.getResource("/imagenes/simbolo-de-herramienta-llena-de-filtro (1).png")));
+			btnNewButton.setIcon(
+					new ImageIcon(Cita.class.getResource("/imagenes/simbolo-de-herramienta-llena-de-filtro (1).png")));
 			btnNewButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					cmb_Doctores.setEnabled(true);
@@ -142,32 +143,32 @@ public class Cita extends JDialog {
 			});
 			btnNewButton.setBounds(823, 10, 32, 24);
 			buttonPane.add(btnNewButton);
-			
+
 			JButton btn_filtrarTabla = new JButton("Filtrar tabla");
 			btn_filtrarTabla.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					String consulta=JOptionPane.showInputDialog("Ponga el DNI por el cual quiere filtrar la tabla");
+					String consulta = JOptionPane.showInputDialog("Ponga el DNI por el cual quiere filtrar la tabla");
 					bbdd.filtro(consulta, table_cita);
 				}
 			});
 			btn_filtrarTabla.setBounds(749, 103, 105, 20);
 			buttonPane.add(btn_filtrarTabla);
-			
+
 			JLabel lbl_Fecha_1 = new JLabel("Hora:");
 			lbl_Fecha_1.setFont(new Font("Tahoma", Font.BOLD, 15));
 			lbl_Fecha_1.setBounds(537, 75, 135, 20);
 			buttonPane.add(lbl_Fecha_1);
-			
+
 			cmb_Hora = new JComboBox();
 			cmb_Hora.setBounds(655, 71, 150, 22);
-			
+
 			RellenarHoras();
 			buttonPane.add(cmb_Hora);
-			
+
 			JButton btnNewButton_1 = new JButton("");
 			btnNewButton_1.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					String DNICliente=JOptionPane.showInputDialog("Escribe el nombre del paciente");
+					String DNICliente = JOptionPane.showInputDialog("Escribe el nombre del paciente");
 					text_nombrePaciente.setText(bbdd.buscarCliente(DNICliente));
 				}
 			});
@@ -186,7 +187,7 @@ public class Cita extends JDialog {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-			
+
 		}
 
 		JLabel lblNewLabel = new JLabel("Datos Cita");
@@ -197,22 +198,21 @@ public class Cita extends JDialog {
 		JButton btn_modificarCita = new JButton("Modificar");
 		btn_modificarCita.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String [] valores= new String[5];
-				valores[0]="'"+text_nombrePaciente.getText()+"'";
-				valores[1]="'"+cmb_Doctores.getSelectedItem().toString()+"'";
-				valores[2]="'"+cmb_Tratamientos.getSelectedItem().toString()+"'";
+				String[] valores = new String[5];
+				valores[0] = "'" + text_nombrePaciente.getText() + "'";
+				valores[1] = "'" + cmb_Doctores.getSelectedItem().toString() + "'";
+				valores[2] = "'" + cmb_Tratamientos.getSelectedItem().toString() + "'";
 				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-				valores[3]= "'"+sdf.format(fechaCalendario.getDate())+"'";
-				valores[4]="'"+text_observacionesCita.getText()+"'";
-				int result = JOptionPane.showConfirmDialog(null,"¿Quieres modificar esta cita?", "MODIFICAR CITA",
-			               JOptionPane.YES_NO_OPTION,
-			               JOptionPane.QUESTION_MESSAGE);
-			            if(result == JOptionPane.YES_OPTION){
-			            	JOptionPane.showMessageDialog(null, "Cita modificada");
-			            	bbdd.modificar("cita", valores, true, table_cita);
-			            	table_cita=bbdd.MostrarTabla("Cita", table_cita);
-			            	
-			            }
+				valores[3] = "'" + sdf.format(fechaCalendario.getDate()) + "'";
+				valores[4] = "'" + text_observacionesCita.getText() + "'";
+				int result = JOptionPane.showConfirmDialog(null, "¿Quieres modificar esta cita?", "MODIFICAR CITA",
+						JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+				if (result == JOptionPane.YES_OPTION) {
+					JOptionPane.showMessageDialog(null, "Cita modificada");
+					bbdd.modificar("cita", valores, true, table_cita);
+					table_cita = bbdd.MostrarTabla("Cita", table_cita);
+
+				}
 			}
 		});
 		btn_modificarCita.setBounds(687, 485, 93, 20);
@@ -221,30 +221,28 @@ public class Cita extends JDialog {
 		JButton btn_agregarCita = new JButton("Agregar");
 		btn_agregarCita.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String [] valores= new String[6];
-				valores[0]="'"+text_nombrePaciente.getText()+"'";
-				valores[1]="'"+cmb_Doctores.getSelectedItem().toString()+"'";
-				valores[2]="'"+cmb_Tratamientos.getSelectedItem().toString()+"'";
+				String[] valores = new String[6];
+				valores[0] = "'" + text_nombrePaciente.getText() + "'";
+				valores[1] = "'" + cmb_Doctores.getSelectedItem().toString() + "'";
+				valores[2] = "'" + cmb_Tratamientos.getSelectedItem().toString() + "'";
 				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-				valores[3]= "'"+sdf.format(fechaCalendario.getDate())+"'";
-				valores[4]="'"+cmb_Hora.getSelectedItem().toString()+"'";
-				valores[5]="'"+text_observacionesCita.getText()+"'";
-				int result = JOptionPane.showConfirmDialog(null,"¿Quieres insertar esta cita?", "INSERTAR CITA",
-			               JOptionPane.YES_NO_OPTION,
-			               JOptionPane.QUESTION_MESSAGE);
-			            if(result == JOptionPane.YES_OPTION){
-			            	JOptionPane.showMessageDialog(null, "Cita insertada");
-			            	bbdd.insertar("cita", valores, true);
-			            	table_cita=bbdd.MostrarTabla("Cita", table_cita);
-			            	int result2 = JOptionPane.showConfirmDialog(null,"¿Quieres crear una factura?", "INSERTAR FACTURA",
-						               JOptionPane.YES_NO_OPTION,
-						               JOptionPane.QUESTION_MESSAGE);
-			            	if(result2 == JOptionPane.YES_OPTION){
-				            	String valoresUsuario[]=new String [1];
-				            	valoresUsuario[0]=""+bbdd.sacarIdCita(table_cita);
-				            	bbdd.insertar("factura", valoresUsuario, false);
-				            }
-			            }
+				valores[3] = "'" + sdf.format(fechaCalendario.getDate()) + "'";
+				valores[4] = "'" + cmb_Hora.getSelectedItem().toString() + "'";
+				valores[5] = "'" + text_observacionesCita.getText() + "'";
+				int result = JOptionPane.showConfirmDialog(null, "¿Quieres insertar esta cita?", "INSERTAR CITA",
+						JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+				if (result == JOptionPane.YES_OPTION) {
+					JOptionPane.showMessageDialog(null, "Cita insertada");
+					bbdd.insertar("cita", valores, true);
+					table_cita = bbdd.MostrarTabla("Cita", table_cita);
+					int result2 = JOptionPane.showConfirmDialog(null, "¿Quieres crear una factura?", "INSERTAR FACTURA",
+							JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+					if (result2 == JOptionPane.YES_OPTION) {
+						String valoresUsuario[] = new String[1];
+						valoresUsuario[0] = "" + bbdd.sacarIdCita(table_cita);
+						bbdd.insertar("factura", valoresUsuario, false);
+					}
+				}
 			}
 		});
 		btn_agregarCita.setBounds(592, 485, 85, 20);
@@ -253,21 +251,26 @@ public class Cita extends JDialog {
 		JButton btn_bajaCita = new JButton("Baja");
 		btn_bajaCita.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String [] valores= new String[5];
-				valores[0]="'"+text_nombrePaciente.getText()+"'";
-				valores[1]="'"+cmb_Doctores.getSelectedItem().toString()+"'";
-				valores[2]="'"+cmb_Tratamientos.getSelectedItem().toString()+"'";
+				String[] valores = new String[6];
+				valores[0] = "'" + text_nombrePaciente.getText() + "'";
+				valores[1] = "'" + cmb_Doctores.getSelectedItem().toString() + "'";
+				valores[2] = "'" + cmb_Tratamientos.getSelectedItem().toString() + "'";
 				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-				valores[3]= "'"+sdf.format(fechaCalendario.getDate())+"'";
-				valores[4]="'"+text_observacionesCita.getText()+"'";
-				int result = JOptionPane.showConfirmDialog(null,"¿Quieres dar de baja esta cita?", "DAR BAJA CITA",
-			               JOptionPane.YES_NO_OPTION,
-			               JOptionPane.QUESTION_MESSAGE);
-			            if(result == JOptionPane.YES_OPTION){
-			            	JOptionPane.showMessageDialog(null, "Cita dada de baja");
-			            	bbdd.borrar("cita", valores, true);
-			            	table_cita=bbdd.MostrarTabla("Cita", table_cita);
-			            }
+				valores[3] = "'" + sdf.format(fechaCalendario.getDate()) + "'";
+				valores[4] = "'" + cmb_Hora.getSelectedItem().toString() + "'";
+				valores[5] = "'" + text_observacionesCita.getText() + "'";
+				int result = JOptionPane.showConfirmDialog(null, "¿Quieres dar de baja esta cita?", "DAR BAJA CITA",
+						JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+				if (result == JOptionPane.YES_OPTION) {
+					if (fechaCalendario.getDate().after(new Date())) {
+						bbdd.borrar("cita", valores, true);
+						JOptionPane.showMessageDialog(null, "Cita dada de baja");
+						table_cita = bbdd.MostrarTabla("cita", table_cita);
+					} else {
+						JOptionPane.showMessageDialog(null, "No se puede borrar la cita, porque ya pertenece al historial", "ERROR",
+								JOptionPane.ERROR_MESSAGE);
+					}
+				}
 			}
 		});
 		btn_bajaCita.setBounds(790, 485, 85, 20);
@@ -275,15 +278,15 @@ public class Cita extends JDialog {
 
 		table_cita = new JTable();
 		table_cita.setBounds(10, 11, 864, 463);
-		table_cita=bbdd.MostrarTabla("Cita", table_cita);
+		table_cita = bbdd.MostrarTabla("Cita", table_cita);
 		table_cita.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                if (e.getClickCount() == 2) {
-                    String[]valores=bbdd.SacarValoresTabla(table_cita);
-                    text_nombrePaciente.setText(valores[1].toString());
-                    selectItemInComboBox(cmb_Tratamientos, valores[3]);
-                    cmb_Doctores.setEnabled(true);
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if (e.getClickCount() == 2) {
+					String[] valores = bbdd.SacarValoresTabla(table_cita);
+					text_nombrePaciente.setText(valores[1].toString());
+					selectItemInComboBox(cmb_Tratamientos, valores[3]);
+					cmb_Doctores.setEnabled(true);
 					String trat = cmb_Tratamientos.getSelectedItem().toString();
 					ArrayList DatosFiltrados;
 					try {
@@ -297,9 +300,9 @@ public class Cita extends JDialog {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
-                    selectItemInComboBox(cmb_Doctores, valores[2]);
-                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-                    Date fecha;
+					selectItemInComboBox(cmb_Doctores, valores[2]);
+					SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+					Date fecha;
 					try {
 						fecha = sdf.parse(valores[4].toString());
 						fechaCalendario.setDate(fecha);
@@ -308,14 +311,15 @@ public class Cita extends JDialog {
 						e1.printStackTrace();
 					}
 					selectItemInComboBox(cmb_Hora, valores[5]);
-                    text_observacionesCita.setText(valores[6].toString());
-                }
-            }
-        });
+					text_observacionesCita.setText(valores[6].toString());
+				}
+			}
+		});
 		contentPanel.add(table_cita);
-		
+
 		JLabel Fondo_cita = new JLabel("");
-		Fondo_cita.setIcon(new ImageIcon("C:\\Users\\kevin\\Documents\\GitHub\\DentiLax\\DentiApps\\interfaz\\Interfaz_DentiLax\\Fondo 1200x800.png"));
+		Fondo_cita.setIcon(new ImageIcon(
+				"C:\\Users\\kevin\\Documents\\GitHub\\DentiLax\\DentiApps\\interfaz\\Interfaz_DentiLax\\Fondo 1200x800.png"));
 		Fondo_cita.setBounds(0, 0, 884, 660);
 		contentPanel.add(Fondo_cita);
 
@@ -334,14 +338,13 @@ public class Cita extends JDialog {
 		cmb_Hora.addItem("20:00");
 		cmb_Hora.addItem("21:00");
 	}
-	
-	
+
 	private void selectItemInComboBox(JComboBox<String> comboBox, String value) {
-	    for (int i = 0; i < comboBox.getItemCount(); i++) {
-	        if (comboBox.getItemAt(i).equals(value)) {
-	            comboBox.setSelectedIndex(i);
-	            return; // Sal del bucle si se encuentra el elemento
-	        }
-	    }
+		for (int i = 0; i < comboBox.getItemCount(); i++) {
+			if (comboBox.getItemAt(i).equals(value)) {
+				comboBox.setSelectedIndex(i);
+				return; // Sal del bucle si se encuentra el elemento
+			}
+		}
 	}
 }

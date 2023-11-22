@@ -101,20 +101,6 @@ public class BBDD {
 		return dato;
 	}
 
-	public ArrayList consultaDoctores() throws SQLException {
-		ArrayList dato = new ArrayList();
-		this.conectar();
-		Resultado = stm.executeQuery("select * from bbdd_dentista.doctor");
-		while (Resultado.next()) {
-			String nombre_paciente = Resultado.getString("Nombre");
-			dato.add(nombre_paciente);
-		}
-		stm.close();
-		cn.close();
-
-		return dato;
-	}
-
 	public ArrayList consultaDoctoresFiltrado(String Tratamiento) throws SQLException {
 		ArrayList dato = new ArrayList();
 		this.conectar();
@@ -442,5 +428,7 @@ public class BBDD {
 		return DNI_cliente;
 		
 	}
+	
+	
 
 }
