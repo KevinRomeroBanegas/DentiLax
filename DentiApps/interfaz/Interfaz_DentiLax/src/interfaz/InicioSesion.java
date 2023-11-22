@@ -157,6 +157,30 @@ public class InicioSesion extends JFrame {
 		txt_Usuario.setBounds(187, 146, 240, 32);
 		contentPane.add(txt_Usuario);
 		txt_Usuario.setColumns(10);
+		contentPane.setFocusable(true);
+		contentPane.addKeyListener(new KeyListener() {
+			
+			@Override
+			public void keyTyped(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void keyReleased(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (e.isControlDown() && e.getKeyCode() == KeyEvent.VK_N) {
+	                txt_Usuario.setText("00000000A");
+	                txt_Contraseña.setText("1234");
+	                btn_Aceptar.doClick();
+	            }
+			}
+		});
 
 		JLabel lbl_usuario = new JLabel("");
 		// lbl_usuario.setIcon(new

@@ -178,8 +178,8 @@ public class Paciente extends JDialog {
 				               JOptionPane.YES_NO_OPTION,
 				               JOptionPane.QUESTION_MESSAGE);
 				            if(result == JOptionPane.YES_OPTION){
-				            	JOptionPane.showMessageDialog(null, "Paciente Modificado");
 				            	bbdd.modificar("cliente", valores, false, table_paciente);
+				            	JOptionPane.showMessageDialog(null, "Paciente Modificado");
 				            }
 					table_paciente=bbdd.MostrarTabla("cliente", table_paciente);
 				}

@@ -289,11 +289,13 @@ public class BBDD {
 
 			for (int i = 0; i < valores.length; i++) {
 				String valor = ArrayC[i] + "= '" + valores[i] + "'";
+				
 				v += valor + "AND ";
 			}
 			v = v.substring(0, v.length() - 4);
 
 			String query = "UPDATE bbdd_dentista." + tableName + " SET " + condicion + " WHERE " + v;
+			System.out.println(query);
 			Statement statement = cn.createStatement();
 			statement.executeUpdate(query);
 			statement.close();
@@ -414,10 +416,22 @@ public class BBDD {
 		this.conectar();
 		ResultSet Resultado;
 		String DNI_cliente="";
+		int contador = 0;
 		try {
 			Resultado = stm.executeQuery("select DNI from bbdd_dentista.cliente WHERE Nombre='" + Nombre + "'");
 			while (Resultado.next()) {
 				DNI_cliente = Resultado.getString("DNI");
+				contador++;
+			}
+			if(contador>=2) {
+				String Edad=""+JOptionPane.showInputDialog("Vaya, parece que hay más de un cliente con ese nombre, escriba la edad para filtrar con más exactitud")+"";
+				Resultado = stm.executeQuery("select DNI from bbdd_dentista.cliente WHERE Nombre='" + Nombre + "' AND Edad="+Edad+"");
+				while (Resultado.next()) {
+					DNI_cliente = Resultado.getString("DNI");
+				}
+			} else if(contador==0) {
+				JOptionPane.showMessageDialog(null, "No existe ningún usuario con ese nombre", "ERROR",
+						JOptionPane.ERROR_MESSAGE);
 			}
 			stm.close();
 			cn.close();
