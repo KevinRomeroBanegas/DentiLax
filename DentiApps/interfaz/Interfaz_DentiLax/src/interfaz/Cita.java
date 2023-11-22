@@ -119,7 +119,8 @@ public class Cita extends JDialog {
 			cmb_Tratamientos.setBounds(180, 41, 285, 22);
 			buttonPane.add(cmb_Tratamientos);
 
-			JButton btnNewButton = new JButton("New button");
+			JButton btnNewButton = new JButton("");
+			btnNewButton.setIcon(new ImageIcon(Cita.class.getResource("/imagenes/simbolo-de-herramienta-llena-de-filtro (1).png")));
 			btnNewButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					cmb_Doctores.setEnabled(true);
@@ -139,7 +140,7 @@ public class Cita extends JDialog {
 					}
 				}
 			});
-			btnNewButton.setBounds(823, 11, 32, 23);
+			btnNewButton.setBounds(823, 10, 32, 24);
 			buttonPane.add(btnNewButton);
 			
 			JButton btn_filtrarTabla = new JButton("Filtrar tabla");
@@ -160,18 +161,19 @@ public class Cita extends JDialog {
 			cmb_Hora = new JComboBox();
 			cmb_Hora.setBounds(655, 71, 150, 22);
 			
-			cmb_Hora.addItem("09:00");
-			cmb_Hora.addItem("10:00");
-			cmb_Hora.addItem("11:00");
-			cmb_Hora.addItem("12:00");
-			cmb_Hora.addItem("13:00");
-			cmb_Hora.addItem("16:00");
-			cmb_Hora.addItem("17:00");
-			cmb_Hora.addItem("18:00");
-			cmb_Hora.addItem("19:00");
-			cmb_Hora.addItem("20:00");
-			cmb_Hora.addItem("21:00");
+			RellenarHoras();
 			buttonPane.add(cmb_Hora);
+			
+			JButton btnNewButton_1 = new JButton("");
+			btnNewButton_1.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					String DNICliente=JOptionPane.showInputDialog("Escribe el nombre del paciente");
+					text_nombrePaciente.setText(bbdd.buscarCliente(DNICliente));
+				}
+			});
+			btnNewButton_1.setIcon(new ImageIcon(Cita.class.getResource("/imagenes/buscar.png")));
+			btnNewButton_1.setBounds(479, 10, 32, 20);
+			buttonPane.add(btnNewButton_1);
 
 			ArrayList Datos2;
 			try {
@@ -318,6 +320,22 @@ public class Cita extends JDialog {
 		contentPanel.add(Fondo_cita);
 
 	}
+
+	private void RellenarHoras() {
+		cmb_Hora.addItem("09:00");
+		cmb_Hora.addItem("10:00");
+		cmb_Hora.addItem("11:00");
+		cmb_Hora.addItem("12:00");
+		cmb_Hora.addItem("13:00");
+		cmb_Hora.addItem("16:00");
+		cmb_Hora.addItem("17:00");
+		cmb_Hora.addItem("18:00");
+		cmb_Hora.addItem("19:00");
+		cmb_Hora.addItem("20:00");
+		cmb_Hora.addItem("21:00");
+	}
+	
+	
 	private void selectItemInComboBox(JComboBox<String> comboBox, String value) {
 	    for (int i = 0; i < comboBox.getItemCount(); i++) {
 	        if (comboBox.getItemAt(i).equals(value)) {

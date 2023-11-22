@@ -107,7 +107,7 @@ public class InicioSesion extends JFrame {
 		JButton BotonContraseña = new JButton("Restablecer contraseña");
 		BotonContraseña.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(txt_Usuario.equals(null)) {
+				if(txt_Usuario.getText().isBlank()) {
 					JOptionPane.showMessageDialog(null, "Tienes que poner el DNI", "ERROR",
 							JOptionPane.ERROR_MESSAGE);
 				} else {

@@ -398,16 +398,35 @@ public class BBDD {
 		this.conectar();
 		int idCita = 0;
 
-			DefaultTableModel model = (DefaultTableModel) table.getModel();
-			int rowCount = model.getRowCount();
+		DefaultTableModel model = (DefaultTableModel) table.getModel();
+		int rowCount = model.getRowCount();
 
-			if (rowCount > 0) {
-				for (int i = 0; i < 1; i++) {
-					Object valor = model.getValueAt(rowCount - 1, i);
-					idCita=Integer.parseInt(valor.toString());
-				}
+		if (rowCount > 0) {
+			for (int i = 0; i < 1; i++) {
+				Object valor = model.getValueAt(rowCount - 1, i);
+				idCita = Integer.parseInt(valor.toString());
 			}
+		}
 		return idCita;
+	}
+
+	public String buscarCliente(String Nombre) {
+		this.conectar();
+		ResultSet Resultado;
+		String DNI_cliente="";
+		try {
+			Resultado = stm.executeQuery("select DNI from bbdd_dentista.cliente WHERE Nombre='" + Nombre + "'");
+			while (Resultado.next()) {
+				DNI_cliente = Resultado.getString("DNI");
+			}
+			stm.close();
+			cn.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return DNI_cliente;
+		
 	}
 
 }
