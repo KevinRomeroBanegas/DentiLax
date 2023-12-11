@@ -23,6 +23,7 @@ import java.text.SimpleDateFormat;
 import java.awt.event.ActionEvent;
 import javax.swing.ImageIcon;
 import java.awt.Dialog.ModalityType;
+import java.awt.Color;
 
 public class Paciente extends JDialog {
 
@@ -126,6 +127,14 @@ public class Paciente extends JDialog {
 			buttonPane.add(text_edadPaciente);
 			
 			JButton btn_odontograma = new JButton("Odontograma");
+			btn_odontograma.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					Odontograma odon = new Odontograma();
+					odon.setLocationRelativeTo(null);
+					odon.setLocation(370, 212);
+					odon.setVisible(true);
+				}
+			});
 			btn_odontograma.setFont(new Font("Tahoma", Font.BOLD, 15));
 			btn_odontograma.setBounds(537, 93, 213, 35);
 			buttonPane.add(btn_odontograma);
@@ -272,6 +281,7 @@ public class Paciente extends JDialog {
 		contentPanel.add(table_paciente);
 		
 		JLabel lblNewLabel_2 = new JLabel("");
+		lblNewLabel_2.setBackground(new Color(123, 193, 190));
 		lblNewLabel_2.setBounds(0, 0, 884, 660);
 		contentPanel.add(lblNewLabel_2);
 		

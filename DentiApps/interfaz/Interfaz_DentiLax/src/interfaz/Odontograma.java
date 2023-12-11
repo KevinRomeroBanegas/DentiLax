@@ -19,6 +19,8 @@ import javax.swing.ImageIcon;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Dialog.ModalityType;
+import java.awt.Color;
+import java.awt.Toolkit;
 
 public class Odontograma extends JDialog {
 
@@ -44,7 +46,7 @@ public class Odontograma extends JDialog {
 		setModal(true);
 		setResizable(false);
 		BBDD bbdd=new BBDD();
-		setTitle("Stock");
+		setTitle("Odontograma");
 		setBounds(100, 100, 900, 700);
 		getContentPane().setLayout(null);
 		contentPanel.setBounds(0, 0, 884, 660);
@@ -85,6 +87,8 @@ public class Odontograma extends JDialog {
 		contentPanel.add(incisivoCentral);
 		
 		JButton molarIzquierdo = new JButton("");
+		molarIzquierdo.setBackground(new Color(64, 0, 64));
+		molarIzquierdo.setIcon(new ImageIcon("C:\\Users\\Medac\\Documents\\GitHub\\DentiLax\\DentiApps\\interfaz\\Interfaz_DentiLax\\src\\imagenes\\dienteBoton.png"));
 		molarIzquierdo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
@@ -142,15 +146,11 @@ public class Odontograma extends JDialog {
 			btn_modificarDiente.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					if(text_nombreDiente.getText().isBlank()) {
-						JOptionPane.showMessageDialog(null, "Rellena el campo Nombre");
-					}else if(text_destribuidorProducto.getText().isBlank()){
-						JOptionPane.showMessageDialog(null, "Rellena el campo id Proveedor");
-					}else if(text_tratamientoDiente.getText().isBlank()){
-						JOptionPane.showMessageDialog(null, "Rellena el campo Precio");
+						JOptionPane.showMessageDialog(null, "Rellena el campo Diente");
+					} else if(text_tratamientoDiente.getText().isBlank()){
+						JOptionPane.showMessageDialog(null, "Rellena el campo Tratamiento");
 					}else {
-					
-					JOptionPane.showMessageDialog(null, "Producto Modificado");
-					
+					JOptionPane.showMessageDialog(null, "Odontograma Modificado");
 					}
 				}
 			});
@@ -163,15 +163,11 @@ public class Odontograma extends JDialog {
 		btn_agregarDiente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(text_nombreDiente.getText().isBlank()) {
-					JOptionPane.showMessageDialog(null, "Rellena el campo Nombre");
-				}else if(text_destribuidorProducto.getText().isBlank()){
-					JOptionPane.showMessageDialog(null, "Rellena el campo id Proveedor");
-				}else if(text_tratamientoDiente.getText().isBlank()){
-					JOptionPane.showMessageDialog(null, "Rellena el campo Precio");
+					JOptionPane.showMessageDialog(null, "Rellena el campo Diente");
+				} else if(text_tratamientoDiente.getText().isBlank()){
+					JOptionPane.showMessageDialog(null, "Rellena el campo Tratamiento");
 				}else {
-				
-				JOptionPane.showMessageDialog(null, "Producto Agregado");
-				
+				JOptionPane.showMessageDialog(null, "Odontograma Agregado");
 				}
 			}
 		});
@@ -183,11 +179,11 @@ public class Odontograma extends JDialog {
 		btn_bajaDiente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(text_nombreDiente.getText().isBlank()) {
-					JOptionPane.showMessageDialog(null, "Rellena el campo Nombre");
+					JOptionPane.showMessageDialog(null, "Rellena el campo Diente");
+				} else if(text_tratamientoDiente.getText().isBlank()){
+					JOptionPane.showMessageDialog(null, "Rellena el campo Tratamiento");
 				}else {
-				
-				JOptionPane.showMessageDialog(null, "Producto dado de Baja");
-				
+				JOptionPane.showMessageDialog(null, "Odontograma Borrado");
 				}
 			}
 		});
@@ -195,12 +191,6 @@ public class Odontograma extends JDialog {
 		btn_bajaDiente.setBounds(789, 500, 85, 20);
 		contentPanel.add(btn_bajaDiente);
 		
-		table_stock = new JTable();
-		table_stock.setBounds(10, 11, 864, 463);
-		
-		table_stock=bbdd.MostrarTabla("Stock", table_stock);
-		
-		contentPanel.add(table_stock);
 		
 		JLabel Fondo_stock = new JLabel("");
 		Fondo_stock.setIcon(new ImageIcon("C:\\Users\\kevin\\Documents\\GitHub\\DentiLax\\DentiApps\\interfaz\\Interfaz_DentiLax\\Fondo 1200x800.png"));
