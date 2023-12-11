@@ -206,7 +206,7 @@ public class InicioSesion extends JFrame {
 				
 				
 						JLabel fondo_pacientes = new JLabel("");
-						fondo_pacientes.setIcon(new ImageIcon(InicioSesion.class.getResource("/imagenes/fondo_inicio_transparente.png")));
+						fondo_pacientes.setIcon(new ImageIcon(InicioSesion.class.getResource("/imagenes/fondodentista_3.jpg")));
 						// fondo_pacientes.setIcon(new
 						// ImageIcon(InicioSesion.class.getResource("/Iconos/Fondo 600X450.png")));
 						// fondo_pacientes.setIcon(new
