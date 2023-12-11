@@ -447,9 +447,9 @@ public class BBDD {
 	        Resultado = stm.executeQuery(query);
 
 	        if (Resultado.next()) {
-	            existe = true;
+	            existe=true;
 	        } else {
-	            existe = false;
+	            
 	        }
 
 	    } catch (SQLException e) {

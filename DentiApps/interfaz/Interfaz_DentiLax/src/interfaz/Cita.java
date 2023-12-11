@@ -232,8 +232,8 @@ public class Cita extends JDialog {
 				int result = JOptionPane.showConfirmDialog(null, "¿Quieres insertar esta cita?", "INSERTAR CITA",
 						JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 				if (result == JOptionPane.YES_OPTION) {
-					//boolean Existe = bbdd.existeCita(valores);
-					//if (Existe = false) {
+					boolean Existe = bbdd.existeCita(valores);
+					if (Existe == false) {
 						JOptionPane.showMessageDialog(null, "Cita insertada");
 						bbdd.insertar("cita", valores, true);
 						table_cita = bbdd.MostrarTabla("Cita", table_cita);
@@ -244,12 +244,12 @@ public class Cita extends JDialog {
 							valoresUsuario[0] = "" + bbdd.sacarIdCita(table_cita);
 							bbdd.insertar("factura", valoresUsuario, false);
 						}
-					} /*else {
+					} else {
 						JOptionPane.showMessageDialog(null,
 								"No se puede añadir la cita, porque ya existe", "ERROR",
 								JOptionPane.ERROR_MESSAGE);
-					}*/
-				//} 
+					}
+				} 
 			}
 		});
 		btn_agregarCita.setBounds(592, 485, 85, 20);
