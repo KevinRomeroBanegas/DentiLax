@@ -115,30 +115,12 @@ public class InicioSesion extends JFrame {
 				}
 			}
 		});
-		
-				JLabel lbl_usuario = new JLabel("");
-				// lbl_usuario.setIcon(new
-				// ImageIcon(InicioSesion.class.getResource("/Iconos/usuario (1).png")));
-				// lbl_usuario.setIcon(new
-				// ImageIcon(InicioSesion.class.getResource("/Iconos/usuario (1).png")));
-				lbl_usuario.setBounds(120, 130, 32, 62);
-				contentPane.add(lbl_usuario);
-		
-				JLabel lbl_contra = new JLabel("");
-				// lbl_contra.setIcon(new
-				// ImageIcon(InicioSesion.class.getResource("/Iconos/cerrar-con-llave
-				// (1).png")));
-				// lbl_contra.setIcon(new
-				// ImageIcon(InicioSesion.class.getResource("/Iconos/cerrar-con-llave
-				// (1).png")));
-				lbl_contra.setBounds(120, 240, 32, 32);
-				contentPane.add(lbl_contra);
 		BotonContraseña.setForeground(new Color(255, 255, 255));
 		BotonContraseña.setBackground(new Color(100, 149, 237));
 		BotonContraseña.setBounds(10, 421, 179, 21);
 		contentPane.add(BotonContraseña);
 		btn_Aceptar.setFont(new Font("Tahoma", Font.BOLD, 14));
-		btn_Aceptar.setBounds(251, 330, 115, 41);
+		btn_Aceptar.setBounds(252, 332, 115, 41);
 		contentPane.add(btn_Aceptar);
 		getRootPane().setDefaultButton(btn_Aceptar);
 
@@ -199,6 +181,24 @@ public class InicioSesion extends JFrame {
 	            }
 			}
 		});
+
+		JLabel lbl_usuario = new JLabel("");
+		// lbl_usuario.setIcon(new
+		// ImageIcon(InicioSesion.class.getResource("/Iconos/usuario (1).png")));
+		// lbl_usuario.setIcon(new
+		// ImageIcon(InicioSesion.class.getResource("/Iconos/usuario (1).png")));
+		lbl_usuario.setBounds(120, 130, 32, 62);
+		contentPane.add(lbl_usuario);
+
+		JLabel lbl_contra = new JLabel("");
+		// lbl_contra.setIcon(new
+		// ImageIcon(InicioSesion.class.getResource("/Iconos/cerrar-con-llave
+		// (1).png")));
+		// lbl_contra.setIcon(new
+		// ImageIcon(InicioSesion.class.getResource("/Iconos/cerrar-con-llave
+		// (1).png")));
+		lbl_contra.setBounds(120, 240, 32, 32);
+		contentPane.add(lbl_contra);
 				
 				Labeltitulo lbltlInicioDeSesin = new Labeltitulo();
 				lbltlInicioDeSesin.setBounds(203, 76, 204, 49);
@@ -206,7 +206,7 @@ public class InicioSesion extends JFrame {
 				
 				
 						JLabel fondo_pacientes = new JLabel("");
-						fondo_pacientes.setIcon(new ImageIcon(InicioSesion.class.getResource("/imagenes/fondodentista_3.jpg")));
+						fondo_pacientes.setIcon(new ImageIcon(InicioSesion.class.getResource("/imagenes/fondo_inicio_transparente.png")));
 						// fondo_pacientes.setIcon(new
 						// ImageIcon(InicioSesion.class.getResource("/Iconos/Fondo 600X450.png")));
 						// fondo_pacientes.setIcon(new
