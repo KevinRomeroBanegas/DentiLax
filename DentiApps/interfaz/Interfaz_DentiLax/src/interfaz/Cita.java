@@ -121,7 +121,7 @@ public class Cita extends JDialog {
 
 			JButton btnNewButton = new JButton("");
 			btnNewButton.setIcon(
-					new ImageIcon(Cita.class.getResource("/imagenes/simbolo-de-herramienta-llena-de-filtro (1).png")));
+					new ImageIcon(Cita.class.getResource("/imagenes/asistencia-medica.png")));
 			btnNewButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					cmb_Doctores.setEnabled(true);
