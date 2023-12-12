@@ -115,6 +115,14 @@ public class InicioSesion extends JFrame {
 				}
 			}
 		});
+		
+		JLabel lbl_contraseña = new JLabel("");
+		lbl_contraseña.setBounds(115, 234, 48, 48);
+		contentPane.add(lbl_contraseña);
+		
+		JLabel lbl_usuario = new JLabel("");
+		lbl_usuario.setBounds(115, 137, 48, 48);
+		contentPane.add(lbl_usuario);
 		BotonContraseña.setForeground(new Color(255, 255, 255));
 		BotonContraseña.setBackground(new Color(100, 149, 237));
 		BotonContraseña.setBounds(10, 421, 179, 21);
@@ -181,27 +189,9 @@ public class InicioSesion extends JFrame {
 	            }
 			}
 		});
-
-		JLabel lbl_usuario = new JLabel("");
-		// lbl_usuario.setIcon(new
-		// ImageIcon(InicioSesion.class.getResource("/Iconos/usuario (1).png")));
-		// lbl_usuario.setIcon(new
-		// ImageIcon(InicioSesion.class.getResource("/Iconos/usuario (1).png")));
-		lbl_usuario.setBounds(120, 130, 32, 62);
-		contentPane.add(lbl_usuario);
-
-		JLabel lbl_contra = new JLabel("");
-		// lbl_contra.setIcon(new
-		// ImageIcon(InicioSesion.class.getResource("/Iconos/cerrar-con-llave
-		// (1).png")));
-		// lbl_contra.setIcon(new
-		// ImageIcon(InicioSesion.class.getResource("/Iconos/cerrar-con-llave
-		// (1).png")));
-		lbl_contra.setBounds(120, 240, 32, 32);
-		contentPane.add(lbl_contra);
 				
 				Labeltitulo lbltlInicioDeSesin = new Labeltitulo();
-				lbltlInicioDeSesin.setBounds(203, 76, 204, 49);
+				lbltlInicioDeSesin.setBounds(203, 56, 204, 49);
 				contentPane.add(lbltlInicioDeSesin);
 				
 				
