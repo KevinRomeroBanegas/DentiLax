@@ -33,15 +33,15 @@ public class Odontograma extends JDialog {
 
 	public static void main(String[] args) {
 		try {
-			Odontograma dialog = new Odontograma();
+			/*Odontograma dialog = new Odontograma();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-			dialog.setVisible(true);
+			dialog.setVisible(true);*/
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
-	public Odontograma() {
+	public Odontograma(String DNI) {
 		setModalityType(ModalityType.DOCUMENT_MODAL);
 		setModal(true);
 		setResizable(false);
@@ -92,6 +92,8 @@ public class Odontograma extends JDialog {
 		molarIzquierdo.setIcon(new ImageIcon("C:\\Users\\Medac\\Documents\\GitHub\\DentiLax\\DentiApps\\interfaz\\Interfaz_DentiLax\\src\\imagenes\\dienteBoton.png"));
 		molarIzquierdo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				text_nombreDiente.setText("Diente_A1");
+				text_descripcionDiente.setText(bbdd.infoDiente("Diente_A1", DNI));
 			}
 		});
 		molarIzquierdo.setBounds(80, 70, 80, 40);

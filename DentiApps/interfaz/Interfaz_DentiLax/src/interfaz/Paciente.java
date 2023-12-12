@@ -133,7 +133,7 @@ public class Paciente extends JDialog {
 				public void actionPerformed(ActionEvent e) {
 					boolean existeOdon=bbdd.buscarOdontograma(text_dniPaciente.getText());
 					if(existeOdon==true) {
-						Odontograma odon = new Odontograma();
+						Odontograma odon = new Odontograma(text_dniPaciente.getText());
 						odon.setLocationRelativeTo(null);
 						odon.setLocation(370, 212);
 						odon.setVisible(true);

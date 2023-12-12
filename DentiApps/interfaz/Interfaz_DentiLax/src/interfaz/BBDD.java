@@ -478,6 +478,31 @@ public class BBDD {
 	    return existe;
 	}
 
+	public String infoDiente(String Columna, String DNI) {
+		String Descripcion="";
+		this.conectar();
+		ResultSet Resultado;
+		 try {
+			 
+			 	String query = "select "+Columna+" from bbdd_dentista.odontograma WHERE DNI_cliente='"+DNI+"'";
+		        
+		        System.out.println(query);
+		        
+		        Resultado = stm.executeQuery(query);
+
+		        if (Resultado.next()) {
+		        	Descripcion = Resultado.getString(""+Columna+"");
+		        } else {
+		            
+		        }
+
+		    } catch (SQLException e) {
+		        e.printStackTrace();
+		    }
+		return Descripcion;
+		
+	}
+
 
 
 }
