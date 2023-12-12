@@ -19,6 +19,7 @@ import javax.swing.ImageIcon;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Dialog.ModalityType;
+import java.awt.Color;
 
 public class Stock extends JDialog {
 
@@ -48,6 +49,7 @@ public class Stock extends JDialog {
 		setTitle("Stock");
 		setBounds(100, 100, 900, 700);
 		getContentPane().setLayout(null);
+		contentPanel.setBackground(new Color(222, 254, 251));
 		contentPanel.setBounds(0, 0, 884, 660);
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel);
@@ -58,6 +60,7 @@ public class Stock extends JDialog {
 		contentPanel.add(table);
 		{
 			JPanel buttonPane = new JPanel();
+			buttonPane.setBackground(new Color(135, 222, 220));
 			buttonPane.setBounds(10, 580, 864, 69);
 			contentPanel.add(buttonPane);
 			buttonPane.setLayout(null);

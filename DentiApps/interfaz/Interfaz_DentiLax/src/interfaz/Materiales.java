@@ -22,6 +22,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.ActionEvent;
 import javax.swing.ImageIcon;
 import java.awt.Dialog.ModalityType;
+import java.awt.Color;
 
 public class Materiales extends JDialog implements ActionListener{
 
@@ -46,12 +47,14 @@ public class Materiales extends JDialog implements ActionListener{
 		setTitle("Materiales");
 		setBounds(100, 100, 900, 700);
 		getContentPane().setLayout(null);
+		contentPanel.setBackground(new Color(222, 254, 251));
 		contentPanel.setBounds(0, 0, 884, 660);
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel);
 		contentPanel.setLayout(null);
 		{
 			JPanel buttonPane = new JPanel();
+			buttonPane.setBackground(new Color(135, 222, 220));
 			buttonPane.setBounds(10, 546, 864, 103);
 			contentPanel.add(buttonPane);
 			buttonPane.setLayout(null);

@@ -31,6 +31,7 @@ import com.toedter.calendar.JDateChooser;
 import javax.swing.JComboBox;
 import javax.swing.ImageIcon;
 import java.awt.Dialog.ModalityType;
+import java.awt.Color;
 
 public class Cita extends JDialog {
 
@@ -58,12 +59,14 @@ public class Cita extends JDialog {
 		bbdd.conectar();
 		setBounds(100, 100, 900, 700);
 		getContentPane().setLayout(null);
+		contentPanel.setBackground(new Color(222, 254, 251));
 		contentPanel.setBounds(0, 0, 884, 660);
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel);
 		contentPanel.setLayout(null);
 		{
 			JPanel buttonPane = new JPanel();
+			buttonPane.setBackground(new Color(135, 222, 220));
 			buttonPane.setBounds(10, 516, 864, 133);
 			contentPanel.add(buttonPane);
 			buttonPane.setLayout(null);
@@ -326,6 +329,7 @@ public class Cita extends JDialog {
 		contentPanel.add(table_cita);
 
 		JLabel Fondo_cita = new JLabel("");
+		Fondo_cita.setBackground(new Color(192, 192, 192));
 		Fondo_cita.setIcon(new ImageIcon(
 				"C:\\Users\\kevin\\Documents\\GitHub\\DentiLax\\DentiApps\\interfaz\\Interfaz_DentiLax\\Fondo 1200x800.png"));
 		Fondo_cita.setBounds(0, 0, 884, 660);
