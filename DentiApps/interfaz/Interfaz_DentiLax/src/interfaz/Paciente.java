@@ -131,10 +131,16 @@ public class Paciente extends JDialog {
 			JButton btn_odontograma = new JButton("Odontograma");
 			btn_odontograma.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					Odontograma odon = new Odontograma();
-					odon.setLocationRelativeTo(null);
-					odon.setLocation(370, 212);
-					odon.setVisible(true);
+					boolean existeOdon=bbdd.buscarOdontograma(text_dniPaciente.getText());
+					if(existeOdon==true) {
+						Odontograma odon = new Odontograma();
+						odon.setLocationRelativeTo(null);
+						odon.setLocation(370, 212);
+						odon.setVisible(true);
+					} else {
+						JOptionPane.showMessageDialog(null, "No se ha podido encontrar el odontograma o no existe", "ERROR",
+								JOptionPane.ERROR_MESSAGE);
+					}
 				}
 			});
 			btn_odontograma.setFont(new Font("Tahoma", Font.BOLD, 15));

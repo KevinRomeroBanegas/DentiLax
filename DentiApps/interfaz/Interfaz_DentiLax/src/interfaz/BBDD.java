@@ -458,6 +458,25 @@ public class BBDD {
 	    }
 	    return existe;
 	}
+	
+	public boolean buscarOdontograma(String dni) {
+		boolean existe = false;
+	    this.conectar();
+
+	    try {
+	    	Resultado = stm.executeQuery("select * from bbdd_dentista.odontograma WHERE DNI_cliente='" + dni + "'");
+
+	        if (Resultado.next()) {
+	            existe=true;
+	        } else {
+	            existe=false;
+	        }
+
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+	    return existe;
+	}
 
 
 

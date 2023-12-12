@@ -117,10 +117,12 @@ public class InicioSesion extends JFrame {
 		});
 		
 		JLabel lbl_contraseña = new JLabel("");
+		lbl_contraseña.setIcon(new ImageIcon(InicioSesion.class.getResource("/imagenes/contraseña.png")));
 		lbl_contraseña.setBounds(115, 234, 48, 48);
 		contentPane.add(lbl_contraseña);
 		
 		JLabel lbl_usuario = new JLabel("");
+		lbl_usuario.setIcon(new ImageIcon(InicioSesion.class.getResource("/imagenes/usuario.png")));
 		lbl_usuario.setBounds(115, 137, 48, 48);
 		contentPane.add(lbl_usuario);
 		BotonContraseña.setForeground(new Color(255, 255, 255));
