@@ -434,104 +434,118 @@ public class BBDD {
 	}
 
 	public boolean existeCita(String[] valores) {
-	    boolean existe = false;
-	    this.conectar();
+		boolean existe = false;
+		this.conectar();
 
-	    try {
-	        String query = "SELECT * FROM bbdd_dentista.cita WHERE DniClientes=" + valores[0]
-	                + " AND NombreDoctor=" + valores[1] + " AND NombreTrat=" + valores[2] + " AND Fecha="
-	                + valores[3] + " AND Hora=" + valores[4] + " AND Observaciones=" + valores[5] + "";
-	        
-	        System.out.println(query);
-	        
-	        Resultado = stm.executeQuery(query);
+		try {
+			String query = "SELECT * FROM bbdd_dentista.cita WHERE DniClientes=" + valores[0] + " AND NombreDoctor="
+					+ valores[1] + " AND NombreTrat=" + valores[2] + " AND Fecha=" + valores[3] + " AND Hora="
+					+ valores[4] + " AND Observaciones=" + valores[5] + "";
 
-	        if (Resultado.next()) {
-	            existe=true;
-	        } else {
-	            
-	        }
+			System.out.println(query);
 
-	    } catch (SQLException e) {
-	        // Manejar la excepción de manera adecuada
-	        e.printStackTrace();
-	    }
-	    return existe;
+			Resultado = stm.executeQuery(query);
+
+			if (Resultado.next()) {
+				existe = true;
+			} else {
+
+			}
+
+		} catch (SQLException e) {
+			// Manejar la excepción de manera adecuada
+			e.printStackTrace();
+		}
+		return existe;
 	}
-	
+
 	public boolean buscarOdontograma(String dni) {
 		boolean existe = false;
-	    this.conectar();
+		this.conectar();
 
-	    try {
-	    	Resultado = stm.executeQuery("select * from bbdd_dentista.odontograma WHERE DNI_cliente='" + dni + "'");
+		try {
+			Resultado = stm.executeQuery("select * from bbdd_dentista.odontograma WHERE DNI_cliente='" + dni + "'");
 
-	        if (Resultado.next()) {
-	            existe=true;
-	        } else {
-	            existe=false;
-	        }
+			if (Resultado.next()) {
+				existe = true;
+			} else {
+				existe = false;
+			}
 
-	    } catch (SQLException e) {
-	        e.printStackTrace();
-	    }
-	    return existe;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return existe;
 	}
 
 	public String infoDiente(String Columna, String DNI) {
-		String Descripcion="";
+		String Descripcion = "";
 		this.conectar();
 		ResultSet Resultado;
-		 try {
-			 
-			 	String query = "select "+Columna+" from bbdd_dentista.odontograma WHERE DNI_cliente='"+DNI+"'";
-		        
-		        System.out.println(query);
-		        
-		        Resultado = stm.executeQuery(query);
+		try {
 
-		        if (Resultado.next()) {
-		        	Descripcion = Resultado.getString(""+Columna+"");
-		        } else {
-		            
-		        }
+			String query = "select " + Columna + " from bbdd_dentista.odontograma WHERE DNI_cliente='" + DNI + "'";
 
-		    } catch (SQLException e) {
-		        e.printStackTrace();
-		    }
+			System.out.println(query);
+
+			Resultado = stm.executeQuery(query);
+
+			if (Resultado.next()) {
+				Descripcion = Resultado.getString("" + Columna + "");
+			} else {
+
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		return Descripcion;
-		
+
 	}
-	
+
 	public boolean colorDiente(String dni, String columna) {
 		boolean existe = false;
-	    this.conectar();
-	    String Descripcion=" ";
-	    ResultSet Resultado;
+		this.conectar();
+		String Descripcion = " ";
+		ResultSet Resultado;
 
-	    try {
-	    	Resultado = stm.executeQuery("select "+columna+" from bbdd_dentista.odontograma WHERE DNI_cliente='" + dni + "'");
+		try {
+			Resultado = stm.executeQuery(
+					"select " + columna + " from bbdd_dentista.odontograma WHERE DNI_cliente='" + dni + "'");
 
-	        if (Resultado.next()) {
-	        	Descripcion = Resultado.getString(""+columna+"");
-	        	if(Descripcion==null) {
-	        		existe=false;
-	        	} else {
-	        		existe=true;
-	        	}
-	        } else {
-	            
-	        }
+			if (Resultado.next()) {
+				Descripcion = Resultado.getString("" + columna + "");
+				if (Descripcion == null) {
+					existe = false;
+				} else {
+					existe = true;
+				}
+			} else {
 
-	    } catch (SQLException e) {
-	        e.printStackTrace();
-	    }
-	    System.out.println(existe);
-	    return existe;
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return existe;
 	}
-	
-	
 
+	public void modificarOdontograma(String columna, String Descripcion, String DNI) {
+		this.conectar();
+		try {
+			String query = "UPDATE bbdd_dentista.odontograma SET " + columna + "='" + Descripcion
+					+ "' WHERE DNI_cliente='" + DNI + "'";
+			System.out.println(query);
+			Statement statement;
 
+			statement = cn.createStatement();
+
+			statement.executeUpdate(query);
+			statement.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
 }

@@ -22,15 +22,15 @@ import java.awt.event.ActionEvent;
 import java.awt.Dialog.ModalityType;
 import java.awt.Color;
 import java.awt.Toolkit;
+import javax.swing.JTextArea;
 
 public class Odontograma extends JDialog {
 
 	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
 	private JTextField text_nombreDiente;
-	private JTextField text_tratamientoDiente;
 	private JTable table_stock;
-	private JTextField text_descripcionDiente;
+	private JTextArea text_descripcionDiente;
 
 	public static void main(String[] args) {
 		try {
@@ -59,6 +59,12 @@ public class Odontograma extends JDialog {
 		contentPanel.setLayout(null);
 
 		JButton molarIzquierdoBajo = new JButton("");
+		molarIzquierdoBajo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				text_nombreDiente.setText("Diente_A6");
+				text_descripcionDiente.setText(bbdd.infoDiente("Diente_A6", DNI));
+			}
+		});
 		molarIzquierdoBajo.setIcon(new ImageIcon(Odontograma.class.getResource("/imagenes/dientes.png")));
 		boolean color_molarIzquierdoBajo = bbdd.colorDiente(DNI, "Diente_A6");
 		if (color_molarIzquierdoBajo == true) {
@@ -70,6 +76,12 @@ public class Odontograma extends JDialog {
 		contentPanel.add(molarIzquierdoBajo);
 
 		JButton colmilloDerechoBajo = new JButton("");
+		colmilloDerechoBajo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				text_nombreDiente.setText("Diente_A9");
+				text_descripcionDiente.setText(bbdd.infoDiente("Diente_A9", DNI));
+			}
+		});
 		colmilloDerechoBajo.setIcon(new ImageIcon(Odontograma.class.getResource("/imagenes/dientes.png")));
 		boolean color_colmilloDerechoBajo = bbdd.colorDiente(DNI, "Diente_A9");
 		if (color_colmilloDerechoBajo == true) {
@@ -81,6 +93,12 @@ public class Odontograma extends JDialog {
 		contentPanel.add(colmilloDerechoBajo);
 
 		JButton colmilloIzquierdoBajo = new JButton("");
+		colmilloIzquierdoBajo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				text_nombreDiente.setText("Diente_A7");
+				text_descripcionDiente.setText(bbdd.infoDiente("Diente_A7", DNI));
+			}
+		});
 		colmilloIzquierdoBajo.setIcon(new ImageIcon(Odontograma.class.getResource("/imagenes/dientes.png")));
 		boolean color_colmilloIzquierdoBajo = bbdd.colorDiente(DNI, "Diente_A7");
 		if (color_colmilloIzquierdoBajo == true) {
@@ -92,6 +110,12 @@ public class Odontograma extends JDialog {
 		contentPanel.add(colmilloIzquierdoBajo);
 
 		JButton molarDerechoBajo = new JButton("");
+		molarDerechoBajo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				text_nombreDiente.setText("Diente_A10");
+				text_descripcionDiente.setText(bbdd.infoDiente("Diente_A10", DNI));
+			}
+		});
 		molarDerechoBajo.setIcon(new ImageIcon(Odontograma.class.getResource("/imagenes/dientes.png")));
 		boolean color_molarDerechoBajo = bbdd.colorDiente(DNI, "Diente_A10");
 		if (color_molarDerechoBajo == true) {
@@ -103,6 +127,12 @@ public class Odontograma extends JDialog {
 		contentPanel.add(molarDerechoBajo);
 
 		JButton incisivoCentralBajo = new JButton("");
+		incisivoCentralBajo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				text_nombreDiente.setText("Diente_A8");
+				text_descripcionDiente.setText(bbdd.infoDiente("Diente_A8", DNI));
+			}
+		});
 		incisivoCentralBajo.setIcon(new ImageIcon(Odontograma.class.getResource("/imagenes/dientes.png")));
 		boolean color_incisivoCentralBajo = bbdd.colorDiente(DNI, "Diente_A8");
 		if (color_incisivoCentralBajo == true) {
@@ -114,6 +144,12 @@ public class Odontograma extends JDialog {
 		contentPanel.add(incisivoCentralBajo);
 
 		JButton MolarDerecho = new JButton("");
+		MolarDerecho.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				text_nombreDiente.setText("Diente_A5");
+				text_descripcionDiente.setText(bbdd.infoDiente("Diente_A5", DNI));
+			}
+		});
 		MolarDerecho.setIcon(new ImageIcon(Odontograma.class.getResource("/imagenes/dientes.png")));
 		boolean color_MolarDerecho = bbdd.colorDiente(DNI, "Diente_A5");
 		if (color_MolarDerecho == true) {
@@ -125,6 +161,12 @@ public class Odontograma extends JDialog {
 		contentPanel.add(MolarDerecho);
 
 		JButton ColmilloDerecho = new JButton("");
+		ColmilloDerecho.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				text_nombreDiente.setText("Diente_A4");
+				text_descripcionDiente.setText(bbdd.infoDiente("Diente_A4", DNI));
+			}
+		});
 		boolean color_ColmilloDerecho = bbdd.colorDiente(DNI, "Diente_A4");
 		if (color_ColmilloDerecho == true) {
 			ColmilloDerecho.setBackground(new Color(255, 255, 193));
@@ -136,6 +178,12 @@ public class Odontograma extends JDialog {
 		contentPanel.add(ColmilloDerecho);
 
 		JButton incisivoCentral = new JButton("");
+		incisivoCentral.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				text_nombreDiente.setText("Diente_A3");
+				text_descripcionDiente.setText(bbdd.infoDiente("Diente_A3", DNI));
+			}
+		});
 		boolean color_incisivoCentral = bbdd.colorDiente(DNI, "Diente_A3");
 		if (color_incisivoCentral == true) {
 			incisivoCentral.setBackground(new Color(255, 255, 193));
@@ -164,6 +212,12 @@ public class Odontograma extends JDialog {
 		contentPanel.add(molarIzquierdo);
 
 		JButton ColmilloIzquierdo = new JButton("");
+		ColmilloIzquierdo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				text_nombreDiente.setText("Diente_A2");
+				text_descripcionDiente.setText(bbdd.infoDiente("Diente_A2", DNI));
+			}
+		});
 		boolean color_ColmilloIzquierdo = bbdd.colorDiente(DNI, "Diente_A2");
 		if (color_ColmilloIzquierdo == true) {
 			ColmilloIzquierdo.setBackground(new Color(255, 255, 193));
@@ -196,17 +250,7 @@ public class Odontograma extends JDialog {
 			lblNewLabel_1.setBounds(10, 65, 135, 20);
 			buttonPane.add(lblNewLabel_1);
 
-			JLabel lblNewLabel_1_1 = new JLabel("Tratamiento :");
-			lblNewLabel_1_1.setFont(new Font("Tahoma", Font.BOLD, 15));
-			lblNewLabel_1_1.setBounds(537, 10, 135, 20);
-			buttonPane.add(lblNewLabel_1_1);
-
-			text_tratamientoDiente = new JTextField();
-			text_tratamientoDiente.setColumns(10);
-			text_tratamientoDiente.setBounds(684, 10, 170, 20);
-			buttonPane.add(text_tratamientoDiente);
-
-			text_descripcionDiente = new JTextField();
+			text_descripcionDiente = new JTextArea();
 			text_descripcionDiente.setBounds(180, 40, 285, 65);
 			buttonPane.add(text_descripcionDiente);
 			text_descripcionDiente.setColumns(10);
@@ -216,54 +260,22 @@ public class Odontograma extends JDialog {
 		lblNewLabel.setBounds(10, 500, 160, 20);
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 15));
 		contentPanel.add(lblNewLabel);
-		{
-			JButton btn_modificarDiente = new JButton("Modificar");
-			btn_modificarDiente.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					if (text_nombreDiente.getText().isBlank()) {
-						JOptionPane.showMessageDialog(null, "Rellena el campo Diente");
-					} else if (text_tratamientoDiente.getText().isBlank()) {
-						JOptionPane.showMessageDialog(null, "Rellena el campo Tratamiento");
-					} else {
-						JOptionPane.showMessageDialog(null, "Odontograma Modificado");
-					}
-				}
-			});
-			btn_modificarDiente.setBounds(694, 500, 85, 20);
-			contentPanel.add(btn_modificarDiente);
-			btn_modificarDiente.setActionCommand("Cancel");
-		}
 
-		JButton btn_agregarDiente = new JButton("Agregar");
-		btn_agregarDiente.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if (text_nombreDiente.getText().isBlank()) {
-					JOptionPane.showMessageDialog(null, "Rellena el campo Diente");
-				} else if (text_tratamientoDiente.getText().isBlank()) {
-					JOptionPane.showMessageDialog(null, "Rellena el campo Tratamiento");
-				} else {
-					JOptionPane.showMessageDialog(null, "Odontograma Agregado");
-				}
-			}
-		});
-		btn_agregarDiente.setBounds(599, 500, 85, 20);
-		contentPanel.add(btn_agregarDiente);
-		btn_agregarDiente.setActionCommand("Cancel");
-
-		JButton btn_bajaDiente = new JButton("Borrar");
+		JButton btn_bajaDiente = new JButton("Añadir Descripción");
 		btn_bajaDiente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (text_nombreDiente.getText().isBlank()) {
 					JOptionPane.showMessageDialog(null, "Rellena el campo Diente");
-				} else if (text_tratamientoDiente.getText().isBlank()) {
-					JOptionPane.showMessageDialog(null, "Rellena el campo Tratamiento");
+				} else if (text_descripcionDiente.getText().isBlank()) {
+					JOptionPane.showMessageDialog(null, "Rellena el campo Descripcion");
 				} else {
-					JOptionPane.showMessageDialog(null, "Odontograma Borrado");
+					bbdd.modificarOdontograma(text_nombreDiente.getText(), text_descripcionDiente.getText(), DNI);
+					JOptionPane.showMessageDialog(null, "Descripcion Agregada");
 				}
 			}
 		});
 		btn_bajaDiente.setActionCommand("Cancel");
-		btn_bajaDiente.setBounds(789, 500, 85, 20);
+		btn_bajaDiente.setBounds(720, 500, 154, 20);
 		contentPanel.add(btn_bajaDiente);
 
 		JLabel Fondo_stock = new JLabel("");
