@@ -502,6 +502,35 @@ public class BBDD {
 		return Descripcion;
 		
 	}
+	
+	public boolean colorDiente(String dni, String columna) {
+		boolean existe = false;
+	    this.conectar();
+	    String Descripcion=" ";
+	    ResultSet Resultado;
+
+	    try {
+	    	Resultado = stm.executeQuery("select "+columna+" from bbdd_dentista.odontograma WHERE DNI_cliente='" + dni + "'");
+
+	        if (Resultado.next()) {
+	        	Descripcion = Resultado.getString(""+columna+"");
+	        	if(Descripcion==null) {
+	        		existe=false;
+	        	} else {
+	        		existe=true;
+	        	}
+	        } else {
+	            
+	        }
+
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+	    System.out.println(existe);
+	    return existe;
+	}
+	
+	
 
 
 
