@@ -157,7 +157,7 @@ public class BBDD {
 			valoresFinales = valoresFinales.substring(0, valoresFinales.length() - 1);
 			String query = "INSERT INTO bbdd_dentista." + tableName + " (" + columnNames + ") VALUES (" + valoresFinales
 					+ ")";
-
+			System.out.println(query);
 			statement.executeUpdate(query);
 			statement.close();
 
@@ -540,6 +540,36 @@ public class BBDD {
 
 			statement = cn.createStatement();
 
+			statement.executeUpdate(query);
+			statement.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	public void crearOdontograma(String DNI) {
+		this.conectar();
+		try {
+			String query = "INSERT INTO bbdd_dentista.odontograma (DNI_cliente) VALUES ("+DNI+")";
+			System.out.println(query);
+			Statement statement;
+			statement = cn.createStatement();
+			statement.executeUpdate(query);
+			statement.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public void borrarOdontograma(String DNI) {
+		this.conectar();
+		try {
+			String query = "DELETE FROM bbdd_dentista.odontograma WHERE DNI_cliente=" + DNI;
+			System.out.println(query);
+			Statement statement;
+			statement = cn.createStatement();
 			statement.executeUpdate(query);
 			statement.close();
 		} catch (SQLException e) {

@@ -158,7 +158,7 @@ public class Paciente extends JDialog {
 					bbdd.filtro(consulta, table_paciente);
 				}
 			});
-			btn_filtrarTabla.setBounds(769, 103, 85, 20);
+			btn_filtrarTabla.setBounds(760, 93, 94, 35);
 			buttonPane.add(btn_filtrarTabla);
 		}
 
@@ -233,6 +233,7 @@ public class Paciente extends JDialog {
 					if (result == JOptionPane.YES_OPTION) {
 						JOptionPane.showMessageDialog(null, "Paciente insertado");
 						bbdd.insertar("cliente", valores, false);
+						bbdd.crearOdontograma("'" + text_dniPaciente.getText() + "'");
 					}
 
 					table_paciente = bbdd.MostrarTabla("cliente", table_paciente);
@@ -257,6 +258,7 @@ public class Paciente extends JDialog {
 						"ELIMINAR PACIENTE", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 				if (result == JOptionPane.YES_OPTION) {
 					JOptionPane.showMessageDialog(null, "Paciente eliminado");
+					bbdd.borrarOdontograma("'" + text_dniPaciente.getText() + "'");
 					bbdd.borrar("cliente", valores, false);
 				}
 				table_paciente = bbdd.MostrarTabla("cliente", table_paciente);
