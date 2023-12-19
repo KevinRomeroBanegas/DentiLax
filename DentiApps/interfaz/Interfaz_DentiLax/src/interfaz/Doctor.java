@@ -53,14 +53,14 @@ public class Doctor extends JDialog {
 		setTitle("Doctor");
 		setBounds(100, 100, 900, 700);
 		getContentPane().setLayout(null);
-		contentPanel.setBackground(new Color(222, 254, 251));
+		contentPanel.setBackground(new Color(153, 215, 222));
 		contentPanel.setBounds(0, 0, 884, 660);
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel);
 		contentPanel.setLayout(null);
 		{
 			JPanel buttonPane = new JPanel();
-			buttonPane.setBackground(new Color(135, 222, 220));
+			buttonPane.setBackground(new Color(24, 165, 174));
 			buttonPane.setBounds(10, 570, 864, 79);
 			contentPanel.add(buttonPane);
 			buttonPane.setLayout(null);
