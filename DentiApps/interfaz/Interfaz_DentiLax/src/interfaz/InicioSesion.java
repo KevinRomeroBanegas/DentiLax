@@ -116,6 +116,10 @@ public class InicioSesion extends JFrame {
 			}
 		});
 		
+		Labeltitulo lbltlInicioDeSesin = new Labeltitulo();
+		lbltlInicioDeSesin.setBounds(206, 66, 204, 54);
+		contentPane.add(lbltlInicioDeSesin);
+		
 		JLabel lbl_contraseña = new JLabel("");
 		lbl_contraseña.setIcon(new ImageIcon(InicioSesion.class.getResource("/imagenes/contraseña.png")));
 		lbl_contraseña.setBounds(115, 234, 48, 48);
@@ -191,10 +195,6 @@ public class InicioSesion extends JFrame {
 	            }
 			}
 		});
-				
-				Labeltitulo lbltlInicioDeSesin = new Labeltitulo();
-				lbltlInicioDeSesin.setBounds(203, 56, 204, 49);
-				contentPane.add(lbltlInicioDeSesin);
 				
 				
 						JLabel fondo_pacientes = new JLabel("");
