@@ -23,9 +23,9 @@ public class Labeltitulo extends JLabel implements Serializable {
 		setVerticalAlignment(SwingConstants.BOTTOM);
 		setBounds(0,0, 230, 60);
 		setHorizontalAlignment(SwingConstants.CENTER);
-		setForeground(new Color(255, 255, 255));
 		setText("INICIO DE SESIÓN");
 		setFont(new Font("Calibri", Font.BOLD, 28));
+		setForeground(new Color(100, 149, 237));
 		initcomponents();
 	}
 	
@@ -44,7 +44,7 @@ public class Labeltitulo extends JLabel implements Serializable {
 		//metodo cambio de texto a gif
 		private void visualizargif(MouseEvent e) {
 			setText("");
-			setIcon(new ImageIcon(Labeltitulo.class.getResource("/icono/textoanimado.gif")));
+			setIcon(new ImageIcon(Labeltitulo.class.getResource("/icono/textoanimadoazul.gif")));
 		}
 		
 
