@@ -39,7 +39,8 @@ public class Materiales extends JDialog implements ActionListener{
 		
 	}
 
-	public Materiales() {
+	public Materiales(java.awt.Frame parent, String rol) {
+		super(parent, rol);
 		setModalityType(ModalityType.DOCUMENT_MODAL);
 		setModal(true);
 		setResizable(false);
@@ -103,7 +104,7 @@ public class Materiales extends JDialog implements ActionListener{
 					bbdd.filtro(consulta, table_material);
 				}
 			});
-			btn_filtrarTabla.setBounds(769, 72, 85, 20);
+			btn_filtrarTabla.setBounds(756, 72, 98, 20);
 			buttonPane.add(btn_filtrarTabla);
 			
 			
@@ -129,7 +130,7 @@ public class Materiales extends JDialog implements ActionListener{
 			table_material=bbdd.MostrarTabla("Stock", table_material);
 			}
 		});
-		btn_modificarMaterial.setBounds(695, 515, 85, 20);
+		btn_modificarMaterial.setBounds(685, 515, 95, 20);
 		contentPanel.add(btn_modificarMaterial);
 		
 		
@@ -145,7 +146,7 @@ public class Materiales extends JDialog implements ActionListener{
 				
 			}
 		});
-		btn_agregarMaterial.setBounds(600, 515, 85, 20);
+		btn_agregarMaterial.setBounds(590, 515, 85, 20);
 		contentPanel.add(btn_agregarMaterial);
 		
 		JButton btn_bajaMaterial = new JButton("Baja");
@@ -182,6 +183,13 @@ public class Materiales extends JDialog implements ActionListener{
 		Fondo_material.setIcon(new ImageIcon("C:\\Users\\kevin\\Documents\\GitHub\\DentiLax\\DentiApps\\interfaz\\Interfaz_DentiLax\\Fondo 1200x800.png"));
 		Fondo_material.setBounds(0, 0, 884, 660);
 		contentPanel.add(Fondo_material);
+		
+		//codigo restricciones de acceso de usuario doctor
+		if (rol.equals("Doctor")) {
+			btn_bajaMaterial.setEnabled(false);
+			btn_agregarMaterial.setEnabled(false);
+			btn_modificarMaterial.setEnabled(false);
+		}
 		
 	}
 

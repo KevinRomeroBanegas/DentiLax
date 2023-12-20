@@ -34,18 +34,20 @@ public class Tratamiento extends JDialog {
 	private JTable table_tratamiento;
 	private JComboBox cmb_Especialidad;
 	private JTextField textField;
+	private JButton btn_modificarTratamiento;
 
 	public static void main(String[] args) {
-		try {
+		/*try {
 			Tratamiento dialog = new Tratamiento();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
 			e.printStackTrace();
-		}
+		}*/
 	}
 
-	public Tratamiento() {
+	public Tratamiento(java.awt.Frame parent, String rol) {
+		super(parent, rol);
 		setModalityType(ModalityType.DOCUMENT_MODAL);
 		setModal(true);
 		setResizable(false);
@@ -124,7 +126,7 @@ public class Tratamiento extends JDialog {
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 15));
 		contentPanel.add(lblNewLabel);
 		{
-			JButton btn_modificarTratamiento = new JButton("Modificar");
+			btn_modificarTratamiento = new JButton("Modificar");
 			btn_modificarTratamiento.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					String []valores=new String[3];
@@ -135,7 +137,7 @@ public class Tratamiento extends JDialog {
 					table_tratamiento=bbdd.MostrarTabla("tratamiento", table_tratamiento);
 				}
 			});
-			btn_modificarTratamiento.setBounds(694, 485, 85, 20);
+			btn_modificarTratamiento.setBounds(684, 485, 95, 20);
 			contentPanel.add(btn_modificarTratamiento);
 			btn_modificarTratamiento.setActionCommand("Cancel");
 		}
@@ -151,7 +153,7 @@ public class Tratamiento extends JDialog {
 				table_tratamiento=bbdd.MostrarTabla("tratamiento", table_tratamiento);
 			}
 		});
-		btn_agregarTratamiento.setBounds(599, 485, 85, 20);
+		btn_agregarTratamiento.setBounds(589, 485, 85, 20);
 		contentPanel.add(btn_agregarTratamiento);
 		btn_agregarTratamiento.setActionCommand("Cancel");
 		
@@ -191,13 +193,20 @@ public class Tratamiento extends JDialog {
 		Fondo_Tratamiento.setBounds(0, 0, 884, 660);
 		contentPanel.add(Fondo_Tratamiento);
 		
+		//codigo restricciones de acceso de usuario doctor
+			if (rol.equals("Doctor")) {
+				btn_bajaTratamiento.setEnabled(false);
+				btn_agregarTratamiento.setEnabled(false);
+				btn_modificarTratamiento.setEnabled(false);
+			}
+		
 	}
 	
 	private void selectItemInComboBox(JComboBox<String> comboBox, String value) {
 	    for (int i = 0; i < comboBox.getItemCount(); i++) {
 	        if (comboBox.getItemAt(i).equals(value)) {
 	            comboBox.setSelectedIndex(i);
-	            return; // Sal del bucle si se encuentra el elemento
+	            return; // Sale del bucle si se encuentra el elemento
 	        }
 	    }
 	}

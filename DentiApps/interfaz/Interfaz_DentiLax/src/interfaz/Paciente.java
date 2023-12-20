@@ -44,7 +44,6 @@ public class Paciente extends JDialog {
 
 	public Paciente(java.awt.Frame parent, String rol) {
 		super(parent, rol);
-		
 		setModalityType(ModalityType.DOCUMENT_MODAL);
 		setModal(true);
 		setResizable(false);
@@ -150,7 +149,7 @@ public class Paciente extends JDialog {
 				}
 			});
 			btn_odontograma.setFont(new Font("Tahoma", Font.BOLD, 15));
-			btn_odontograma.setBounds(537, 93, 213, 35);
+			btn_odontograma.setBounds(526, 93, 213, 35);
 			buttonPane.add(btn_odontograma);
 
 			JButton btn_filtrarTabla = new JButton("Filtrar tabla");
@@ -160,7 +159,7 @@ public class Paciente extends JDialog {
 					bbdd.filtro(consulta, table_paciente);
 				}
 			});
-			btn_filtrarTabla.setBounds(760, 93, 94, 35);
+			btn_filtrarTabla.setBounds(749, 93, 105, 35);
 			buttonPane.add(btn_filtrarTabla);
 		}
 
@@ -302,6 +301,8 @@ public class Paciente extends JDialog {
 		//codigo restricciones de acceso de usuario doctor
 		if (rol.equals("Doctor")) {
 			btn_bajaCliente.setEnabled(false);
+			btn_agregarCliente.setEnabled(false);
+			btn_modificarCliente.setEnabled(false);
 		}
 
 	}

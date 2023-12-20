@@ -34,7 +34,8 @@ public class Especialidad extends JDialog {
 
 	}
 
-	public Especialidad() {
+	public Especialidad(java.awt.Frame parent, String rol) {
+		super(parent, rol);
 		BBDD bbdd = new BBDD();
 		bbdd.conectar();
 		setModalityType(ModalityType.DOCUMENT_MODAL);
@@ -97,7 +98,7 @@ public class Especialidad extends JDialog {
 				}
 			}
 		});
-		btn_modificarEspecialidad.setBounds(695, 574, 85, 20);
+		btn_modificarEspecialidad.setBounds(685, 574, 95, 20);
 		contentPanel.add(btn_modificarEspecialidad);
 
 		JButton btn_agregarEspecialidad = new JButton("Agregar");
@@ -116,7 +117,7 @@ public class Especialidad extends JDialog {
 
 			}
 		});
-		btn_agregarEspecialidad.setBounds(600, 574, 85, 20);
+		btn_agregarEspecialidad.setBounds(590, 574, 85, 20);
 		contentPanel.add(btn_agregarEspecialidad);
 
 		JButton btn_bajaEspecialidad = new JButton("Baja");
@@ -148,6 +149,13 @@ public class Especialidad extends JDialog {
 				"C:\\Users\\kevin\\Documents\\GitHub\\DentiLax\\DentiApps\\interfaz\\Interfaz_DentiLax\\Fondo 1200x800.png"));
 		Fondo_especialidad.setBounds(0, 0, 884, 660);
 		contentPanel.add(Fondo_especialidad);
+		
+		//codigo restricciones de acceso de usuario doctor
+		if (rol.equals("Doctor")) {
+			btn_bajaEspecialidad.setEnabled(false);
+			btn_agregarEspecialidad.setEnabled(false);
+			btn_modificarEspecialidad.setEnabled(false);
+		}
 
 	}
 }

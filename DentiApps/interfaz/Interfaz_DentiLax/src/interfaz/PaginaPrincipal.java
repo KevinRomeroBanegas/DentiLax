@@ -121,7 +121,7 @@ public class PaginaPrincipal extends JFrame {
 		mntmNewMenuItem_1.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_T, InputEvent.CTRL_DOWN_MASK));
 		mntmNewMenuItem_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Tratamiento vPrincipalTratamiento = new Tratamiento();
+				Tratamiento vPrincipalTratamiento = new Tratamiento(frame, lbl_ROL.getText());
 				vPrincipalTratamiento.setLocationRelativeTo(null);
 				vPrincipalTratamiento.setLocation(370, 212);
 				vPrincipalTratamiento.setVisible(true);
@@ -138,7 +138,7 @@ public class PaginaPrincipal extends JFrame {
 		mntmNewMenuItem_2.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_E, InputEvent.CTRL_DOWN_MASK));
 		mntmNewMenuItem_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Especialidad vPrincipalEspecialidad = new Especialidad();
+				Especialidad vPrincipalEspecialidad = new Especialidad(frame, lbl_ROL.getText());
 				vPrincipalEspecialidad.setLocationRelativeTo(null);
 				vPrincipalEspecialidad.setLocation(370, 212);
 				vPrincipalEspecialidad.setVisible(true);
@@ -155,7 +155,7 @@ public class PaginaPrincipal extends JFrame {
 		mntmNewMenuItem_4.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_M, InputEvent.CTRL_DOWN_MASK));
 		mntmNewMenuItem_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Materiales vPrincipalMateriales = new Materiales();
+				Materiales vPrincipalMateriales = new Materiales(frame, lbl_ROL.getText());
 				vPrincipalMateriales.setLocationRelativeTo(null);
 				vPrincipalMateriales.setLocation(370, 212);
 				vPrincipalMateriales.setVisible(true);
@@ -250,7 +250,7 @@ public class PaginaPrincipal extends JFrame {
 		Tratamiento.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Tratamiento tratamiento= new Tratamiento();
+				Tratamiento tratamiento= new Tratamiento(frame, lbl_ROL.getText());
 				tratamiento.setLocationRelativeTo(null);
 				tratamiento.setLocation(370, 212);
 				tratamiento.setVisible(true);
@@ -264,7 +264,7 @@ public class PaginaPrincipal extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
-				Especialidad especialidad= new Especialidad();
+				Especialidad especialidad= new Especialidad(frame, lbl_ROL.getText());
 				especialidad.setVisible(true);
 				especialidad.setLocation(370,212);
 			
@@ -276,7 +276,7 @@ public class PaginaPrincipal extends JFrame {
 		material.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Materiales material= new Materiales();
+				Materiales material= new Materiales(frame, lbl_ROL.getText());
 				material.setLocationRelativeTo(null);
 				material.setLocation(370,212);
 				material.setVisible(true);
