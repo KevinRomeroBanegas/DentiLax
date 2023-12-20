@@ -35,6 +35,7 @@ public class PaginaPrincipal extends JFrame {
 	private JPanel contentPane;
 	private JTextField textField;
 	private JTextField textField_1;
+	private JLabel lbl_ROL;
 	private static String usuario;
 	private static String rol;
 	private static PaginaPrincipal frame;
@@ -86,7 +87,7 @@ public class PaginaPrincipal extends JFrame {
 		mntmNewMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_P, InputEvent.CTRL_DOWN_MASK));
 		mntmNewMenuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Paciente vPrincipalPaciente = new Paciente();
+				Paciente vPrincipalPaciente = new Paciente(frame, lbl_ROL.getText());
 				vPrincipalPaciente.setLocationRelativeTo(null);
 				vPrincipalPaciente.setLocation(370, 212);
 				vPrincipalPaciente.setVisible(true);
@@ -219,7 +220,7 @@ public class PaginaPrincipal extends JFrame {
 		JMenuItem paciente = new JMenuItem("Gestion Paciente");
 		paciente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Paciente paciente= new Paciente();
+				Paciente paciente= new Paciente(frame, lbl_ROL.getText());
 				paciente.setLocationRelativeTo(null);
 				paciente.setLocation(370, 212);
 				paciente.setVisible(true);
@@ -323,7 +324,7 @@ public class PaginaPrincipal extends JFrame {
 		lbl_DNI.setBounds(1005, 554, 181, 20);
 		contentPane.add(lbl_DNI);
 		
-		JLabel lbl_ROL = new JLabel(rol);
+		lbl_ROL = new JLabel(rol);
 		lbl_ROL.setFont(new Font("Tahoma", Font.BOLD, 17));
 		lbl_ROL.setBounds(1005, 597, 181, 20);
 		contentPane.add(lbl_ROL);
@@ -501,7 +502,7 @@ public class PaginaPrincipal extends JFrame {
 		@Override
 		public void keyPressed(KeyEvent e) {
 		       if (e.getKeyCode() == KeyEvent.VK_CONTROL && e.getKeyCode() == KeyEvent.VK_P) {
-		    	   Paciente paciente=new Paciente();
+		    	   Paciente paciente=new Paciente(frame, lbl_ROL.getText());
 		    	   paciente.setVisible(true);
 		       }
 		       

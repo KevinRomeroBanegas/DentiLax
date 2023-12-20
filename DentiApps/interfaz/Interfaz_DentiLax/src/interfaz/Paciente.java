@@ -42,7 +42,9 @@ public class Paciente extends JDialog {
 
 	}
 
-	public Paciente() {
+	public Paciente(java.awt.Frame parent, String rol) {
+		super(parent, rol);
+		
 		setModalityType(ModalityType.DOCUMENT_MODAL);
 		setModal(true);
 		setResizable(false);
@@ -296,6 +298,11 @@ public class Paciente extends JDialog {
 				"C:\\Users\\kevin\\Documents\\GitHub\\DentiLax\\DentiApps\\interfaz\\Interfaz_DentiLax\\Fondo 1200x800.png"));
 		Fondo_paciente.setBounds(0, 0, 884, 660);
 		contentPanel.add(Fondo_paciente);
+		
+		//codigo restricciones de acceso de usuario doctor
+		if (rol.equals("Doctor")) {
+			btn_bajaCliente.setEnabled(false);
+		}
 
 	}
 }
