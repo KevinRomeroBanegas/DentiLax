@@ -8,6 +8,6 @@
 	<classpathentry kind="src" path="DentiApps/interfaz/Interfaz_DentiLax/src"/>
 	<classpathentry kind="lib" path="DentiApps/interfaz/Interfaz_DentiLax/Lib/jcalendar-1.4.jar"/>
 	<classpathentry kind="lib" path="DentiApps/interfaz/Interfaz_DentiLax/Lib/mysql-connector-java-5.1.47.jar"/>
-	<classpathentry kind="lib" path="DentiApps/interfaz/Interfaz_DentiLax/Lib/tituloazul.jar"/>
+	<classpathentry kind="lib" path="tituloazul.jar"/>
 	<classpathentry kind="output" path="DentiApps/interfaz/Interfaz_DentiLax/bin"/>
 </classpath>
