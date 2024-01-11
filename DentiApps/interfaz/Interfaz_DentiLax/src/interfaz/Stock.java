@@ -1,47 +1,46 @@
 package interfaz;
-import java.awt.BorderLayout;
+
 import java.awt.FlowLayout;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
+
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 import java.awt.Font;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.Toolkit;
 
 import javax.swing.JTextField;
-import javax.swing.ImageIcon;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.event.ActionEvent;
+import javax.swing.ImageIcon;
 import java.awt.Dialog.ModalityType;
 import java.awt.Color;
 
-public class Stock extends JDialog {
+public class Stock extends JDialog implements ActionListener{
 
 	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
-	private JTextField text_nombreProducto;
-	private JTextField text_destribuidorProducto;
-	private JTextField text_precioProducto;
-	private JTable table_stock;
-	private JTable table;
+	
+	
+	private JTextField text_nombreMaterial;
+	private JTextField text_proveedorMaterial;
+	private JTextField text_precioMaterial;
+	private JTable table_material;
 
 	public static void main(String[] args) {
-		try {
-			Stock dialog = new Stock();
-			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-			dialog.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		
 	}
 
-	public Stock() {
+	public Stock(java.awt.Frame parent, String rol) {
+		super(parent, rol);
 		setModalityType(ModalityType.DOCUMENT_MODAL);
 		setModal(true);
 		setResizable(false);
@@ -54,14 +53,10 @@ public class Stock extends JDialog {
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel);
 		contentPanel.setLayout(null);
-		
-		table = new JTable();
-		table.setBounds(10, 11, 864, 527);
-		contentPanel.add(table);
 		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setBackground(new Color(24, 165, 174));
-			buttonPane.setBounds(10, 580, 864, 69);
+			buttonPane.setBounds(10, 546, 864, 103);
 			contentPanel.add(buttonPane);
 			buttonPane.setLayout(null);
 			{
@@ -70,106 +65,137 @@ public class Stock extends JDialog {
 				lblNewLabel_1.setBounds(10, 10, 150, 20);
 				buttonPane.add(lblNewLabel_1);
 			}
+			{
+				JLabel lblNewLabel_1 = new JLabel("Proveedor:");
+				lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 15));
+				lblNewLabel_1.setBounds(10, 70, 150, 20);
+				buttonPane.add(lblNewLabel_1);
+				
+				
+			}
+			{
+				
+			}
 			
-			text_nombreProducto = new JTextField();
-			text_nombreProducto.setBounds(180, 10, 285, 20);
-			buttonPane.add(text_nombreProducto);
-			text_nombreProducto.setColumns(10);
+			text_nombreMaterial = new JTextField();
+			text_nombreMaterial.setBounds(180, 10, 285, 20);
+			buttonPane.add(text_nombreMaterial);
+			text_nombreMaterial.setColumns(10);
 			
-			JLabel lblNewLabel_1 = new JLabel("Id Proveedor");
-			lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 15));
-			lblNewLabel_1.setBounds(10, 41, 135, 20);
-			buttonPane.add(lblNewLabel_1);
-			
-			text_destribuidorProducto = new JTextField();
-			text_destribuidorProducto.setBounds(180, 43, 285, 20);
-			buttonPane.add(text_destribuidorProducto);
-			text_destribuidorProducto.setColumns(10);
+			text_proveedorMaterial = new JTextField();
+			text_proveedorMaterial.setColumns(10);
+			text_proveedorMaterial.setBounds(180, 70, 285, 20);
+			buttonPane.add(text_proveedorMaterial);
 			
 			JLabel lblNewLabel_1_1 = new JLabel("Precio:");
 			lblNewLabel_1_1.setFont(new Font("Tahoma", Font.BOLD, 15));
-			lblNewLabel_1_1.setBounds(537, 10, 135, 20);
+			lblNewLabel_1_1.setBounds(533, 10, 135, 20);
 			buttonPane.add(lblNewLabel_1_1);
 			
-			text_precioProducto = new JTextField();
-			text_precioProducto.setColumns(10);
-			text_precioProducto.setBounds(684, 10, 170, 20);
-			buttonPane.add(text_precioProducto);
-		}
-		
-		JLabel lblNewLabel = new JLabel("Datos Producto");
-		lblNewLabel.setBounds(10, 549, 120, 20);
-		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 15));
-		contentPanel.add(lblNewLabel);
-		{
-			JButton btn_modificarProducto = new JButton("Modificar");
-			btn_modificarProducto.addActionListener(new ActionListener() {
+			text_precioMaterial = new JTextField();
+			text_precioMaterial.setColumns(10);
+			text_precioMaterial.setBounds(684, 13, 170, 20);
+			buttonPane.add(text_precioMaterial);
+			
+			JButton btn_filtrarTabla = new JButton("Filtrar tabla");
+			btn_filtrarTabla.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					if(text_nombreProducto.getText().isBlank()) {
-						JOptionPane.showMessageDialog(null, "Rellena el campo Nombre");
-					}else if(text_destribuidorProducto.getText().isBlank()){
-						JOptionPane.showMessageDialog(null, "Rellena el campo id Proveedor");
-					}else if(text_precioProducto.getText().isBlank()){
-						JOptionPane.showMessageDialog(null, "Rellena el campo Precio");
-					}else {
-					
-					JOptionPane.showMessageDialog(null, "Producto Modificado");
-					
-					}
+					String consulta=JOptionPane.showInputDialog("Ponga el ID por el cual quiere filtrar la tabla");
+					bbdd.filtro(consulta, table_material);
 				}
 			});
-			btn_modificarProducto.setBounds(694, 549, 85, 20);
-			contentPanel.add(btn_modificarProducto);
-			btn_modificarProducto.setActionCommand("Cancel");
+			btn_filtrarTabla.setBounds(756, 72, 98, 20);
+			buttonPane.add(btn_filtrarTabla);
+			
+			
 		}
 		
-		JButton btn_agregarProducto = new JButton("Agregar");
-		btn_agregarProducto.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if(text_nombreProducto.getText().isBlank()) {
-					JOptionPane.showMessageDialog(null, "Rellena el campo Nombre");
-				}else if(text_destribuidorProducto.getText().isBlank()){
-					JOptionPane.showMessageDialog(null, "Rellena el campo id Proveedor");
-				}else if(text_precioProducto.getText().isBlank()){
-					JOptionPane.showMessageDialog(null, "Rellena el campo Precio");
-				}else {
-				
-				JOptionPane.showMessageDialog(null, "Producto Agregado");
-				
-				}
+		JLabel lblNewLabel = new JLabel("Datos Stock");
+		lblNewLabel.setBounds(10, 515, 153, 20);
+		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 15));
+		contentPanel.add(lblNewLabel);
+		
+		
+		
+		
+		
+		JButton btn_modificarMaterial = new JButton("Modificar");
+		btn_modificarMaterial.addActionListener(new ActionListener() {
+		public void actionPerformed(ActionEvent e) {
+			String valores[]=new String [3]; 
+			valores[0]="'"+text_nombreMaterial.getText()+"'";
+        	valores[1]="'"+text_proveedorMaterial.getText()+"'";
+        	valores[2]=""+text_precioMaterial.getText()+"";
+        	bbdd.modificar("Stock", valores, true,table_material);
+			table_material=bbdd.MostrarTabla("Stock", table_material);
 			}
 		});
-		btn_agregarProducto.setBounds(599, 549, 85, 20);
-		contentPanel.add(btn_agregarProducto);
-		btn_agregarProducto.setActionCommand("Cancel");
+		btn_modificarMaterial.setBounds(685, 515, 95, 20);
+		contentPanel.add(btn_modificarMaterial);
 		
-		JButton btn_bajaProducto = new JButton("Baja");
-		btn_bajaProducto.addActionListener(new ActionListener() {
+		
+		JButton btn_agregarMaterial = new JButton("Agregar");
+		btn_agregarMaterial.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(text_nombreProducto.getText().isBlank()) {
-					JOptionPane.showMessageDialog(null, "Rellena el campo Nombre");
-				}else {
+				String valores[]=new String [3]; 
+				valores[0]="'"+text_nombreMaterial.getText()+"'";
+            	valores[1]="'"+text_proveedorMaterial.getText()+"'";
+            	valores[2]=""+text_precioMaterial.getText()+"";
+            	bbdd.insertar("Stock", valores, true);
+				table_material=bbdd.MostrarTabla("Stock", table_material);
 				
-				JOptionPane.showMessageDialog(null, "Producto dado de Baja");
-				
-				}
 			}
 		});
-		btn_bajaProducto.setActionCommand("Cancel");
-		btn_bajaProducto.setBounds(789, 549, 85, 20);
-		contentPanel.add(btn_bajaProducto);
+		btn_agregarMaterial.setBounds(590, 515, 85, 20);
+		contentPanel.add(btn_agregarMaterial);
 		
-		table_stock = new JTable();
-		table_stock.setBounds(10, 11, 864, 463);
+		JButton btn_bajaMaterial = new JButton("Baja");
+		btn_bajaMaterial.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String valores[]=new String [3]; 
+				valores[0]="'"+text_nombreMaterial.getText()+"'";
+            	valores[1]="'"+text_proveedorMaterial.getText()+"'";
+            	valores[2]=""+text_precioMaterial.getText()+"";
+            	bbdd.borrar("Stock", valores, true);
+				table_material=bbdd.MostrarTabla("Stock", table_material);
+			}
+		});
+		btn_bajaMaterial.setBounds(790, 515, 85, 20);
+		contentPanel.add(btn_bajaMaterial);
 		
-		table_stock=bbdd.MostrarTabla("Stock", table_stock);
+		table_material = new JTable();
+		table_material.setBounds(10, 11, 864, 493);
+		table_material=bbdd.MostrarTabla("Stock", table_material);
+		table_material.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if (e.getClickCount() == 2) {
+                    String[]valores=bbdd.SacarValoresTabla(table_material);
+                    text_nombreMaterial.setText(valores[1].toString());
+                    text_proveedorMaterial.setText(valores[2].toString());
+                    text_precioMaterial.setText(valores[3].toString());
+                }
+            }
+        });
+		contentPanel.add(table_material);
 		
-		contentPanel.add(table_stock);
+		JLabel Fondo_material = new JLabel("");
+		Fondo_material.setIcon(new ImageIcon("C:\\Users\\kevin\\Documents\\GitHub\\DentiLax\\DentiApps\\interfaz\\Interfaz_DentiLax\\Fondo 1200x800.png"));
+		Fondo_material.setBounds(0, 0, 884, 660);
+		contentPanel.add(Fondo_material);
 		
-		JLabel Fondo_stock = new JLabel("");
-		Fondo_stock.setIcon(new ImageIcon("C:\\Users\\kevin\\Documents\\GitHub\\DentiLax\\DentiApps\\interfaz\\Interfaz_DentiLax\\Fondo 1200x800.png"));
-		Fondo_stock.setBounds(0, 0, 884, 660);
-		contentPanel.add(Fondo_stock);
+		//codigo restricciones de acceso de usuario doctor
+		if (rol.equals("Doctor")) {
+			btn_bajaMaterial.setEnabled(false);
+			btn_agregarMaterial.setEnabled(false);
+			btn_modificarMaterial.setEnabled(false);
+		}
+		
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
 		
 	}
 }

@@ -147,15 +147,15 @@ public class PaginaPrincipal extends JFrame {
 		});
 		mnNewMenu_3.add(mntmNewMenuItem_2);
 		
-		JMenu mnNewMenu_4 = new JMenu("Materiales");
+		JMenu mnNewMenu_4 = new JMenu("Stock");
 		mnNewMenu_4.setFont(new Font("Segoe UI", Font.BOLD, 30));
 		menuBar.add(mnNewMenu_4);
 		
-		JMenuItem mntmNewMenuItem_4 = new JMenuItem("Gestión Material");
-		mntmNewMenuItem_4.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_M, InputEvent.CTRL_DOWN_MASK));
+		JMenuItem mntmNewMenuItem_4 = new JMenuItem("Gestión Stock");
+		mntmNewMenuItem_4.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, InputEvent.CTRL_DOWN_MASK));
 		mntmNewMenuItem_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Materiales vPrincipalMateriales = new Materiales(frame, lbl_ROL.getText());
+				Stock vPrincipalMateriales = new Stock(frame, lbl_ROL.getText());
 				vPrincipalMateriales.setLocationRelativeTo(null);
 				vPrincipalMateriales.setLocation(370, 212);
 				vPrincipalMateriales.setVisible(true);
@@ -163,6 +163,17 @@ public class PaginaPrincipal extends JFrame {
 			
 		});
 		mnNewMenu_4.add(mntmNewMenuItem_4);
+		
+		JMenuItem mntmNewMenuItem_4_1 = new JMenuItem("Solicitud Pedidos");
+		mntmNewMenuItem_4_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Materiales vMateriales = new Materiales();
+				vMateriales.setLocationRelativeTo(null);
+				vMateriales.setLocation(370, 212);
+				vMateriales.setVisible(true);
+			}
+		});
+		mnNewMenu_4.add(mntmNewMenuItem_4_1);
 		
 		JMenu mnNewMenu_5 = new JMenu("Cita");
 		mnNewMenu_5.setFont(new Font("Segoe UI", Font.BOLD, 30));
@@ -276,7 +287,7 @@ public class PaginaPrincipal extends JFrame {
 		material.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Materiales material= new Materiales(frame, lbl_ROL.getText());
+				Stock material= new Stock(frame, lbl_ROL.getText());
 				material.setLocationRelativeTo(null);
 				material.setLocation(370,212);
 				material.setVisible(true);
@@ -340,162 +351,12 @@ public class PaginaPrincipal extends JFrame {
 			//mnNewMenu_3.setEnabled(false);
 			mnNewMenu_5.setEnabled(false);
 			mnNewMenu_6.setEnabled(false);
+			mntmNewMenuItem_4.setEnabled(false);
 		}
 		
 
 	}
-	//metodo que no se para que esta creado pq no se llama en ningun momento
-	/*
-	public PaginaPrincipal(String DNI) {
-		setResizable(false);
-		BBDD bbdd = new BBDD();
-		bbdd.conectar();
-		
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1200, 800);
-		
-		JMenuBar menuBar = new JMenuBar();
-		setJMenuBar(menuBar);
-		
-		
-		
-		
-		JMenu mnNewMenu = new JMenu("Pacientes");
-		mnNewMenu.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-			}
-		});
-		
-		mnNewMenu.setFont(new Font("Segoe UI", Font.BOLD, 30));
-		menuBar.add(mnNewMenu);
-		
-		JMenuItem mntmNewMenuItem = new JMenuItem("Gestón Paciente");
-		mntmNewMenuItem.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Paciente vPrincipalPaciente = new Paciente();
-				vPrincipalPaciente.setVisible(true);
-				vPrincipalPaciente.setModal(true);
-				vPrincipalPaciente.setLocationRelativeTo(null);
-				vPrincipalPaciente.setLocation(370, 212);
-			}
-		});
-		mnNewMenu.add(mntmNewMenuItem);
-		
-		JMenu mnNewMenu_1 = new JMenu("Doctores");
-		mnNewMenu_1.setFont(new Font("Segoe UI", Font.BOLD, 30));
-		menuBar.add(mnNewMenu_1);
-		
-		JMenuItem mntmGestionDoctores = new JMenuItem("Gestión Doctores");
-		mntmGestionDoctores.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Doctor vPrincipalDoctor = new Doctor();
-				vPrincipalDoctor.setVisible(true);
-				vPrincipalDoctor.setModal(true);
-				vPrincipalDoctor.setLocationRelativeTo(null);
-				vPrincipalDoctor.setLocation(370, 212);
-			}
-		});
-		mnNewMenu_1.add(mntmGestionDoctores);
-		
-		JMenu mnNewMenu_2 = new JMenu("Tratamientos");
-		mnNewMenu_2.setFont(new Font("Segoe UI", Font.BOLD, 30));
-		menuBar.add(mnNewMenu_2);
-		
-		JMenuItem mntmNewMenuItem_1 = new JMenuItem("Gestión Tratamientos");
-		mntmNewMenuItem_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Tratamiento vPrincipalTratamiento = new Tratamiento();
-				vPrincipalTratamiento.setVisible(true);
-				vPrincipalTratamiento.setModal(true);
-				vPrincipalTratamiento.setLocationRelativeTo(null);
-				vPrincipalTratamiento.setLocation(370, 212);
-			}
-		});
-		mnNewMenu_2.add(mntmNewMenuItem_1);
-		
-		JLabel lblNewLabel_1_1 = new JLabel("Rol:");
-		JMenu mnNewMenu_3 = new JMenu("Especialidad");
-		mnNewMenu_3.setFont(new Font("Segoe UI", Font.BOLD, 30));
-		menuBar.add(mnNewMenu_3);
-		
-		JMenuItem mntmNewMenuItem_2 = new JMenuItem("Gestión Facturación");
-		mntmNewMenuItem_2.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Especialidad vPrincipalEspecialidad = new Especialidad();
-				vPrincipalEspecialidad.setVisible(true);
-				vPrincipalEspecialidad.setModal(true);
-				vPrincipalEspecialidad.setLocationRelativeTo(null);
-				vPrincipalEspecialidad.setLocation(370, 212);
-			}
-		});
-		mnNewMenu_3.add(mntmNewMenuItem_2);
-		
-		JMenu mnNewMenu_4 = new JMenu("Materiales");
-		mnNewMenu_4.setFont(new Font("Segoe UI", Font.BOLD, 30));
-		menuBar.add(mnNewMenu_4);
-		
-		JMenuItem mntmNewMenuItem_4 = new JMenuItem("Gestión Material");
-		mntmNewMenuItem_4.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				Materiales vPrincipalMateriales = new Materiales();
-				vPrincipalMateriales.setVisible(true);
-				vPrincipalMateriales.setModal(true);
-				vPrincipalMateriales.setLocationRelativeTo(null);
-				vPrincipalMateriales.setLocation(370, 212);
-			}
-			
-			
-		});
-		mnNewMenu_4.add(mntmNewMenuItem_4);
-		
-		JMenu mnNewMenu_5 = new JMenu("Cita");
-		mnNewMenu_5.setFont(new Font("Segoe UI", Font.BOLD, 30));
-		menuBar.add(mnNewMenu_5);
-		
-		JMenuItem mntmNewMenuItem_3 = new JMenuItem("Gestión Cita");
-		mntmNewMenuItem_3.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Cita vPrincipalCita = new Cita();
-				vPrincipalCita.setVisible(true);
-				vPrincipalCita.setModal(true);
-				vPrincipalCita.setLocationRelativeTo(null);
-				vPrincipalCita.setLocation(370, 212);
-			}
-		});
-		mnNewMenu_5.add(mntmNewMenuItem_3);
-		
-		JMenu mnNewMenu_6 = new JMenu("Facturación");
-		mnNewMenu_6.setFont(new Font("Segoe UI", Font.BOLD, 30));
-		menuBar.add(mnNewMenu_6);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		
-
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
-		
-		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setBounds(920, 10, 250, 250);
-		contentPane.add(lblNewLabel);
-		
-		JLabel lblNewLabel_1 = new JLabel("Usuario: ");
-		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 20));
-		lblNewLabel_1.setBounds(920, 396, 90, 20);
-		contentPane.add(lblNewLabel_1);
-		
-		JLabel lblNewLabel_1_11 = new JLabel("Rol:           Admin");
-		lblNewLabel_1_11.setFont(new Font("Tahoma", Font.BOLD, 20));
-		lblNewLabel_1_11.setBounds(920, 439, 190, 20);
-		contentPane.add(lblNewLabel_1_11);
-		
-		JLabel lbl_DNI = new JLabel(DNI);
-		lbl_DNI.setFont(new Font("Tahoma", Font.BOLD, 20));
-		lbl_DNI.setBounds(1020, 396, 90, 20);
-		contentPane.add(lbl_DNI);
-
-			}*/
+	
 	public class KeyListenerExample implements KeyListener {
 		
 		
