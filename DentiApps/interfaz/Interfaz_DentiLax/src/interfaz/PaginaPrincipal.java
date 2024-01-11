@@ -227,31 +227,134 @@ public class PaginaPrincipal extends JFrame {
 		mnNewMenu_7.setFont(new Font("Segoe UI", Font.BOLD, 30));
 		menuBar.add(mnNewMenu_7);
 		
-		mntmNewMenuItem_5 = new JMenuItem("Gestion Pacientes");
+		mntmNewMenuItem_5 = new JMenuItem("Ayuda Pacientes");
 		mntmNewMenuItem_5.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_P, InputEvent.ALT_DOWN_MASK));
 		mnNewMenu_7.add(mntmNewMenuItem_5);
+		mnNewMenu_7.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				
+			}
+			
+		});
 		
 		JMenuItem mntmNewMenuItem_7 = new JMenuItem("Ayuda Doctores");
 		mntmNewMenuItem_7.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_D, InputEvent.ALT_DOWN_MASK));
 		mnNewMenu_7.add(mntmNewMenuItem_7);
+		mntmNewMenuItem_7.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				Ayuda ayuda=new Ayuda();
+				ayuda.setLocationRelativeTo(null);
+				ayuda.setLocation(370,212);				
+				ayuda.setVisible(true);								
+				
+			}
+						
+			
+		});
+		
 		
 		JMenuItem mntmNewMenuItem_9 = new JMenuItem("Ayuda Tratamientos");
 		mntmNewMenuItem_9.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_T, InputEvent.ALT_DOWN_MASK));
 		mnNewMenu_7.add(mntmNewMenuItem_9);
+		mntmNewMenuItem_9.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				Ayuda ayuda=new Ayuda();
+				ayuda.setLocationRelativeTo(null);
+				ayuda.setLocation(370,212);				
+				ayuda.setVisible(true);								
+				
+			}
+						
+			
+		});
 		
 		JMenuItem mntmNewMenuItem_10 = new JMenuItem("Ayuda Especialidad");
 		mntmNewMenuItem_10.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_E, InputEvent.ALT_DOWN_MASK));
 		mnNewMenu_7.add(mntmNewMenuItem_10);
+		mntmNewMenuItem_10.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				Ayuda ayuda=new Ayuda();
+				ayuda.setLocationRelativeTo(null);
+				ayuda.setLocation(370,212);				
+				ayuda.setVisible(true);								
+				
+			}
+						
+			
+		});
 		
 		JMenuItem mntmNewMenuItem_12 = new JMenuItem("Ayuda Materiales");
 		mntmNewMenuItem_12.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_M, InputEvent.ALT_DOWN_MASK));
 		mnNewMenu_7.add(mntmNewMenuItem_12);
+		mntmNewMenuItem_12.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				Ayuda ayuda=new Ayuda();
+				ayuda.setLocationRelativeTo(null);
+				ayuda.setLocation(370,212);				
+				ayuda.setVisible(true);								
+				
+			}
+						
+			
+		});
+		
+		
 		
 		JMenuItem mntmNewMenuItem_13 = new JMenuItem("Ayuda Cita");
 		mnNewMenu_7.add(mntmNewMenuItem_12);
+		mntmNewMenuItem_13.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				Ayuda ayuda=new Ayuda();
+				ayuda.setLocationRelativeTo(null);
+				ayuda.setLocation(370,212);				
+				ayuda.setVisible(true);								
+				
+			}
+						
+			
+		});
+		
+		
+		
 		
 		JMenuItem mntmNewMenuItem_14 = new JMenuItem("Ayuda Tratamiento");
 		mnNewMenu_7.add(mntmNewMenuItem_12);
+		mntmNewMenuItem_14.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				Ayuda ayuda=new Ayuda();
+				ayuda.setLocationRelativeTo(null);
+				ayuda.setLocation(370,212);				
+				ayuda.setVisible(true);								
+				
+			}
+						
+			
+		});
+		
+		
+		
+		
 		contentPane_1= new JPanel();
 		
 		
