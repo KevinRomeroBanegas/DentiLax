@@ -33,12 +33,14 @@ public class PaginaPrincipal extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
+	private JPanel contentPane_1;
 	private JTextField textField;
 	private JTextField textField_1;
 	private JLabel lbl_ROL;
 	private static String usuario;
 	private static String rol;
 	private static PaginaPrincipal frame;
+	private JMenuItem mntmNewMenuItem_5;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -221,12 +223,44 @@ public class PaginaPrincipal extends JFrame {
 		});
 		mnNewMenu_6.add(mntmNewMenuItem5);
 		
+		JMenu mnNewMenu_7 = new JMenu("Ayuda");
+		mnNewMenu_7.setFont(new Font("Segoe UI", Font.BOLD, 30));
+		menuBar.add(mnNewMenu_7);
+		
+		mntmNewMenuItem_5 = new JMenuItem("Gestion Pacientes");
+		mntmNewMenuItem_5.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_P, InputEvent.ALT_DOWN_MASK));
+		mnNewMenu_7.add(mntmNewMenuItem_5);
+		
+		JMenuItem mntmNewMenuItem_7 = new JMenuItem("Ayuda Doctores");
+		mntmNewMenuItem_7.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_D, InputEvent.ALT_DOWN_MASK));
+		mnNewMenu_7.add(mntmNewMenuItem_7);
+		
+		JMenuItem mntmNewMenuItem_9 = new JMenuItem("Ayuda Tratamientos");
+		mntmNewMenuItem_9.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_T, InputEvent.ALT_DOWN_MASK));
+		mnNewMenu_7.add(mntmNewMenuItem_9);
+		
+		JMenuItem mntmNewMenuItem_10 = new JMenuItem("Ayuda Especialidad");
+		mntmNewMenuItem_10.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_E, InputEvent.ALT_DOWN_MASK));
+		mnNewMenu_7.add(mntmNewMenuItem_10);
+		
+		JMenuItem mntmNewMenuItem_12 = new JMenuItem("Ayuda Materiales");
+		mntmNewMenuItem_12.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_M, InputEvent.ALT_DOWN_MASK));
+		mnNewMenu_7.add(mntmNewMenuItem_12);
+		
+		JMenuItem mntmNewMenuItem_13 = new JMenuItem("Ayuda Cita");
+		mnNewMenu_7.add(mntmNewMenuItem_12);
+		
+		JMenuItem mntmNewMenuItem_14 = new JMenuItem("Ayuda Tratamiento");
+		mnNewMenu_7.add(mntmNewMenuItem_12);
+		contentPane_1= new JPanel();
+		
+		
 
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
+		setContentPane(contentPane_1);
+		contentPane_1.setLayout(null);
 		
 		JPopupMenu popupMenu = new JPopupMenu();
-		addPopup(contentPane, popupMenu);
+		addPopup(contentPane_1, popupMenu);
 		
 		JMenuItem paciente = new JMenuItem("Gestion Paciente");
 		paciente.addActionListener(new ActionListener() {
@@ -316,34 +350,38 @@ public class PaginaPrincipal extends JFrame {
 		popupMenu.add(mntmNewMenuItem_8);
 		
 		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setBounds(920, 10, 250, 250);
-		contentPane.add(lblNewLabel);
+		lblNewLabel.setBounds(926, 11, 250, 250);
+		contentPane_1.add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("Usuario: ");
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 20));
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 17));
 		lblNewLabel_1.setBounds(920, 554, 90, 20);
-		contentPane.add(lblNewLabel_1);
+		contentPane_1.add(lblNewLabel_1);
 		
 		JLabel lblNewLabel_1_1 = new JLabel("Rol:");
 		lblNewLabel_1_1.setFont(new Font("Tahoma", Font.BOLD, 17));
 		lblNewLabel_1_1.setBounds(920, 597, 72, 20);
-		contentPane.add(lblNewLabel_1_1);
+		contentPane_1.add(lblNewLabel_1_1);
 		
 		JLabel lbl_DNI = new JLabel(usuario);
 		lbl_DNI.setFont(new Font("Tahoma", Font.BOLD, 17));
 		lbl_DNI.setBounds(1005, 554, 181, 20);
-		contentPane.add(lbl_DNI);
+		contentPane_1.add(lbl_DNI);
 		
 		lbl_ROL = new JLabel(rol);
 		lbl_ROL.setFont(new Font("Tahoma", Font.BOLD, 17));
 		lbl_ROL.setBounds(1005, 597, 181, 20);
-		contentPane.add(lbl_ROL);
+		contentPane_1.add(lbl_ROL);
 		
 		JLabel imagen_fondo = new JLabel("");
 		imagen_fondo.setIcon(new ImageIcon(PaginaPrincipal.class.getResource("/imagenes/Fondo 1200x800.png")));
 		imagen_fondo.setBounds(0, 0, 1200, 800);
-		contentPane.add(imagen_fondo);
+		contentPane_1.add(imagen_fondo);
+		
+		JMenuItem mntmNewMenuItem_6 = new JMenuItem("New menu item");
+		mntmNewMenuItem_6.setBounds(1065, 31, 135, 27);
+		contentPane_1.add(mntmNewMenuItem_6);
 		
 		//condición para deshabilitar partes de menu a doctores
 		if(lbl_ROL.getText().equals("Doctor")) {
