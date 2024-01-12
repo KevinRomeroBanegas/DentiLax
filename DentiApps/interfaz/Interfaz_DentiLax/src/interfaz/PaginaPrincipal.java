@@ -167,6 +167,7 @@ public class PaginaPrincipal extends JFrame {
 		mnNewMenu_4.add(mntmNewMenuItem_4);
 		
 		JMenuItem mntmNewMenuItem_4_1 = new JMenuItem("Solicitud Pedidos");
+		mntmNewMenuItem_4_1.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_P, InputEvent.CTRL_DOWN_MASK));
 		mntmNewMenuItem_4_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Materiales vMateriales = new Materiales();
