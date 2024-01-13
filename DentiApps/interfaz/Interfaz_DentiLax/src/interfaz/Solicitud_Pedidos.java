@@ -21,7 +21,7 @@ import java.awt.event.ActionEvent;
 import java.awt.Dialog.ModalityType;
 import java.awt.Color;
 
-public class Materiales extends JDialog {
+public class Solicitud_Pedidos extends JDialog {
 
 	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
@@ -29,10 +29,12 @@ public class Materiales extends JDialog {
 	private JTextField text_destribuidorProducto;
 	private JTextField text_precioProducto;
 	private JTable table_mat;
+	private JTextField text_cantidadProducto;
+	private JTextField text_IDStock;
 
 	public static void main(String[] args) {
 		try {
-			Materiales dialog = new Materiales();
+			Solicitud_Pedidos dialog = new Solicitud_Pedidos();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
@@ -40,7 +42,7 @@ public class Materiales extends JDialog {
 		}
 	}
 
-	public Materiales() {
+	public Solicitud_Pedidos() {
 		setModalityType(ModalityType.DOCUMENT_MODAL);
 		setModal(true);
 		setResizable(false);
@@ -62,7 +64,7 @@ public class Materiales extends JDialog {
 			public void mouseClicked(MouseEvent e) {
 				if (e.getClickCount() == 2) {
 					String[] valores = bbdd.SacarValoresTabla(table_mat);
-					
+					text_IDStock.setText(valores[0].toString());
 					text_nombreProducto.setText(valores[1].toString());
 					text_destribuidorProducto.setText(valores[2].toString());
 					text_precioProducto.setText(valores[3].toString());
@@ -80,34 +82,58 @@ public class Materiales extends JDialog {
 			{
 				JLabel lblNewLabel_1 = new JLabel("Nombre:");
 				lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 15));
-				lblNewLabel_1.setBounds(10, 10, 150, 20);
+				lblNewLabel_1.setBounds(233, 10, 131, 20);
 				buttonPane.add(lblNewLabel_1);
 			}
 			
 			text_nombreProducto = new JTextField();
-			text_nombreProducto.setBounds(180, 10, 285, 20);
+			text_nombreProducto.setEnabled(false);
+			text_nombreProducto.setBounds(374, 8, 243, 20);
 			buttonPane.add(text_nombreProducto);
 			text_nombreProducto.setColumns(10);
 			
-			JLabel lblNewLabel_1 = new JLabel("Id Proveedor");
+			JLabel lblNewLabel_1 = new JLabel("ID Proveedor:");
 			lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 15));
-			lblNewLabel_1.setBounds(10, 41, 135, 20);
+			lblNewLabel_1.setBounds(233, 41, 131, 20);
 			buttonPane.add(lblNewLabel_1);
 			
 			text_destribuidorProducto = new JTextField();
-			text_destribuidorProducto.setBounds(180, 43, 285, 20);
+			text_destribuidorProducto.setEnabled(false);
+			text_destribuidorProducto.setBounds(374, 41, 243, 20);
 			buttonPane.add(text_destribuidorProducto);
 			text_destribuidorProducto.setColumns(10);
 			
 			JLabel lblNewLabel_1_1 = new JLabel("Precio:");
 			lblNewLabel_1_1.setFont(new Font("Tahoma", Font.BOLD, 15));
-			lblNewLabel_1_1.setBounds(537, 10, 135, 20);
+			lblNewLabel_1_1.setBounds(652, 10, 96, 20);
 			buttonPane.add(lblNewLabel_1_1);
 			
 			text_precioProducto = new JTextField();
+			text_precioProducto.setEnabled(false);
 			text_precioProducto.setColumns(10);
-			text_precioProducto.setBounds(684, 10, 170, 20);
+			text_precioProducto.setBounds(758, 10, 96, 20);
 			buttonPane.add(text_precioProducto);
+			
+			JLabel lblNewLabel_1_1_1 = new JLabel("Cantidad:");
+			lblNewLabel_1_1_1.setFont(new Font("Tahoma", Font.BOLD, 15));
+			lblNewLabel_1_1_1.setBounds(652, 41, 96, 20);
+			buttonPane.add(lblNewLabel_1_1_1);
+			
+			text_cantidadProducto = new JTextField();
+			text_cantidadProducto.setColumns(10);
+			text_cantidadProducto.setBounds(758, 41, 96, 20);
+			buttonPane.add(text_cantidadProducto);
+			
+			text_IDStock = new JTextField();
+			text_IDStock.setEnabled(false);
+			text_IDStock.setColumns(10);
+			text_IDStock.setBounds(116, 28, 73, 20);
+			buttonPane.add(text_IDStock);
+			
+			JLabel lblNewLabel_1_1_2 = new JLabel("ID Stock:");
+			lblNewLabel_1_1_2.setFont(new Font("Tahoma", Font.BOLD, 15));
+			lblNewLabel_1_1_2.setBounds(10, 25, 96, 20);
+			buttonPane.add(lblNewLabel_1_1_2);
 			
 		}
 		
@@ -117,63 +143,31 @@ public class Materiales extends JDialog {
 		lblNewLabel.setBounds(10, 549, 193, 20);
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 15));
 		contentPanel.add(lblNewLabel);
-		{
-			JButton btn_modificarProducto = new JButton("Modificar");
-			btn_modificarProducto.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					if(text_nombreProducto.getText().isBlank()) {
-						JOptionPane.showMessageDialog(null, "Rellena el campo Nombre");
-					}else if(text_destribuidorProducto.getText().isBlank()){
-						JOptionPane.showMessageDialog(null, "Rellena el campo id Proveedor");
-					}else if(text_precioProducto.getText().isBlank()){
-						JOptionPane.showMessageDialog(null, "Rellena el campo Precio");
-					}else {
-					
-					JOptionPane.showMessageDialog(null, "Producto Modificado");
-					
-					}
-				}
-			});
-			btn_modificarProducto.setBounds(694, 549, 85, 20);
-			contentPanel.add(btn_modificarProducto);
-			btn_modificarProducto.setActionCommand("Cancel");
-		}
 		
-		JButton btn_agregarProducto = new JButton("Agregar");
+		JButton btn_agregarProducto = new JButton("Enviar Solicitud");
 		btn_agregarProducto.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(text_nombreProducto.getText().isBlank()) {
 					JOptionPane.showMessageDialog(null, "Rellena el campo Nombre");
+				}else if(text_IDStock.getText().isBlank()){
+					JOptionPane.showMessageDialog(null, "Rellena el campo ID Stock");
 				}else if(text_destribuidorProducto.getText().isBlank()){
 					JOptionPane.showMessageDialog(null, "Rellena el campo id Proveedor");
 				}else if(text_precioProducto.getText().isBlank()){
 					JOptionPane.showMessageDialog(null, "Rellena el campo Precio");
+				}else if(text_cantidadProducto.getText().isBlank()){
+					JOptionPane.showMessageDialog(null, "Rellena el campo Cantidad");
 				}else {
 				
-				JOptionPane.showMessageDialog(null, "Producto Agregado");
+				JOptionPane.showMessageDialog(null, "Solicitud Enviada");
+				//Escribir codigo de inserción de solicitud en bbdd
 				
 				}
 			}
 		});
-		btn_agregarProducto.setBounds(599, 549, 85, 20);
+		btn_agregarProducto.setBounds(714, 548, 160, 20);
 		contentPanel.add(btn_agregarProducto);
 		btn_agregarProducto.setActionCommand("Cancel");
-		
-		JButton btn_bajaProducto = new JButton("Baja");
-		btn_bajaProducto.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if(text_nombreProducto.getText().isBlank()) {
-					JOptionPane.showMessageDialog(null, "Rellena el campo Nombre");
-				}else {
-				
-				JOptionPane.showMessageDialog(null, "Producto dado de Baja");
-				
-				}
-			}
-		});
-		btn_bajaProducto.setActionCommand("Cancel");
-		btn_bajaProducto.setBounds(789, 549, 85, 20);
-		contentPanel.add(btn_bajaProducto);
 		
 		
 		JLabel Fondo_stock = new JLabel("");

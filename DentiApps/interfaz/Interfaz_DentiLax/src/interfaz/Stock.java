@@ -165,15 +165,17 @@ public class Stock extends JDialog implements ActionListener{
 		
 		table_material = new JTable();
 		table_material.setBounds(10, 11, 864, 493);
-		table_material=bbdd.MostrarTabla("Stock", table_material);
+		table_material=bbdd.MostrarTabla("stock", table_material);
 		table_material.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 if (e.getClickCount() == 2) {
                     String[]valores=bbdd.SacarValoresTabla(table_material);
-                    text_nombreMaterial.setText(valores[1].toString());
+                    
+                    //modificar en función de la cantidad de valores de la nueva tabla
+                    /*text_nombreMaterial.setText(valores[1].toString());
                     text_proveedorMaterial.setText(valores[2].toString());
-                    text_precioMaterial.setText(valores[3].toString());
+                    text_precioMaterial.setText(valores[3].toString());*/
                 }
             }
         });

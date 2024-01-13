@@ -3,6 +3,7 @@ package interfaz;
 import java.awt.EventQueue;
 import java.awt.Font;
 
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -14,10 +15,12 @@ import javax.swing.JTextField;
 import javax.swing.JTextArea;
 import java.awt.Color;
 import java.awt.Toolkit;
+import java.awt.Dialog.ModalityType;
 
-public class Ayuda extends JFrame {
+public class Ayuda extends JDialog {
 
 	private static final long serialVersionUID = 1L;
+	private final JPanel contentPanel = new JPanel();
 	private JTextField txtHolaQueTal;
 	private JTable table;
 
@@ -28,8 +31,9 @@ public class Ayuda extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Ayuda frame = new Ayuda();
-					frame.setVisible(true);
+					Ayuda ayuda = new Ayuda();
+					ayuda.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+					ayuda.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -39,83 +43,94 @@ public class Ayuda extends JFrame {
 
 	
 	public Ayuda() {
-		getContentPane().setFont(new Font("Segoe UI", Font.BOLD, 13));
-		setIconImage(Toolkit.getDefaultToolkit().getImage(Ayuda.class.getResource("/imagenes/diente.png")));
+		setModalityType(ModalityType.DOCUMENT_MODAL);
+		setModal(true);
+		setResizable(false);
 		setTitle("DENTIAPP");
-		getContentPane().setBackground(new Color(153, 215, 222));
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 900, 700);
 		getContentPane().setLayout(null);
+		contentPanel.setBackground(new Color(153, 215, 222));
+		contentPanel.setBounds(0, 0, 884, 660);
+		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
+		getContentPane().add(contentPanel);
+		contentPanel.setLayout(null);
+		/*
+		getContentPane().setFont(new Font("Segoe UI", Font.BOLD, 13));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(Ayuda.class.getResource("/imagenes/diente.png")));
+		*/	
 		
 		
 		JTextArea txtrCtrlP = new JTextArea("Tratamiento. Obtenemos los tratamiento de cada paciente individualizado ");
+		txtrCtrlP.setEditable(false);
 		txtrCtrlP.setForeground(Color.DARK_GRAY);
-		txtrCtrlP.setBackground(new Color(153, 215, 222));
-		txtrCtrlP.setBounds(72, 192, 709, 44);
-
 		txtrCtrlP.setFont(new Font("Segoe UI", Font.BOLD, 13));
-		getContentPane().add(txtrCtrlP);
+		txtrCtrlP.setBackground(new Color(153, 215, 222));
+		txtrCtrlP.setBounds(72, 193, 709, 44);
+		contentPanel.add(txtrCtrlP);
 		
-		JTextArea txtrGestionPacienteNos = new JTextArea("Gestion Paciente. Nos ayuda a gestionar todos los pacientes, tanto insertar, borra o actualizar. Detalles del paciente ");
+		table = new JTable();
+		table.setBounds(166, 526, 152, 28);
+		contentPanel.add(table);
+		
+		txtHolaQueTal = new JTextField();
+		txtHolaQueTal.setEditable(false);
+		txtHolaQueTal.setText("Hola que tal");
+		txtHolaQueTal.setBackground(new Color(153, 215, 222));
+		txtHolaQueTal.setBounds(72, 456, 742, 60);
+		txtHolaQueTal.setColumns(10);
+		contentPanel.add(txtHolaQueTal);
+		
+		
+		JTextArea txtrGestionPacienteNos = new JTextArea("Gestion Paciente. Nos ayuda a gestionar todos los pacientes, tanto insertar, borra o actualizar. "
+				+ "\nDetalles del paciente. ");
+		txtrGestionPacienteNos.setEditable(false);
 		txtrGestionPacienteNos.setForeground(Color.DARK_GRAY);
 		txtrGestionPacienteNos.setBackground(new Color(153, 215, 222));
 		txtrGestionPacienteNos.setFont(new Font("Segoe UI", Font.BOLD, 13));
 		txtrGestionPacienteNos.setBounds(72, 82, 709, 44);
-		txtrCtrlP.setFont(new Font("Segoe UI", Font.BOLD, 10));
-		getContentPane().add(txtrGestionPacienteNos);
+		contentPanel.add(txtrGestionPacienteNos);
 		
 		JTextArea txtrDocyotrdNosAyuda = new JTextArea("Doctores. Se gestiona la hora cada doctor individualmete ");
+		txtrDocyotrdNosAyuda.setEditable(false);
 		txtrDocyotrdNosAyuda.setForeground(Color.DARK_GRAY);
 		txtrDocyotrdNosAyuda.setBackground(new Color(153, 215, 222));
 		txtrDocyotrdNosAyuda.setBounds(72, 137, 709, 44);
 		txtrDocyotrdNosAyuda.setFont(new Font("Segoe UI", Font.BOLD, 13));
-		getContentPane().add(txtrDocyotrdNosAyuda);
+		contentPanel.add(txtrDocyotrdNosAyuda);
 		
-		JTextArea txtrEspecialidadEnLa = new JTextArea("Especialidad. En la gestion de especialidad nos encontramos la administracion de cada doctor con su especialidad asiganda, se puede modificar");
+		JTextArea txtrEspecialidadEnLa = new JTextArea("Especialidad. En la gestion de especialidad nos encontramos la administracion de cada doctor con su "
+				+ "\nespecialidad asiganda, se puede modificar");
+		txtrEspecialidadEnLa.setEditable(false);
 		txtrEspecialidadEnLa.setForeground(Color.DARK_GRAY);
 		txtrEspecialidadEnLa.setBackground(new Color(153, 215, 222));
 		txtrEspecialidadEnLa.setBounds(72, 247, 709, 44);
 		txtrEspecialidadEnLa.setFont(new Font("Segoe UI", Font.BOLD, 13));
-		getContentPane().add(txtrEspecialidadEnLa);
+		contentPanel.add(txtrEspecialidadEnLa);
 	
 		
 		JLabel lblNewLabel = new JLabel("AYUDA");
 		lblNewLabel.setFont(new Font("Segoe UI", Font.BOLD, 14));
 		lblNewLabel.setBounds(367, 16, 80, 44);
-		txtrCtrlP.setFont(new Font("Segoe UI", Font.BOLD, 10));
-		getContentPane().add(lblNewLabel);
+		contentPanel.add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("ATAJOS");
 		lblNewLabel_1.setFont(new Font("Segoe UI", Font.BOLD, 13));
 		lblNewLabel_1.setBounds(361, 370, 86, 18);
-		getContentPane().add(lblNewLabel_1);
+		contentPanel.add(lblNewLabel_1);
 		
 		JTextArea textAreaAtajo = new JTextArea();
+		textAreaAtajo.setEditable(false);
 		textAreaAtajo.setBackground(new Color(24, 165, 174));
 		textAreaAtajo.setBounds(45, 410, 790, 211);
-		getContentPane().add(textAreaAtajo);
-		
-		txtHolaQueTal = new JTextField();
-		txtHolaQueTal.setText("Hola que tal");
-		txtHolaQueTal.setBackground(new Color(153, 215, 222));
-		txtHolaQueTal.setBounds(72, 456, 742, 60);
-		getContentPane().add(txtHolaQueTal);
-		txtHolaQueTal.setColumns(10);
+		contentPanel.add(textAreaAtajo);
 		
 		JTextArea textArea_Ayuda = new JTextArea();
+		textArea_Ayuda.setEditable(false);
 		textArea_Ayuda.setForeground(Color.DARK_GRAY);
 		textArea_Ayuda.setFont(new Font("Segoe UI", Font.BOLD, 13));
 		textArea_Ayuda.setBackground(new Color(24, 165, 174));
 		textArea_Ayuda.setBounds(45, 55, 790, 300);
-		getContentPane().add(textArea_Ayuda);
+		contentPanel.add(textArea_Ayuda);
 		
-		table = new JTable();
-		table.setBounds(166, 526, 152, 28);
-		getContentPane().add(table);
-		
-		
-		
-		
-	
 	}
 }

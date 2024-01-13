@@ -40,7 +40,6 @@ public class PaginaPrincipal extends JFrame {
 	private static String usuario;
 	private static String rol;
 	private static PaginaPrincipal frame;
-	private JMenuItem mntmNewMenuItem_5;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -170,13 +169,25 @@ public class PaginaPrincipal extends JFrame {
 		mntmNewMenuItem_4_1.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_P, InputEvent.CTRL_DOWN_MASK));
 		mntmNewMenuItem_4_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Materiales vMateriales = new Materiales();
+				Solicitud_Pedidos vMateriales = new Solicitud_Pedidos();
 				vMateriales.setLocationRelativeTo(null);
 				vMateriales.setLocation(370, 212);
 				vMateriales.setVisible(true);
 			}
 		});
 		mnNewMenu_4.add(mntmNewMenuItem_4_1);
+		
+		JMenuItem mntmNewMenuItem_10 = new JMenuItem("Gestión Pedidos");
+		mntmNewMenuItem_10.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_G, InputEvent.CTRL_DOWN_MASK));
+		mntmNewMenuItem_10.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Gestion_Pedidos gPedidos = new Gestion_Pedidos();
+				gPedidos.setLocationRelativeTo(null);
+				gPedidos.setLocation(370, 212);
+				gPedidos.setVisible(true);
+			}
+		});
+		mnNewMenu_4.add(mntmNewMenuItem_10);
 		
 		JMenu mnNewMenu_5 = new JMenu("Cita");
 		mnNewMenu_5.setFont(new Font("Segoe UI", Font.BOLD, 30));
@@ -227,10 +238,6 @@ public class PaginaPrincipal extends JFrame {
 		JMenu mnNewMenu_7 = new JMenu("Ayuda");
 		mnNewMenu_7.setFont(new Font("Segoe UI", Font.BOLD, 30));
 		menuBar.add(mnNewMenu_7);
-		
-		mntmNewMenuItem_5 = new JMenuItem("Ayuda Pacientes");
-		mntmNewMenuItem_5.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_P, InputEvent.ALT_DOWN_MASK));
-		mnNewMenu_7.add(mntmNewMenuItem_5);
 		mnNewMenu_7.addActionListener(new ActionListener() {
 
 			@Override
@@ -241,8 +248,8 @@ public class PaginaPrincipal extends JFrame {
 			
 		});
 		
-		JMenuItem mntmNewMenuItem_7 = new JMenuItem("Ayuda Doctores");
-		mntmNewMenuItem_7.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_D, InputEvent.ALT_DOWN_MASK));
+		JMenuItem mntmNewMenuItem_7 = new JMenuItem("Manual de Ayuda");
+		mntmNewMenuItem_7.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_A, InputEvent.CTRL_DOWN_MASK));
 		mnNewMenu_7.add(mntmNewMenuItem_7);
 		mntmNewMenuItem_7.addActionListener(new ActionListener() {
 
@@ -260,64 +267,8 @@ public class PaginaPrincipal extends JFrame {
 		});
 		
 		
-		JMenuItem mntmNewMenuItem_9 = new JMenuItem("Ayuda Tratamientos");
-		mntmNewMenuItem_9.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_T, InputEvent.ALT_DOWN_MASK));
-		mnNewMenu_7.add(mntmNewMenuItem_9);
-		mntmNewMenuItem_9.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				
-				Ayuda ayuda=new Ayuda();
-				ayuda.setLocationRelativeTo(null);
-				ayuda.setLocation(370,212);				
-				ayuda.setVisible(true);								
-				
-			}
-						
-			
-		});
-		
-		JMenuItem mntmNewMenuItem_10 = new JMenuItem("Ayuda Especialidad");
-		mntmNewMenuItem_10.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_E, InputEvent.ALT_DOWN_MASK));
-		mnNewMenu_7.add(mntmNewMenuItem_10);
-		mntmNewMenuItem_10.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				
-				Ayuda ayuda=new Ayuda();
-				ayuda.setLocationRelativeTo(null);
-				ayuda.setLocation(370,212);				
-				ayuda.setVisible(true);								
-				
-			}
-						
-			
-		});
-		
-		JMenuItem mntmNewMenuItem_12 = new JMenuItem("Ayuda Materiales");
-		mntmNewMenuItem_12.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_M, InputEvent.ALT_DOWN_MASK));
-		mnNewMenu_7.add(mntmNewMenuItem_12);
-		mntmNewMenuItem_12.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				
-				Ayuda ayuda=new Ayuda();
-				ayuda.setLocationRelativeTo(null);
-				ayuda.setLocation(370,212);				
-				ayuda.setVisible(true);								
-				
-			}
-						
-			
-		});
-		
-		
 		
 		JMenuItem mntmNewMenuItem_13 = new JMenuItem("Ayuda Cita");
-		mnNewMenu_7.add(mntmNewMenuItem_12);
 		mntmNewMenuItem_13.addActionListener(new ActionListener() {
 
 			@Override
@@ -337,7 +288,6 @@ public class PaginaPrincipal extends JFrame {
 		
 		
 		JMenuItem mntmNewMenuItem_14 = new JMenuItem("Ayuda Tratamiento");
-		mnNewMenu_7.add(mntmNewMenuItem_12);
 		mntmNewMenuItem_14.addActionListener(new ActionListener() {
 
 			@Override
@@ -494,6 +444,12 @@ public class PaginaPrincipal extends JFrame {
 			mnNewMenu_5.setEnabled(false);
 			mnNewMenu_6.setEnabled(false);
 			mntmNewMenuItem_4.setEnabled(false);
+			mntmNewMenuItem_10.setEnabled(false);
+		}
+		
+		//condición para deshabilitar partes de menu a admin
+		if(lbl_ROL.getText().equals("Admin")) {
+			mntmNewMenuItem_4_1.setEnabled(false);
 		}
 		
 
