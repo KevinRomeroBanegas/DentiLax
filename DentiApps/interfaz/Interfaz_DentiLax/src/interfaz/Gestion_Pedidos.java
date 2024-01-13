@@ -79,6 +79,12 @@ public class Gestion_Pedidos extends JDialog {
 			buttonPane.setBounds(10, 580, 864, 69);
 			contentPanel.add(buttonPane);
 			buttonPane.setLayout(null);
+			
+			text_cantidadProducto = new JTextField();
+			text_cantidadProducto.setEnabled(false);
+			text_cantidadProducto.setColumns(10);
+			text_cantidadProducto.setBounds(758, 41, 96, 20);
+			buttonPane.add(text_cantidadProducto);
 			{
 				JLabel lblNewLabel_1 = new JLabel("Nombre:");
 				lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 15));
@@ -118,12 +124,6 @@ public class Gestion_Pedidos extends JDialog {
 			lblNewLabel_1_1_1.setFont(new Font("Tahoma", Font.BOLD, 15));
 			lblNewLabel_1_1_1.setBounds(652, 41, 96, 20);
 			buttonPane.add(lblNewLabel_1_1_1);
-			
-			text_cantidadProducto = new JTextField();
-			text_cantidadProducto.setEnabled(false);
-			text_cantidadProducto.setColumns(10);
-			text_cantidadProducto.setBounds(758, 41, 96, 20);
-			buttonPane.add(text_cantidadProducto);
 			
 			text_IDStock = new JTextField();
 			text_IDStock.setEnabled(false);

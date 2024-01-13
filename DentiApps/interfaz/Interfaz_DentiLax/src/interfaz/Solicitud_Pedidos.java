@@ -147,22 +147,29 @@ public class Solicitud_Pedidos extends JDialog {
 		JButton btn_agregarProducto = new JButton("Enviar Solicitud");
 		btn_agregarProducto.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(text_nombreProducto.getText().isBlank()) {
-					JOptionPane.showMessageDialog(null, "Rellena el campo Nombre");
-				}else if(text_IDStock.getText().isBlank()){
-					JOptionPane.showMessageDialog(null, "Rellena el campo ID Stock");
-				}else if(text_destribuidorProducto.getText().isBlank()){
-					JOptionPane.showMessageDialog(null, "Rellena el campo id Proveedor");
-				}else if(text_precioProducto.getText().isBlank()){
-					JOptionPane.showMessageDialog(null, "Rellena el campo Precio");
-				}else if(text_cantidadProducto.getText().isBlank()){
+				
+				if(text_cantidadProducto.getText().isBlank()){
 					JOptionPane.showMessageDialog(null, "Rellena el campo Cantidad");
 				}else {
+					String[] valores = new String[5];
+					valores[0] = text_IDStock.getText();
+					valores[1] = "'" + text_nombreProducto.getText() + "'";
+					valores[2] = text_destribuidorProducto.getText();	
+					valores[3] = text_precioProducto.getText();
+					valores[4] = text_cantidadProducto.getText();	
+					
+					int result = JOptionPane.showConfirmDialog(null, "¿Quieres añadir este producto a la lista?",
+					            "AGREGAR PRODUCTO", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+
+					    if (result == JOptionPane.YES_OPTION) {
+					        JOptionPane.showMessageDialog(null, "Producto agregado a la lista");
+					        bbdd.insertar("solicitud_material", valores, false);
+					    }
+				}
 				
 				JOptionPane.showMessageDialog(null, "Solicitud Enviada");
-				//Escribir codigo de inserción de solicitud en bbdd
 				
-				}
+				
 			}
 		});
 		btn_agregarProducto.setBounds(714, 548, 160, 20);

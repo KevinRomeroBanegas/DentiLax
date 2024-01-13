@@ -94,7 +94,7 @@ public class Stock extends JDialog implements ActionListener{
 			
 			text_precioMaterial = new JTextField();
 			text_precioMaterial.setColumns(10);
-			text_precioMaterial.setBounds(684, 13, 170, 20);
+			text_precioMaterial.setBounds(684, 10, 170, 20);
 			buttonPane.add(text_precioMaterial);
 			
 			JButton btn_filtrarTabla = new JButton("Filtrar tabla");
