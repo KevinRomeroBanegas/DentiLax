@@ -68,7 +68,7 @@ public class Gestion_Pedidos extends JDialog {
 					text_nombreProducto.setText(valores[1].toString());
 					text_destribuidorProducto.setText(valores[2].toString());
 					text_precioProducto.setText(valores[3].toString());
-					
+					text_cantidadProducto.setText(valores[4].toString());
 				}
 			}
 		});
@@ -83,7 +83,7 @@ public class Gestion_Pedidos extends JDialog {
 			text_cantidadProducto = new JTextField();
 			text_cantidadProducto.setEnabled(false);
 			text_cantidadProducto.setColumns(10);
-			text_cantidadProducto.setBounds(758, 41, 96, 20);
+			text_cantidadProducto.setBounds(758, 40, 96, 20);
 			buttonPane.add(text_cantidadProducto);
 			{
 				JLabel lblNewLabel_1 = new JLabel("Nombre:");
