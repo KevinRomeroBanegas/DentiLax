@@ -141,16 +141,16 @@ public class Ayuda extends JDialog {
 		
 		txtAtaPaciente = new JTextField();
 		txtAtaPaciente.setForeground(Color.DARK_GRAY);
-		txtAtaPaciente.setFont(new Font("Segoe UI", Font.BOLD, 11));
+		txtAtaPaciente.setFont(new Font("Segoe UI", Font.BOLD, 10));
 		txtAtaPaciente.setBackground(new Color(153, 215, 222));
-		txtAtaPaciente.setText("Crol + P. Alta,  baja y modificacion de pacientes");
+		txtAtaPaciente.setText("Ctrl + P. Alta,  baja y modificacion de pacientes");
 		txtAtaPaciente.setBounds(48, 448, 303, 46);
 		contentPanel.add(txtAtaPaciente);
 		txtAtaPaciente.setColumns(10);
 		
 		txtAtaEspc = new JTextField();
 		txtAtaEspc.setForeground(Color.DARK_GRAY);
-		txtAtaEspc.setFont(new Font("Segoe UI", Font.BOLD, 11));
+		txtAtaEspc.setFont(new Font("Segoe UI", Font.BOLD, 10));
 		txtAtaEspc.setBackground(new Color(153, 215, 222));
 		txtAtaEspc.setText("Ctrl + E. Asigancion de especialidad a doctores");
 		txtAtaEspc.setBounds(367, 449, 265, 44);
@@ -160,7 +160,7 @@ public class Ayuda extends JDialog {
 		
 		
 		txtAtajoDoc_1 = new JTextField();
-		txtAtajoDoc_1.setFont(new Font("Segoe UI", Font.BOLD, 11));
+		txtAtajoDoc_1.setFont(new Font("Segoe UI", Font.BOLD, 10));
 		txtAtajoDoc_1.setForeground(Color.DARK_GRAY);
 		txtAtajoDoc_1.setBackground(new Color(153, 215, 222));
 		txtAtajoDoc_1.setText("Ctrl + D. Alta, baja y modificacion de doctores");
@@ -170,7 +170,7 @@ public class Ayuda extends JDialog {
 		
 		txtAtaTra = new JTextField();
 		txtAtaTra.setForeground(Color.DARK_GRAY);
-		txtAtaTra.setFont(new Font("Segoe UI", Font.BOLD, 11));
+		txtAtaTra.setFont(new Font("Segoe UI", Font.BOLD, 10));
 		txtAtaTra.setBackground(new Color(153, 215, 222));
 		txtAtaTra.setText("Crtl + T. Controlamos lo tratamiento de cada paciente");
 		txtAtaTra.setBounds(48, 560, 303, 44);
