@@ -154,23 +154,40 @@ public class Gestion_Pedidos extends JDialog {
 		JButton btnNewButton = new JButton("Tramitar");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				if (text_IDStock.getText().isBlank()) {
+					JOptionPane.showMessageDialog(null, "Rellene el campo ID", "ERROR", JOptionPane.ERROR_MESSAGE);
+				} else if (text_nombreProducto.getText().isBlank()) {
+					JOptionPane.showMessageDialog(null, "Rellene el campo Nombre", "ERROR", JOptionPane.ERROR_MESSAGE);
+				} else if (text_destribuidorProducto.getText().isBlank()) {
+					JOptionPane.showMessageDialog(null, "Rellene el campo Distribuidor", "ERROR",
+							JOptionPane.ERROR_MESSAGE);
+				} else if (text_precioProducto.getText().isBlank()) {
+					JOptionPane.showMessageDialog(null, "Rellene el campo Precio", "ERROR", JOptionPane.ERROR_MESSAGE);
+				} else if (text_cantidadProducto.getText().isBlank()) {
+					JOptionPane.showMessageDialog(null, "Rellene el campo Cantidad", "ERROR",
+							JOptionPane.ERROR_MESSAGE);
+				} else {
 					String[] valores = new String[5];
 					valores[0] = text_IDStock.getText();
 					valores[1] = "'" + text_nombreProducto.getText() + "'";
-					valores[2] = text_destribuidorProducto.getText();	
+					valores[2] = text_destribuidorProducto.getText();
 					valores[3] = text_precioProducto.getText();
-					valores[4] = text_cantidadProducto.getText();	
-					
-					int result = JOptionPane.showConfirmDialog(null, "¿Quieres realizar el pedido?",
-					            "Pedido Realizado", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+					valores[4] = text_cantidadProducto.getText();
+					int result = JOptionPane.showConfirmDialog(null, "¿Quieres tramitar este producto de la lista?",
+							"Tramitar Producto", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 
-					    if (result == JOptionPane.YES_OPTION) {
-					        JOptionPane.showMessageDialog(null, "Pedido Realizado");
-					        bbdd.modificar("stock", valores, false, table_mat);
-					    }
-					    bbdd.borrar("solicitud_material", valores, false);
+					if (result == JOptionPane.YES_OPTION) {
+						bbdd.tramitarProductos(text_IDStock.getText(),text_cantidadProducto.getText());
+						bbdd.borrar("solicitud_material", valores, false);
+					}
+
+					table_mat = bbdd.MostrarTabla("solicitud_material", table_mat);
+					
+				}
+				
+				
 			}
+
 		});
 		btnNewButton.setBounds(785, 549, 89, 23);
 		contentPanel.add(btnNewButton);

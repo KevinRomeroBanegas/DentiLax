@@ -581,4 +581,63 @@ public class BBDD {
 			e.printStackTrace();
 		}
 	}
+	public void tramitarProductos(String id, String cant) {
+		int Descripcion = 0;
+	    this.conectar();
+	    ResultSet Resultado;
+	    try {
+	        String query = "SELECT Cantidad FROM bbdd_dentista.stock WHERE idStock='" + id + "'";
+	        System.out.println(query);
+	        Resultado = stm.executeQuery(query);
+
+	        if (Resultado.next()) {
+	            Descripcion = Resultado.getInt("Cantidad");
+	            int suma = Descripcion + Integer.parseInt(cant);
+	            String querydos = "UPDATE bbdd_dentista.stock SET Cantidad=" + suma + " WHERE idStock='" + id + "'";
+	            System.out.println(querydos);
+	            
+	            // Utiliza executeUpdate en lugar de executeQuery para realizar la actualización
+	            int filasActualizadas = stm.executeUpdate(querydos);
+	            
+	            if (filasActualizadas > 0) {
+	                System.out.println("Actualización exitosa");
+	            } else {
+	                System.out.println("No se pudo actualizar la cantidad");
+	            }
+	        } else {
+	            // Manejo para el caso en que no se encuentra el ID en la base de datos
+	            System.out.println("Producto no encontrado");
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	}
+	
+		/*int Descripcion =0;
+		this.conectar();
+		ResultSet Resultado;
+		ResultSet Resultado2;
+		
+		try {
+			String query = "select Cantidad from bbdd_dentista.stock WHERE idStock='" + id + "'";
+
+			System.out.println(query);
+
+			Resultado = stm.executeQuery(query);
+
+			if (Resultado.next()) {
+				Descripcion = Resultado.getInt("Cantidad");
+				int suma=Descripcion+Integer.parseInt(cant);
+				String querydos="UPDATE bbdd_dentista.stock SET Cantidad=" + suma + " WHERE idStock='" + id + "'";
+				System.out.println(querydos);
+				Resultado2=stm.executeUpdate(querydos);
+				
+			} else {
+				
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}*/
+	}
+
 }
