@@ -67,7 +67,7 @@ public class Ayuda extends JDialog {
 		*/	
 		
 		
-		JTextArea txtrCtrlP = new JTextArea("Tratamiento. Obtenemos los tratamiento de cada paciente individualizado ");
+		JTextArea txtrCtrlP = new JTextArea("Tratamiento. Obtenemos los tratamiento de cada paciente individualizado.");
 		txtrCtrlP.setEditable(false);
 		txtrCtrlP.setForeground(Color.DARK_GRAY);
 		txtrCtrlP.setFont(new Font("Segoe UI", Font.BOLD, 13));
@@ -76,7 +76,7 @@ public class Ayuda extends JDialog {
 		contentPanel.add(txtrCtrlP);
 		
 		
-		JTextArea txtrGestionPacienteNos = new JTextArea("Gestion Paciente. Nos ayuda a gestionar todos los pacientes, tanto insertar, borra o actualizar.");
+		JTextArea txtrGestionPacienteNos = new JTextArea("Gestion Paciente. Nos ayuda a gestionar a todos los pacientes, tanto insertar, borra o actualizar.");
 		txtrGestionPacienteNos.setEditable(false);
 		txtrGestionPacienteNos.setForeground(Color.DARK_GRAY);
 		txtrGestionPacienteNos.setBackground(new Color(153, 215, 222));
@@ -84,7 +84,7 @@ public class Ayuda extends JDialog {
 		txtrGestionPacienteNos.setBounds(72, 46, 709, 35);
 		contentPanel.add(txtrGestionPacienteNos);
 		
-		JTextArea txtrDocyotrdNosAyuda = new JTextArea("Doctores. Se gestiona la hora cada doctor individualmete ");
+		JTextArea txtrDocyotrdNosAyuda = new JTextArea("Doctores. Alta, baja y modificacion de los doctores.");
 		txtrDocyotrdNosAyuda.setEditable(false);
 		txtrDocyotrdNosAyuda.setForeground(Color.DARK_GRAY);
 		txtrDocyotrdNosAyuda.setBackground(new Color(153, 215, 222));
@@ -92,7 +92,7 @@ public class Ayuda extends JDialog {
 		txtrDocyotrdNosAyuda.setFont(new Font("Segoe UI", Font.BOLD, 13));
 		contentPanel.add(txtrDocyotrdNosAyuda);
 		
-		JTextArea txtrEspecialidadEnLa = new JTextArea("Especialidad. En la gestion de especialidad nos encontramos la administracion de cada doctor con su ");
+		JTextArea txtrEspecialidadEnLa = new JTextArea("Especialidad. Se gestiona la especialidad de cada doctor.");
 		txtrEspecialidadEnLa.setEditable(false);
 		txtrEspecialidadEnLa.setForeground(Color.DARK_GRAY);
 		txtrEspecialidadEnLa.setBackground(new Color(153, 215, 222));
@@ -111,7 +111,7 @@ public class Ayuda extends JDialog {
 		
 		
 		
-		JTextArea txtrCita = new JTextArea("Cita. Vemos las citas que tienen programada cada paciente. Modificable por admi");
+		JTextArea txtrCita = new JTextArea("Cita. Vemos las citas que tienen programada cada paciente. Modificable por admi.");
 		txtrCita.setEditable(false);
 		txtrCita.setForeground(Color.DARK_GRAY);
 		txtrCita.setBackground(new Color(153, 215, 222));
@@ -119,7 +119,7 @@ public class Ayuda extends JDialog {
 		txtrCita.setFont(new Font("Segoe UI", Font.BOLD, 13));
 		contentPanel.add(txtrCita);
 		
-		JTextArea txtAtaFac = new JTextArea("Facturación. Vemos lo que se ingresa cada mes y lo que queda por pagar por paciente");
+		JTextArea txtAtaFac = new JTextArea("Facturación. Ingreso trrimestral y pagos pendiente.");
 		txtAtaFac.setEditable(false);
 		txtAtaFac.setForeground(Color.DARK_GRAY);
 		txtAtaFac.setBackground(new Color(153, 215, 222));
@@ -143,7 +143,7 @@ public class Ayuda extends JDialog {
 		txtAtaPaciente.setForeground(Color.DARK_GRAY);
 		txtAtaPaciente.setFont(new Font("Segoe UI", Font.BOLD, 10));
 		txtAtaPaciente.setBackground(new Color(153, 215, 222));
-		txtAtaPaciente.setText("Ctrl + P. Alta,  baja y modificacion de pacientes");
+		txtAtaPaciente.setText("Ctrl + P. Alta,  baja y modificacion de pacientes.");
 		txtAtaPaciente.setBounds(48, 448, 303, 46);
 		contentPanel.add(txtAtaPaciente);
 		txtAtaPaciente.setColumns(10);
@@ -152,7 +152,7 @@ public class Ayuda extends JDialog {
 		txtAtaEspc.setForeground(Color.DARK_GRAY);
 		txtAtaEspc.setFont(new Font("Segoe UI", Font.BOLD, 10));
 		txtAtaEspc.setBackground(new Color(153, 215, 222));
-		txtAtaEspc.setText("Ctrl + E. Asigancion de especialidad a doctores");
+		txtAtaEspc.setText("Ctrl + E. Asiganción de especialidad a doctores.");
 		txtAtaEspc.setBounds(367, 449, 265, 44);
 		contentPanel.add(txtAtaEspc);
 		txtAtaEspc.setColumns(10);
@@ -163,7 +163,7 @@ public class Ayuda extends JDialog {
 		txtAtajoDoc_1.setFont(new Font("Segoe UI", Font.BOLD, 10));
 		txtAtajoDoc_1.setForeground(Color.DARK_GRAY);
 		txtAtajoDoc_1.setBackground(new Color(153, 215, 222));
-		txtAtajoDoc_1.setText("Ctrl + D. Alta, baja y modificacion de doctores");
+		txtAtajoDoc_1.setText("Ctrl + D. Alta, baja y modificacion de doctores.");
 		txtAtajoDoc_1.setBounds(48, 505, 303, 44);
 		contentPanel.add(txtAtajoDoc_1);
 		txtAtajoDoc_1.setColumns(10);
@@ -172,7 +172,7 @@ public class Ayuda extends JDialog {
 		txtAtaTra.setForeground(Color.DARK_GRAY);
 		txtAtaTra.setFont(new Font("Segoe UI", Font.BOLD, 10));
 		txtAtaTra.setBackground(new Color(153, 215, 222));
-		txtAtaTra.setText("Crtl + T. Controlamos lo tratamiento de cada paciente");
+		txtAtaTra.setText("Crtl + T. Controlamos lo tratamiento de cada paciente.");
 		txtAtaTra.setBounds(48, 560, 303, 44);
 		contentPanel.add(txtAtaTra);
 		txtAtaTra.setColumns(10);
@@ -181,7 +181,7 @@ public class Ayuda extends JDialog {
 		txtAtaStock.setFont(new Font("Segoe UI", Font.BOLD, 11));
 		txtAtaStock.setForeground(Color.DARK_GRAY);
 		txtAtaStock.setBackground(new Color(153, 215, 222));
-		txtAtaStock.setText("Ctrl + S. Visualizacion del Strok real.");
+		txtAtaStock.setText("Ctrl + S. Visualización del Strok real.");
 		txtAtaStock.setBounds(367, 504, 265, 46);
 		contentPanel.add(txtAtaStock);
 		txtAtaStock.setColumns(10);
@@ -190,7 +190,7 @@ public class Ayuda extends JDialog {
 		txtAtaFc.setFont(new Font("Segoe UI", Font.BOLD, 11));
 		txtAtaFc.setBackground(new Color(153, 215, 222));
 		txtAtaFc.setForeground(Color.DARK_GRAY);
-		txtAtaFc.setText("Ctrl + F. Facturacion trimestral");
+		txtAtaFc.setText("Ctrl + F. Facturación trimestral.");
 		txtAtaFc.setBounds(642, 448, 181, 46);
 		contentPanel.add(txtAtaFc);
 		txtAtaFc.setColumns(10);
@@ -199,7 +199,7 @@ public class Ayuda extends JDialog {
 		txtAtaPaciente_1.setFont(new Font("Segoe UI", Font.BOLD, 11));
 		txtAtaPaciente_1.setBackground(new Color(153, 215, 222));
 		txtAtaPaciente_1.setForeground(Color.DARK_GRAY);
-		txtAtaPaciente_1.setText("Ctrl + C. Asigancion de citas a pacientes.");
+		txtAtaPaciente_1.setText("Ctrl + C. Asiganción de citas a pacientes.");
 		txtAtaPaciente_1.setBounds(367, 559, 265, 46);
 		contentPanel.add(txtAtaPaciente_1);
 		txtAtaPaciente_1.setColumns(10);
@@ -208,7 +208,7 @@ public class Ayuda extends JDialog {
 		txtAtaFc.setFont(new Font("Segoe UI", Font.BOLD, 11));
 		txtAtaFc.setBackground(new Color(153, 215, 222));
 		txtAtaFc.setForeground(Color.DARK_GRAY);
-		txtAtaFc.setText("Ctrl + N. Inicio Rapido");
+		txtAtaFc.setText("Ctrl + N. Inicio Rapido.");
 		txtAtaFc.setBounds(642, 504, 181, 46);
 		contentPanel.add(txtAtaFc);
 		txtAtaFc.setColumns(10);
