@@ -290,6 +290,10 @@ public class BBDD {
 			e.printStackTrace();
 		}
 	}
+	
+	public void obtenerCantidadActual(String tableNa, String idStock){
+		
+	}
 
 	public JTable MostrarTabla(String TableName, JTable table) {
 		conectar();
@@ -577,5 +581,4 @@ public class BBDD {
 			e.printStackTrace();
 		}
 	}
-
 }

@@ -151,5 +151,57 @@ public class Gestion_Pedidos extends JDialog {
 		Fondo_stock.setBounds(0, 0, 884, 660);
 		contentPanel.add(Fondo_stock);
 		
+		JButton btnNewButton = new JButton("Tramitar");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+					String[] valores = new String[5];
+					valores[0] = text_IDStock.getText();
+					valores[1] = "'" + text_nombreProducto.getText() + "'";
+					valores[2] = text_destribuidorProducto.getText();	
+					valores[3] = text_precioProducto.getText();
+					valores[4] = text_cantidadProducto.getText();	
+					
+					int result = JOptionPane.showConfirmDialog(null, "¿Quieres realizar el pedido?",
+					            "Pedido Realizado", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+
+					    if (result == JOptionPane.YES_OPTION) {
+					        JOptionPane.showMessageDialog(null, "Pedido Realizado");
+					        bbdd.modificar("stock", valores, false, table_mat);
+					    }
+					    bbdd.borrar("solicitud_material", valores, false);
+					    
+					    table_mat = bbdd.MostrarTabla("solicitud_material", table_mat);
+			}
+		});
+		btnNewButton.setBounds(785, 549, 89, 23);
+		contentPanel.add(btnNewButton);
+		
+		JButton btnNewButton_1 = new JButton("Borrar");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				String[] valores = new String[5];
+				valores[0] = text_IDStock.getText();
+				valores[1] = "'" + text_nombreProducto.getText() + "'";
+				valores[2] = text_destribuidorProducto.getText();	
+				valores[3] = text_precioProducto.getText();
+				valores[4] = text_cantidadProducto.getText();	
+				
+				int result = JOptionPane.showConfirmDialog(null, "¿Quieres borrar este producto de la lista?",
+				            "Borrar Producto", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+
+				    if (result == JOptionPane.YES_OPTION) {
+				        JOptionPane.showMessageDialog(null, "Producto borrado");
+				        bbdd.borrar("solicitud_material", valores, false);
+				    }
+				    
+				    table_mat = bbdd.MostrarTabla("solicitud_material", table_mat);
+				
+			}
+		});
+		btnNewButton_1.setBounds(686, 549, 89, 23);
+		contentPanel.add(btnNewButton_1);
+		
 	}
 }

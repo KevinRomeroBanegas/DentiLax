@@ -169,7 +169,6 @@ public class Solicitud_Pedidos extends JDialog {
 				
 				JOptionPane.showMessageDialog(null, "Solicitud Enviada");
 				
-				
 			}
 		});
 		btn_agregarProducto.setBounds(714, 548, 160, 20);

@@ -195,6 +195,7 @@ public class Paciente extends JDialog {
 					int result = JOptionPane.showConfirmDialog(null, "¿Quieres modificar esta paciente?",
 							"MODIFICAR PACIENTE", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 					if (result == JOptionPane.YES_OPTION) {
+						
 						bbdd.modificar("cliente", valores, false, table_paciente);
 						JOptionPane.showMessageDialog(null, "Paciente Modificado");
 					}
