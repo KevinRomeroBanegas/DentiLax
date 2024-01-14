@@ -22,6 +22,8 @@ import java.awt.event.KeyAdapter;
 import javax.swing.KeyStroke;
 import java.awt.event.InputEvent;
 import javax.swing.JPopupMenu;
+
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -150,6 +152,12 @@ public class PaginaPrincipal extends JFrame {
 		
 		JMenu mnNewMenu_4 = new JMenu("Stock");
 		mnNewMenu_4.setFont(new Font("Segoe UI", Font.BOLD, 30));
+		boolean infoSol=bbdd.existeSolicitud();
+		if(infoSol==true) {
+			mnNewMenu_4.setOpaque(true);
+			mnNewMenu_4.setBackground(new Color(153, 215, 222));
+			mnNewMenu_4.setForeground(new Color(255, 255, 255));
+		}
 		menuBar.add(mnNewMenu_4);
 		
 		JMenuItem mntmNewMenuItem_4 = new JMenuItem("Gestión Stock");

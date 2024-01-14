@@ -1,4 +1,5 @@
 package interfaz;
+
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 
@@ -46,7 +47,7 @@ public class Solicitud_Pedidos extends JDialog {
 		setModalityType(ModalityType.DOCUMENT_MODAL);
 		setModal(true);
 		setResizable(false);
-		BBDD bbdd=new BBDD();
+		BBDD bbdd = new BBDD();
 		setTitle("Solicitud Pedido");
 		setBounds(100, 100, 900, 700);
 		getContentPane().setLayout(null);
@@ -55,7 +56,7 @@ public class Solicitud_Pedidos extends JDialog {
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel);
 		contentPanel.setLayout(null);
-		
+
 		table_mat = new JTable();
 		table_mat.setBounds(10, 11, 864, 527);
 		table_mat = bbdd.MostrarTabla("Stock", table_mat);
@@ -68,7 +69,7 @@ public class Solicitud_Pedidos extends JDialog {
 					text_nombreProducto.setText(valores[1].toString());
 					text_destribuidorProducto.setText(valores[2].toString());
 					text_precioProducto.setText(valores[3].toString());
-					
+
 				}
 			}
 		});
@@ -85,110 +86,105 @@ public class Solicitud_Pedidos extends JDialog {
 				lblNewLabel_1.setBounds(233, 10, 131, 20);
 				buttonPane.add(lblNewLabel_1);
 			}
-			
+
 			text_nombreProducto = new JTextField();
 			text_nombreProducto.setEnabled(false);
 			text_nombreProducto.setBounds(374, 8, 243, 20);
 			buttonPane.add(text_nombreProducto);
 			text_nombreProducto.setColumns(10);
-			
+
 			JLabel lblNewLabel_1 = new JLabel("ID Proveedor:");
 			lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 15));
 			lblNewLabel_1.setBounds(233, 41, 131, 20);
 			buttonPane.add(lblNewLabel_1);
-			
+
 			text_destribuidorProducto = new JTextField();
 			text_destribuidorProducto.setEnabled(false);
 			text_destribuidorProducto.setBounds(374, 41, 243, 20);
 			buttonPane.add(text_destribuidorProducto);
 			text_destribuidorProducto.setColumns(10);
-			
+
 			JLabel lblNewLabel_1_1 = new JLabel("Precio:");
 			lblNewLabel_1_1.setFont(new Font("Tahoma", Font.BOLD, 15));
 			lblNewLabel_1_1.setBounds(652, 10, 96, 20);
 			buttonPane.add(lblNewLabel_1_1);
-			
+
 			text_precioProducto = new JTextField();
 			text_precioProducto.setEnabled(false);
 			text_precioProducto.setColumns(10);
 			text_precioProducto.setBounds(758, 10, 96, 20);
 			buttonPane.add(text_precioProducto);
-			
+
 			JLabel lblNewLabel_1_1_1 = new JLabel("Cantidad:");
 			lblNewLabel_1_1_1.setFont(new Font("Tahoma", Font.BOLD, 15));
 			lblNewLabel_1_1_1.setBounds(652, 41, 96, 20);
 			buttonPane.add(lblNewLabel_1_1_1);
-			
+
 			text_cantidadProducto = new JTextField();
 			text_cantidadProducto.setColumns(10);
 			text_cantidadProducto.setBounds(758, 41, 96, 20);
 			buttonPane.add(text_cantidadProducto);
-			
+
 			text_IDStock = new JTextField();
 			text_IDStock.setEnabled(false);
 			text_IDStock.setColumns(10);
 			text_IDStock.setBounds(116, 28, 73, 20);
 			buttonPane.add(text_IDStock);
-			
+
 			JLabel lblNewLabel_1_1_2 = new JLabel("ID Stock:");
 			lblNewLabel_1_1_2.setFont(new Font("Tahoma", Font.BOLD, 15));
 			lblNewLabel_1_1_2.setBounds(10, 25, 96, 20);
 			buttonPane.add(lblNewLabel_1_1_2);
-			
+
 		}
-		
-		
-		
+
 		JLabel lblNewLabel = new JLabel("Datos Pedido");
 		lblNewLabel.setBounds(10, 549, 193, 20);
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 15));
 		contentPanel.add(lblNewLabel);
-		
+
 		JButton btn_agregarProducto = new JButton("Enviar Solicitud");
 		btn_agregarProducto.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-				if(text_cantidadProducto.getText().isBlank()){
+
+				if (text_cantidadProducto.getText().isBlank()) {
 					JOptionPane.showMessageDialog(null, "Rellena el campo Cantidad");
-				}else {
+				} else {
 					String[] valores = new String[6];
 					valores[0] = "null";
 					valores[1] = text_IDStock.getText();
 					valores[2] = "'" + text_nombreProducto.getText() + "'";
-					valores[3] = text_destribuidorProducto.getText();	
+					valores[3] = text_destribuidorProducto.getText();
 					valores[4] = text_precioProducto.getText();
-					valores[5] = text_cantidadProducto.getText();	
-					
-					int result = JOptionPane.showConfirmDialog(null, "¿Quieres añadir este producto a la lista de pedidos?",
-					            "AGREGAR PRODUCTO", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+					valores[5] = text_cantidadProducto.getText();
 
-<<<<<<< HEAD
-					    if (result == JOptionPane.YES_OPTION) {
-					        JOptionPane.showMessageDialog(null, "Producto agregado a la lista");
-					        bbdd.insertar("solicitud_material", valores, false);
-					    }
+					int result = JOptionPane.showConfirmDialog(null,
+							"¿Quieres añadir este producto a la lista de pedidos?", "AGREGAR PRODUCTO",
+							JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+
+					if (result == JOptionPane.YES_OPTION) {
+						JOptionPane.showMessageDialog(null, "Producto agregado a la lista");
+						bbdd.insertar("solicitud_material", valores, false);
+					}
+
+					JOptionPane.showMessageDialog(null, "Solicitud Enviada");
+
+					if (result == JOptionPane.YES_OPTION) {
+						JOptionPane.showMessageDialog(null, "Producto agregado a la lista");
+						bbdd.insertar("solicitud_material", valores, false);
+					}
 				}
-				
-				JOptionPane.showMessageDialog(null, "Solicitud Enviada");
-				
-=======
-				    if (result == JOptionPane.YES_OPTION) {
-				        JOptionPane.showMessageDialog(null, "Producto agregado a la lista");
-				        bbdd.insertar("solicitud_material", valores, false);
-				    }
-				}				
->>>>>>> eef5d945c7e81a5a8f6849dfb9b926cbca64d18f
 			}
 		});
 		btn_agregarProducto.setBounds(714, 548, 160, 20);
 		contentPanel.add(btn_agregarProducto);
 		btn_agregarProducto.setActionCommand("Cancel");
-		
-		
+
 		JLabel Fondo_stock = new JLabel("");
-		Fondo_stock.setIcon(new ImageIcon("C:\\Users\\kevin\\Documents\\GitHub\\DentiLax\\DentiApps\\interfaz\\Interfaz_DentiLax\\Fondo 1200x800.png"));
+		Fondo_stock.setIcon(new ImageIcon(
+				"C:\\Users\\kevin\\Documents\\GitHub\\DentiLax\\DentiApps\\interfaz\\Interfaz_DentiLax\\Fondo 1200x800.png"));
 		Fondo_stock.setBounds(0, 0, 884, 660);
 		contentPanel.add(Fondo_stock);
-		
+
 	}
 }

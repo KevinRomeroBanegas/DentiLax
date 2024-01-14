@@ -64,11 +64,11 @@ public class Gestion_Pedidos extends JDialog {
 			public void mouseClicked(MouseEvent e) {
 				if (e.getClickCount() == 2) {
 					String[] valores = bbdd.SacarValoresTabla(table_mat);
-					text_IDStock.setText(valores[0].toString());
-					text_nombreProducto.setText(valores[1].toString());
-					text_destribuidorProducto.setText(valores[2].toString());
-					text_precioProducto.setText(valores[3].toString());
-					text_cantidadProducto.setText(valores[4].toString());
+					text_IDStock.setText(valores[1].toString());
+					text_nombreProducto.setText(valores[2].toString());
+					text_destribuidorProducto.setText(valores[3].toString());
+					text_precioProducto.setText(valores[4].toString());
+					text_cantidadProducto.setText(valores[5].toString());
 				}
 			}
 		});
@@ -81,7 +81,7 @@ public class Gestion_Pedidos extends JDialog {
 			buttonPane.setLayout(null);
 			
 			text_cantidadProducto = new JTextField();
-			text_cantidadProducto.setEnabled(false);
+			//text_cantidadProducto.setEnabled(false);
 			text_cantidadProducto.setColumns(10);
 			text_cantidadProducto.setBounds(758, 40, 96, 20);
 			buttonPane.add(text_cantidadProducto);
@@ -93,7 +93,7 @@ public class Gestion_Pedidos extends JDialog {
 			}
 			
 			text_nombreProducto = new JTextField();
-			text_nombreProducto.setEnabled(false);
+			//text_nombreProducto.setEnabled(false);
 			text_nombreProducto.setBounds(374, 8, 243, 20);
 			buttonPane.add(text_nombreProducto);
 			text_nombreProducto.setColumns(10);
@@ -104,7 +104,7 @@ public class Gestion_Pedidos extends JDialog {
 			buttonPane.add(lblNewLabel_1);
 			
 			text_destribuidorProducto = new JTextField();
-			text_destribuidorProducto.setEnabled(false);
+			//text_destribuidorProducto.setEnabled(false);
 			text_destribuidorProducto.setBounds(374, 41, 243, 20);
 			buttonPane.add(text_destribuidorProducto);
 			text_destribuidorProducto.setColumns(10);
@@ -115,7 +115,7 @@ public class Gestion_Pedidos extends JDialog {
 			buttonPane.add(lblNewLabel_1_1);
 			
 			text_precioProducto = new JTextField();
-			text_precioProducto.setEnabled(false);
+			//text_precioProducto.setEnabled(false);
 			text_precioProducto.setColumns(10);
 			text_precioProducto.setBounds(758, 10, 96, 20);
 			buttonPane.add(text_precioProducto);
@@ -126,7 +126,7 @@ public class Gestion_Pedidos extends JDialog {
 			buttonPane.add(lblNewLabel_1_1_1);
 			
 			text_IDStock = new JTextField();
-			text_IDStock.setEnabled(false);
+			//text_IDStock.setEnabled(false);
 			text_IDStock.setColumns(10);
 			text_IDStock.setBounds(116, 28, 73, 20);
 			buttonPane.add(text_IDStock);
@@ -178,7 +178,7 @@ public class Gestion_Pedidos extends JDialog {
 
 					if (result == JOptionPane.YES_OPTION) {
 						bbdd.tramitarProductos(text_IDStock.getText(),text_cantidadProducto.getText());
-						bbdd.borrar("solicitud_material", valores, false);
+						bbdd.borrar("solicitud_material", valores, true);
 					}
 
 					table_mat = bbdd.MostrarTabla("solicitud_material", table_mat);
