@@ -170,8 +170,6 @@ public class Gestion_Pedidos extends JDialog {
 					        bbdd.modificar("stock", valores, false, table_mat);
 					    }
 					    bbdd.borrar("solicitud_material", valores, false);
-					    
-					    table_mat = bbdd.MostrarTabla("solicitud_material", table_mat);
 			}
 		});
 		btnNewButton.setBounds(785, 549, 89, 23);
