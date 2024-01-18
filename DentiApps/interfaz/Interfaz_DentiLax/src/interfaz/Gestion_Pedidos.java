@@ -208,7 +208,7 @@ public class Gestion_Pedidos extends JDialog {
 
 				    if (result == JOptionPane.YES_OPTION) {
 				        JOptionPane.showMessageDialog(null, "Producto borrado");
-				        bbdd.borrar("solicitud_material", valores, false);
+				        bbdd.borrar("solicitud_material", valores, true);
 				    }
 				    
 				    table_mat = bbdd.MostrarTabla("solicitud_material", table_mat);

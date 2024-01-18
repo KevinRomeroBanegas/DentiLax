@@ -166,13 +166,6 @@ public class Solicitud_Pedidos extends JDialog {
 						JOptionPane.showMessageDialog(null, "Producto agregado a la lista");
 						bbdd.insertar("solicitud_material", valores, false);
 					}
-
-					JOptionPane.showMessageDialog(null, "Solicitud Enviada");
-
-					if (result == JOptionPane.YES_OPTION) {
-						JOptionPane.showMessageDialog(null, "Producto agregado a la lista");
-						bbdd.insertar("solicitud_material", valores, false);
-					}
 				}
 			}
 		});
