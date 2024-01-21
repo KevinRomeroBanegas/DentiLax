@@ -32,6 +32,7 @@ public class Solicitud_Pedidos extends JDialog {
 	private JTable table_mat;
 	private JTextField text_cantidadProducto;
 	private JTextField text_IDStock;
+	
 
 	public static void main(String[] args) {
 		try {
@@ -124,6 +125,7 @@ public class Solicitud_Pedidos extends JDialog {
 			text_cantidadProducto.setColumns(10);
 			text_cantidadProducto.setBounds(758, 41, 96, 20);
 			buttonPane.add(text_cantidadProducto);
+			
 
 			text_IDStock = new JTextField();
 			text_IDStock.setEnabled(false);
@@ -146,28 +148,40 @@ public class Solicitud_Pedidos extends JDialog {
 		JButton btn_agregarProducto = new JButton("Enviar Solicitud");
 		btn_agregarProducto.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				String NumeroCantidadProducto = text_cantidadProducto.getText();
+				
+				int cantidadProducto = Integer.parseInt(NumeroCantidadProducto);
+				
+				if(cantidadProducto<1) {
+					JOptionPane.showMessageDialog(null,"Porfavor inserte un valor valido");
+					
+				}else {
+					if (text_cantidadProducto.getText().isBlank()) {
+						JOptionPane.showMessageDialog(null, "Rellena el campo Cantidad");
+					} else {
+						String[] valores = new String[6];
+						valores[0] = "null";
+						valores[1] = text_IDStock.getText();
+						valores[2] = "'" + text_nombreProducto.getText() + "'";
+						valores[3] = text_destribuidorProducto.getText();
+						valores[4] = text_precioProducto.getText();
+						valores[5] = text_cantidadProducto.getText();
+						
+						int result = JOptionPane.showConfirmDialog(null,
+								"¿Quieres añadir este producto a la lista de pedidos?", "AGREGAR PRODUCTO",
+								JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 
-				if (text_cantidadProducto.getText().isBlank()) {
-					JOptionPane.showMessageDialog(null, "Rellena el campo Cantidad");
-				} else {
-					String[] valores = new String[6];
-					valores[0] = "null";
-					valores[1] = text_IDStock.getText();
-					valores[2] = "'" + text_nombreProducto.getText() + "'";
-					valores[3] = text_destribuidorProducto.getText();
-					valores[4] = text_precioProducto.getText();
-					valores[5] = text_cantidadProducto.getText();
-
-					int result = JOptionPane.showConfirmDialog(null,
-							"¿Quieres añadir este producto a la lista de pedidos?", "AGREGAR PRODUCTO",
-							JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-
-					if (result == JOptionPane.YES_OPTION) {
-						JOptionPane.showMessageDialog(null, "Producto agregado a la lista");
-						bbdd.insertar("solicitud_material", valores, false);
+						if (result == JOptionPane.YES_OPTION) {
+							JOptionPane.showMessageDialog(null, "Producto agregado a la lista");
+							bbdd.insertar("solicitud_material", valores, false);	
 					}
-				}
-			}
+				}			
+			}			
+				
+		}	
+		
+			
 		});
 		btn_agregarProducto.setBounds(714, 548, 160, 20);
 		contentPanel.add(btn_agregarProducto);
@@ -179,5 +193,12 @@ public class Solicitud_Pedidos extends JDialog {
 		Fondo_stock.setBounds(0, 0, 884, 660);
 		contentPanel.add(Fondo_stock);
 
+	}
+	public void validarPedidos() {
+		int validadarCantidad=Integer.parseInt(text_cantidadProducto.getText());
+		if(validadarCantidad<1) {
+			JOptionPane.showMessageDialog(null,"Inserte un valor valido");
+		}
+	
 	}
 }
