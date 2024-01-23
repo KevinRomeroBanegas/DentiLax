@@ -1,6 +1,4 @@
 package interfaz;
-import java.awt.BorderLayout;
-import java.awt.FlowLayout;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -18,7 +16,6 @@ import javax.swing.JTextField;
 import javax.swing.ImageIcon;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import java.awt.Dialog.ModalityType;
 import java.awt.Color;
 
 public class Gestion_Pedidos extends JDialog {
@@ -179,6 +176,12 @@ public class Gestion_Pedidos extends JDialog {
 					if (result == JOptionPane.YES_OPTION) {
 						bbdd.tramitarProductos(text_IDStock.getText(),text_cantidadProducto.getText());
 						bbdd.borrar("solicitud_material", valores, true);
+						text_IDStock.setText("");
+						text_nombreProducto.setText("");
+						text_cantidadProducto.setText("");
+						text_cantidadProducto.setText("");
+						text_precioProducto.setText("");
+						
 					}
 
 					table_mat = bbdd.MostrarTabla("solicitud_material", table_mat);
