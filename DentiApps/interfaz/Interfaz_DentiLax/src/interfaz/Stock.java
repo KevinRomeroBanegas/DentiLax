@@ -171,7 +171,9 @@ public class Stock extends JDialog implements ActionListener{
             public void mouseClicked(MouseEvent e) {
                 if (e.getClickCount() == 2) {
                     String[]valores=bbdd.SacarValoresTabla(table_material);
-                    
+                    text_nombreMaterial.setText(valores[1].toString());
+                    text_proveedorMaterial.setText(valores[2].toString());
+                    text_precioMaterial.setText(valores[3].toString());
                     //modificar en función de la cantidad de valores de la nueva tabla
                     /*text_nombreMaterial.setText(valores[1].toString());
                     text_proveedorMaterial.setText(valores[2].toString());

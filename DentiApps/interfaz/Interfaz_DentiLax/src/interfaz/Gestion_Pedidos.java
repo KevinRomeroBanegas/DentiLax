@@ -90,6 +90,7 @@ public class Gestion_Pedidos extends JDialog {
 			}
 			
 			text_nombreProducto = new JTextField();
+			text_nombreProducto.setEnabled(false);
 			//text_nombreProducto.setEnabled(false);
 			text_nombreProducto.setBounds(374, 8, 243, 20);
 			buttonPane.add(text_nombreProducto);
@@ -123,6 +124,7 @@ public class Gestion_Pedidos extends JDialog {
 			buttonPane.add(lblNewLabel_1_1_1);
 			
 			text_IDStock = new JTextField();
+			text_IDStock.setEnabled(false);
 			//text_IDStock.setEnabled(false);
 			text_IDStock.setColumns(10);
 			text_IDStock.setBounds(116, 28, 73, 20);
