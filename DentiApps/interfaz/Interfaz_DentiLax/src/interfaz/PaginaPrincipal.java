@@ -205,7 +205,7 @@ public class PaginaPrincipal extends JFrame {
 
 		mntmNewMenuItem_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Cita vPrincipalCita = new Cita();
+				Cita vPrincipalCita = new Cita(rol,usuario);
 				vPrincipalCita.setLocationRelativeTo(null);
 				vPrincipalCita.setLocation(370, 212);
 				vPrincipalCita.setVisible(true);
@@ -372,7 +372,7 @@ public class PaginaPrincipal extends JFrame {
 		mntmNewMenuItem_11.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Cita cita = new Cita();
+				Cita cita = new Cita(rol,usuario);
 				cita.setLocationRelativeTo(null);
 				cita.setLocation(370, 212);
 				cita.setVisible(true);
@@ -425,7 +425,7 @@ public class PaginaPrincipal extends JFrame {
 		if (lbl_ROL.getText().equals("Doctor")) {
 			mnNewMenu_1.setEnabled(false);
 			// mnNewMenu_3.setEnabled(false);
-			mnNewMenu_5.setEnabled(false);
+			mnNewMenu_5.setEnabled(true);
 			mnNewMenu_6.setEnabled(false);
 			mntmNewMenuItem_4.setEnabled(false);
 			mntmNewMenuItem_10.setEnabled(false);

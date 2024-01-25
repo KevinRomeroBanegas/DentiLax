@@ -637,5 +637,60 @@ public class BBDD {
 		}
 		return existe;
 	}
+	
+	
 
+	public JTable MostrarTablaCitaDoctor(String TableName, JTable table, String doctor) {
+		conectar();
+		try {
+			String sql = "SELECT * FROM bbdd_dentista." + TableName + " WHERE NombreDoctor='" + doctor + "'";
+			Statement st = cn.createStatement();
+			ResultSet res = st.executeQuery(sql);
+
+			DefaultTableModel model = new DefaultTableModel();
+
+			// Obtén metadatos para agregar columnas
+			ResultSetMetaData metaData = (ResultSetMetaData) res.getMetaData();
+			int columnCount = metaData.getColumnCount();
+			DatabaseMetaData Data = (DatabaseMetaData) cn.getMetaData();
+			ResultSet resultSet;
+			resultSet = Data.getColumns(null, null, TableName, null);
+
+			String columnNames = "";
+			while (resultSet.next()) {
+				String columnName = resultSet.getString("COLUMN_NAME");
+				columnNames += columnName + ",";
+				model.addColumn(columnName);
+			}
+			String[] Array = columnNames.split(",");
+
+			table.setModel(model);
+			model.addRow(Array);
+			// Agrega filas al modelo
+			while (res.next()) {
+				String[] rowData = new String[columnCount];
+				for (int i = 1; i <= columnCount; i++) {
+					rowData[i - 1] = res.getString(i);
+				}
+				model.addRow(rowData);
+			}
+
+			// Cierra recursos
+			res.close();
+			st.close();
+			cn.close();
+
+			// Establece el modelo en la tabla
+			table.setModel(model);
+			// Hace que no puedas editar la tabla
+			for (int i = 0; i < columnCount; i++) {
+				Class<?> col_class = table.getColumnClass(i);
+				table.setDefaultEditor(col_class, null); // remove editor
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return table;
+	}
 }

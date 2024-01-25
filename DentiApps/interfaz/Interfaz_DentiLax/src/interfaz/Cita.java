@@ -50,7 +50,7 @@ public class Cita extends JDialog {
 
 	}
 
-	public Cita() {
+	public Cita(String rol, String DNI) {
 		setModalityType(ModalityType.DOCUMENT_MODAL);
 		setModal(true);
 		setResizable(false);
@@ -284,6 +284,11 @@ public class Cita extends JDialog {
 		table_cita = new JTable();
 		table_cita.setBounds(10, 11, 864, 463);
 		table_cita = bbdd.MostrarTabla("Cita", table_cita);
+		if("Doctor".equals(rol)) {
+			String consulta="Carlos Alcaraz Montes";
+			System.out.print(consulta);
+			table_cita = bbdd.MostrarTablaCitaDoctor("Cita", table_cita, consulta);
+		}
 		table_cita.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
