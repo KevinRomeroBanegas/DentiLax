@@ -137,10 +137,11 @@ public class Stock extends JDialog implements ActionListener{
 		JButton btn_agregarMaterial = new JButton("Agregar");
 		btn_agregarMaterial.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String valores[]=new String [3]; 
+				String valores[]=new String [4]; 
 				valores[0]="'"+text_nombreMaterial.getText()+"'";
             	valores[1]="'"+text_proveedorMaterial.getText()+"'";
             	valores[2]=""+text_precioMaterial.getText()+"";
+            	valores[3]=""+0+"";
             	bbdd.insertar("Stock", valores, true);
 				table_material=bbdd.MostrarTabla("Stock", table_material);
 				
