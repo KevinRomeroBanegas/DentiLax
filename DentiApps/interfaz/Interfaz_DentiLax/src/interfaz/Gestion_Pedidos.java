@@ -78,6 +78,7 @@ public class Gestion_Pedidos extends JDialog {
 			buttonPane.setLayout(null);
 			
 			text_cantidadProducto = new JTextField();
+			text_cantidadProducto.setEnabled(false);
 			//text_cantidadProducto.setEnabled(false);
 			text_cantidadProducto.setColumns(10);
 			text_cantidadProducto.setBounds(758, 40, 96, 20);
@@ -102,6 +103,7 @@ public class Gestion_Pedidos extends JDialog {
 			buttonPane.add(lblNewLabel_1);
 			
 			text_destribuidorProducto = new JTextField();
+			text_destribuidorProducto.setEnabled(false);
 			//text_destribuidorProducto.setEnabled(false);
 			text_destribuidorProducto.setBounds(374, 41, 243, 20);
 			buttonPane.add(text_destribuidorProducto);
@@ -113,6 +115,7 @@ public class Gestion_Pedidos extends JDialog {
 			buttonPane.add(lblNewLabel_1_1);
 			
 			text_precioProducto = new JTextField();
+			text_precioProducto.setEnabled(false);
 			//text_precioProducto.setEnabled(false);
 			text_precioProducto.setColumns(10);
 			text_precioProducto.setBounds(758, 10, 96, 20);
