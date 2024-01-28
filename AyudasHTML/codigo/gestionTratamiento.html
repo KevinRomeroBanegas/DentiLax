@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="cssPlantilla.css"/>
+    <title>Ayuda Gestión Tratamiento</title>
+</head>
+<body>
+    <img class="logo" src="../imagenes/dentiapp.png" alt="Logo">
+    <h1>Gestión de Tratamiento</h1>
+    <hr>
+    <div class="contenido">
+        <p>
+            Esta es la página de Gestión de tratamietos. A ella tiene acceso el Administrador, quien podrá visualizarla e interactuar con ella.
+            <br><br>
+            En esta página, dicho usuario podrá ver la tabla de Tratamientos. Además, podrá 
+            interactuar con la base de datos agregando nuevos tratamientos, eliminando los ya existentes o modificando los valores de estos. 
+            También se podrá realizar una búsqueda específica de un Tratamiento en concreto mediante el botón de filtrar tabla. 
+            <br><br>
+            A continuación, se mostrará el diseño de nuestra interfaz, señalizando y explicando la funcionalidad de los distintos 
+            elementos destacables:
+        </p>
+        <img class="captura" src="../imagenes/capturaGestionStock.jpg" alt="Pantalla Gestión de Stock">
+    
+        <p>Listado de elementos:</p>
+        <ol>
+            <li>
+                <span class="elemento">Tabla:</span>Está conectada a la base de datos "Tratamiento", y nos permite visualizar el 
+                contenido de esta. Presenta una funcionalidad especial al hacer doble click sobre una de sus filas, rellenando los cuadros
+                de texto de la parte inferior con el contenido del Tratamiento seleccionado.
+            </li>
+            <li>
+                <span class="elemento">Botón "Baja":</span>Este botón nos permite eliminar un tratamiento de la tabla, realizando al mismo
+                tiempo una consulta DELETE sobre la tabla de la base de datos. Para eliminar un tratamiento, primero se deberá seleccionar 
+                haciendo doble click sobre él en la tabla. Acto seguido, se pulsa este botón y el tratamiento se eliminará.
+            </li>
+            <li>
+                <span class="elemento">Botón "Modificar":</span>Sirve para modificar los datos de un tratamiento de la base de datos 
+                mediante una consulta UPDATE. Para ello, seleccionaremos dicho tratamiento haciendo doble click sobre él. 
+                Después, usando los cuadros de texto en los que se posicionan los datos, cambiaremos la información a nuestro placer. 
+                Por último, se pulsará sobre el botón y se habrá modificado la base de datos con éxito.
+            </li>
+            <li>
+                <span class="elemento">Botón "Agregar":</span>Nos permitirá insertar tratamientos en la base de datos de forma cómoda, realizando una consulta INSERT. 
+                Simplemente se deben rellenar los datos en los cuadros de texto, pulsar el botón, y el nuevo tratamiento se habrá
+                introducido satisfactoriamente en la base de datos. 
+            </li>
+            <li>
+                <span class="elemento">Cuadro de texto "Nombre":</span> En él se mostrará o se escribirá el nombre del tratamiento con el que 
+                queramos trabajar.
+            </li>
+            <li>
+                <span class="elemento">Menu desplegable "Especialidad":</span> En él se mostrará el nombre de las especialidades disponibles para seleccionar con el que 
+                queramos trabajar.
+            </li>
+            <li>
+                <span class="elemento">Cuadro de texto "Precio":</span> En él se mostrará o se escribirá el precio del tratamiento con el que 
+                queramos trabajar.
+            </li>
+            <li>
+                <span class="elemento">Botón "Filtrar tabla":</span>Este botón nos permitirá buscar un tratamiento específico de la tabla, en
+                el caso de que queramos hacer una comprobación y nuestra tabla contenga muchos elementos. Para hacer uso de él, primero 
+                pulsamos sobre él y se nos desplegará un cuadro de texto en el que tendremos que introducir el trataminto que queremos 
+                buscar, escribiéndo su nombre como condición de búsqueda. Al darle a confirmar, la tabla se actualizará mostrando únicamente 
+                el tratamiento cuyo nombre coincida con el introducido.
+            </li>
+        </ol>
+    </div>
+</body>
+</html>
