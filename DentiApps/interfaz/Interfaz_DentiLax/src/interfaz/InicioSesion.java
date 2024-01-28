@@ -43,11 +43,7 @@ public class InicioSesion extends JFrame {
 		});
 	}
 
-	/**
-	 * Create the frame.
-	 * 
-	 * @throws SQLException
-	 */
+
 	public InicioSesion() throws SQLException {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(InicioSesion.class.getResource("/imagenes/diente.png")));
 		setResizable(false);
