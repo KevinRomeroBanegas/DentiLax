@@ -1,0 +1,14 @@
+<toc version="1.0">
+    <tocitem text="Página Principal" target="paginaPrincipal">
+        <tocitem text="Gestión Paciente" target="gestionPaciente"/>
+        <tocitem text="Gestión Doctores" target="gestionDoctores"/>
+        <tocitem text="Gestión Tratamiento" target="gestionTratamiento"/>
+        <tocitem text="Gestión Especialidades" target="gestionEspecialidad"/>
+        <tocitem text="Gestión Stock" target="gestionStock"/>
+        <tocitem text="Solicitud Pedidos" target="solicitudPedidos"/>
+        <tocitem text="Gestión Pedidos" target="gestionPedidos"/>
+        <tocitem text="Gestión Citas" target="gestionCita"/>
+        <tocitem text="Gestión Facturación" target="gestionFacturacion"/>
+    </tocitem>
+</toc>
+    

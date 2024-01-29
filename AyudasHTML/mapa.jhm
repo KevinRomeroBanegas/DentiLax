@@ -1,0 +1,12 @@
+<map version="1.0">
+    <mapID target="paginaPrincipal" url="codigo/paginaPrincipal.html"/>
+    <mapID target="gestionPaciente" url="codigo/gestionPaciente.html"/>
+    <mapID target="gestionDoctores" url="codigo/gestionDoctores.html"/>
+    <mapID target="gestionTratamiento" url="codigo/gestionTratamiento.html"/>
+    <mapID target="gestionEspecialidad" url="codigo/gestionEspecialidad.html"/>
+    <mapID target="gestionStock" url="codigo/gestionStock.html"/>
+    <mapID target="solicitudPedidos" url="codigo/solicitudPedidos.html"/>
+    <mapID target="gestionPedidos" url="codigo/gestionPedidos.html"/>
+    <mapID target="gestionCita" url="codigo/gestionCita.html"/>
+    <mapID target="gestionFacturacion" url="codigo/gestionFacturacion.html"/>
+</map>
