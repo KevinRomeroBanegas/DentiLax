@@ -14,5 +14,6 @@
 	<classpathentry kind="con" path="net.sf.jasperreports.JR_CONTAINER"/>
 	<classpathentry kind="con" path="net.sf.jasperreports.JR_DEPENDENCIES_CONTAINER"/>
 	<classpathentry kind="con" path="com.jaspersoft.server.JRS_CONTAINER"/>
+	<classpathentry kind="lib" path="C:/Users/MEDAC/Downloads/javahelp-2.0.02.jar"/>
 	<classpathentry kind="output" path="interfaz/Interfaz_DentiLax/bin"/>
 </classpath>

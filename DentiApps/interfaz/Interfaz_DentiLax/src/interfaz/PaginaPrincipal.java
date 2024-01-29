@@ -267,7 +267,7 @@ public class PaginaPrincipal extends JFrame {
 				
 				//codigo para abrir ayuda
 				try {
-					File fichero = new File("DentiApps\\interfaz\\Interfaz_DentiLax\\src\\help\\help_set.hs");  
+					File fichero = new File("interfaz\\Interfaz_DentiLax\\src\\help\\help_set.hs");  
 					java.net.URL hsURL = fichero.toURI().toURL();
 					HelpSet helpset = new HelpSet (getClass().getClassLoader(),hsURL); 
 					HelpBroker hb = helpset.createHelpBroker();
