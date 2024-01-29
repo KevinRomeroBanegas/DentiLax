@@ -68,7 +68,7 @@ public class Factura extends JDialog {
 				try {
 					Map<String, Object> parametros = new HashedMap<String, Object>();
 					parametros.put("DNICliente", "77193434Y");
-					reporte=JasperCompileManager.compileReport("src/Informes/factura.jrxml");
+					reporte=JasperCompileManager.compileReport("interfaz/Interfaz_DentiLax/src/Informes/factura.jrxml");
 					JasperPrint p =JasperFillManager.fillReport(reporte, parametros, bbdd.conectar());
 					JasperViewer.viewReport(p,true);
 				} catch (JRException e1) {

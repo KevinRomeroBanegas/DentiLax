@@ -90,10 +90,6 @@ WHERE cliente.DNI= $P{DNICliente}]]>
 					</textElement>
 					<text><![CDATA[DENTIAPP]]></text>
 				</staticText>
-				<image>
-					<reportElement x="500" y="20" width="50" height="50" uuid="6f4483d0-3878-4b62-ab6e-eca7da7e7acc"/>
-					<imageExpression><![CDATA["/interfaz/Interfaz_DentiLax/src/imagenes/diente.png"]]></imageExpression>
-				</image>
 			</frame>
 		</band>
 	</title>
