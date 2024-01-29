@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="cssPlantilla.css"/>
+    <title>Ayuda Gestión de Pedidos</title>
+</head>
+<body>
+    <img class="logo" src="../imagenes/dentiapp.png" alt="Logo">
+    <h1>Gestión de Pedidos</h1>
+    <hr>
+    <div class="contenido">
+        <p>
+            Esta es la página de Gestión de Pedidos. A ella tiene acceso el Administrador, quien podrá visualizarla e interactuar con ella.
+            <br><br>
+            En esta página, el Admnistrador podrá ver una tabla con los pedidos de materiales que han realizado los Doctores, y tendrá la 
+            posibilidad de decidir si aceptar la solicitud y tramitar el pedido, o denegarla y eliminarla. 
+            <br><br>
+            A continuación, se mostrará el diseño de nuestra interfaz, señalizando y explicando la funcionalidad de los distintos 
+            elementos destacables:
+        </p>
+        <img class="captura" src="../imagenes/capturaGestionPedidos.jpg" alt="Imagen de prueba">
+    
+        <p>Listado de elementos:</p>
+        <ol>
+            <li>
+                <span class="elemento">Tabla:</span>Está conectada a la base de datos "Solicitud_materiales", y nos permite visualizar el 
+                contenido de esta. Presenta una funcionalidad especial al hacer doble click sobre una de sus filas, rellenando los cuadros
+                de texto de la parte inferior con el contenido del pedido seleccionado.
+            </li>
+            <li>
+                <span class="elemento">Botón "Tramitar":</span>Su función es la de aceptar el pedido seleccionado y añadir la cantidad de
+                materiales indicada al total de materiales en la base de datos "Stock".
+                En el caso de aceptar la solicitud, nos mostrará un mensaje indicando que el pedido ha sido aceptado. Ahora ya se podrá ver 
+                en la base de datos "Stock" que la cantidad del material del pedido ha aumentado.
+            </li>
+            <li>
+                <span class="elemento">Botón "Borrar":</span>Se utiliza en caso de que el Administrador considere que un pedido no deba 
+                realizarse. En estos caso, en vez de que el pedido quede en el olvido en la base de datos, el Administrador lo eliminará 
+                para mantener registro solo de los pedidos válidos.
+            </li>
+            <li>
+                <span class="elemento">Cuadro de texto "ID Stock":</span>En él se mostrará el ID del material del pedido seleccionado.
+            </li>
+            <li>
+                <span class="elemento">Cuadro de texto "Nombre":</span>En él se mostrará el nombre del material del pedido seleccionado.
+            </li>
+            <li>
+                <span class="elemento">Cuadro de texto "ID Proveedor":</span>En él se mostrará el ID del proveedor que proporciona 
+                el material del pedido seleccionado.
+            </li>
+            <li>
+                <span class="elemento">Cuadro de texto "Precio":</span>En él se mostrará el precio del material del pedido seleccionado.
+            </li>
+            <li>
+                <span class="elemento">Cuadro de texto "Cantidad":</span>En él se mostrará la cantidad del material del pedido seleccionado.
+            </li>
+        </ol>
+    </div>
+    
+
+</body>
+</html>

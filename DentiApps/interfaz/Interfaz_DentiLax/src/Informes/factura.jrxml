@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.20.6.final using JasperReports Library version 6.20.6-5c96b6aa8a39ac1dc6b6bea4b81168e16dd39231  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="informes" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="2f6de8de-a404-4fd5-87dd-7d5859aa4575">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="ConexionPrueba_Jasper"/>
+	<parameter name="DNICliente" class="java.lang.String"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT factura.idCita, cita.DniClientes AS DNI,cliente.Nombre AS "Nombre Completo", cita.NombreTrat AS Tratamiento, CONCAT(tratamiento.Precio,'€') AS Precio, CONCAT(cita.Fecha,',',cita.Hora) AS Fecha FROM bbdd_dentista.factura 
+JOIN bbdd_dentista.cita ON factura.idCita=cita.idCita
+JOIN bbdd_dentista.tratamiento ON tratamiento.Nombre=cita.NombreTrat
+JOIN bbdd_dentista.cliente ON cliente.DNI = cita.DniClientes
+WHERE cliente.DNI= $P{DNICliente}]]>
+	</queryString>
+	<field name="idCita" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="idCita"/>
+		<property name="com.jaspersoft.studio.field.label" value="idCita"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="factura"/>
+	</field>
+	<field name="DNI" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="DniClientes"/>
+		<property name="com.jaspersoft.studio.field.label" value="DNI"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="cita"/>
+	</field>
+	<field name="Nombre Completo" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="Nombre"/>
+		<property name="com.jaspersoft.studio.field.label" value="Nombre Completo"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="cliente"/>
+	</field>
+	<field name="Tratamiento" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="NombreTrat"/>
+		<property name="com.jaspersoft.studio.field.label" value="Tratamiento"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="cita"/>
+	</field>
+	<field name="Precio" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="Precio"/>
+		<property name="com.jaspersoft.studio.field.label" value="Precio"/>
+	</field>
+	<field name="Fecha" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="Fecha"/>
+		<property name="com.jaspersoft.studio.field.label" value="Fecha"/>
+	</field>
+	<variable name="SumaFacturas" class="java.lang.Integer">
+		<variableExpression><![CDATA[$V{SumaFacturas}.sum($F{Precio},0)]]></variableExpression>
+	</variable>
+	<variable name="Variable_1" class="java.lang.Integer"/>
+	<variable name="Precio1" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{Precio}]]></variableExpression>
+	</variable>
+	<group name="Group1">
+		<groupExpression><![CDATA[$F{idCita}]]></groupExpression>
+		<groupFooter>
+			<band/>
+		</groupFooter>
+	</group>
+	<group name="Group2">
+		<groupExpression><![CDATA[$F{DNI}]]></groupExpression>
+		<groupFooter>
+			<band/>
+		</groupFooter>
+	</group>
+	<group name="Group3">
+		<groupExpression><![CDATA[$F{Nombre Completo}]]></groupExpression>
+		<groupFooter>
+			<band/>
+		</groupFooter>
+	</group>
+	<group name="Group4">
+		<groupExpression><![CDATA[$F{Precio}]]></groupExpression>
+		<groupFooter>
+			<band/>
+		</groupFooter>
+	</group>
+	<group name="Precio">
+		<groupExpression><![CDATA[$F{Precio}]]></groupExpression>
+	</group>
+	<group name="Fecha">
+		<groupExpression><![CDATA[$F{Fecha}]]></groupExpression>
+	</group>
+	<background>
+		<band/>
+	</background>
+	<title>
+		<band height="72">
+			<frame>
+				<reportElement mode="Opaque" x="-20" y="-20" width="595" height="92" backcolor="#006699" uuid="62eb8784-d0d3-4bb7-a3ff-c483dd84b0d2"/>
+				<staticText>
+					<reportElement x="20" y="20" width="234" height="43" forecolor="#FFFFFF" uuid="a79b998a-a52b-44dc-afb7-2f16d7d95683"/>
+					<textElement>
+						<font size="34" isBold="true"/>
+					</textElement>
+					<text><![CDATA[DENTIAPP]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="13"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="41">
+			<staticText>
+				<reportElement x="-20" y="0" width="575" height="41" uuid="bfb509fb-5b75-461c-8f76-3c6149980c47">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="35" isBold="true"/>
+				</textElement>
+				<text><![CDATA[FACTURA]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="256">
+			<textField>
+				<reportElement x="130" y="210" width="425" height="32" forecolor="#666666" uuid="55ba5414-d95e-4cb7-b2a2-73382266dae5">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineColor="#006699"/>
+				</box>
+				<textElement>
+					<font size="20" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Fecha}.toString()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="-10" y="210" width="120" height="20" forecolor="#006699" uuid="ab9af475-02b2-400d-8707-81db903ae678"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Fecha]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="-10" y="170" width="120" height="20" forecolor="#006699" uuid="466035ec-e755-4c16-a2e2-0029e1d70c79"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Precio]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="130" y="170" width="425" height="32" forecolor="#666666" uuid="ef942c89-12e0-4ffa-af9b-e4f0e99c7779">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineColor="#006699"/>
+				</box>
+				<textElement>
+					<font size="20" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Precio}+"€"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="130" y="130" width="425" height="32" forecolor="#666666" uuid="e163c90a-8b89-496c-90a4-1050e3ebf6e8"/>
+				<textElement>
+					<font size="20" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Tratamiento}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="-10" y="130" width="120" height="20" forecolor="#006699" uuid="16f5f429-f242-477e-aeb4-dbb18f165aea"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Tratamiento]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="-10" y="53" width="120" height="20" forecolor="#006699" uuid="71f68d7b-68e7-431b-a363-c9d3d339b307"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Nombre Completo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="-10" y="92" width="120" height="20" forecolor="#006699" uuid="149c7562-64a6-4e82-b45d-a1a10daa6232"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[DNI]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="-10" y="10" width="120" height="32" forecolor="#006699" backcolor="#E6E6E6" uuid="20d3f620-3261-4300-aade-9f8a84d0bd6f"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[idCita]]></text>
+			</staticText>
+			<textField>
+				<reportElement mode="Opaque" x="130" y="10" width="425" height="32" forecolor="#666666" backcolor="#E6E6E6" uuid="1390d07c-a8ce-4b30-bdf6-eeb7d42a905b"/>
+				<textElement>
+					<font size="20" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{idCita}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="130" y="92" width="425" height="32" forecolor="#666666" uuid="ebdc3e1e-6e3d-4f00-ab3a-55913f53010c"/>
+				<textElement>
+					<font size="20" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{DNI}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="130" y="53" width="425" height="32" forecolor="#666666" uuid="efe858f2-83bb-4be8-8abd-293df796adc0"/>
+				<textElement>
+					<font size="20" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Nombre Completo}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band/>
+	</columnFooter>
+	<pageFooter>
+		<band height="32">
+			<textField>
+				<reportElement mode="Opaque" x="-10" y="10" width="525" height="13" backcolor="#E6E6E6" uuid="c146850a-319e-4ea4-8731-5112f3658a67"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="-11" y="10" width="111" height="13" uuid="de3a6a72-a105-45fc-abc3-a9175bc32330"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement mode="Opaque" x="515" y="10" width="40" height="13" backcolor="#E6E6E6" uuid="f378368f-f5b6-43a9-ba1f-da7f2506552f"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="57">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<staticText>
+				<reportElement x="-10" y="17" width="120" height="20" forecolor="#006699" uuid="7da31e40-ba9a-4232-b5f9-eafdd4cfb780"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[TOTAL]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="130" y="17" width="425" height="40" uuid="1b85d5ac-83d0-4d2a-be56-ce5a88bccfff"/>
+				<textElement>
+					<font size="18"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{Precio1}+"€"]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

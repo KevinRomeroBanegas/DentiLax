@@ -9,5 +9,12 @@
 	<classpathentry kind="lib" path="DentiApps/interfaz/Interfaz_DentiLax/Lib/jcalendar-1.4.jar"/>
 	<classpathentry kind="lib" path="DentiApps/interfaz/Interfaz_DentiLax/Lib/mysql-connector-java-5.1.47.jar"/>
 	<classpathentry kind="lib" path="DentiApps/interfaz/Interfaz_DentiLax/Lib/tituloazul.jar"/>
+<<<<<<< HEAD
+	<classpathentry kind="lib" path="C:/Users/MEDAC/Downloads/javahelp-2.0.02.jar"/>
+=======
+	<classpathentry kind="con" path="net.sf.jasperreports.JR_CONTAINER"/>
+	<classpathentry kind="con" path="net.sf.jasperreports.JR_DEPENDENCIES_CONTAINER"/>
+	<classpathentry kind="con" path="com.jaspersoft.server.JRS_CONTAINER"/>
+>>>>>>> 0f71ac11c4e301bd069dcf2518e14759cd71555a
 	<classpathentry kind="output" path="DentiApps/interfaz/Interfaz_DentiLax/bin"/>
 </classpath>

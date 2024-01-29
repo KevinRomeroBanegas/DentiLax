@@ -27,7 +27,11 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.File;
+
 import javax.swing.JButton;
+import javax.help.HelpBroker;
+import javax.help.HelpSet;
 import javax.swing.ImageIcon;
 import java.awt.Toolkit;
 
@@ -256,10 +260,23 @@ public class PaginaPrincipal extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
-				Ayuda ayuda = new Ayuda();
+				/*Ayuda ayuda = new Ayuda();
 				ayuda.setLocationRelativeTo(null);
 				ayuda.setLocation(370, 212);
-				ayuda.setVisible(true);
+				ayuda.setVisible(true);*/
+				
+				//codigo para abrir ayuda
+				try {
+					File fichero = new File("DentiApps\\interfaz\\Interfaz_DentiLax\\src\\help\\help_set.hs");  
+					java.net.URL hsURL = fichero.toURI().toURL();
+					HelpSet helpset = new HelpSet (getClass().getClassLoader(),hsURL); 
+					HelpBroker hb = helpset.createHelpBroker();
+					
+					hb.enableHelpOnButton(mntmNewMenuItem_7,"principal", helpset);
+					
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}
 
 			}
 

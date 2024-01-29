@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="cssPlantilla.css"/>
+    <title>Gestión de Paciente</title>
+</head>
+<body>
+    <img class="logo" src="../imagenes/dentiapp.png" alt="Logo">
+    <h1>Gestión de Pedidos</h1>
+    <hr>
+    <div class="contenido">
+        <p>
+            Esta es la página de Gestión de Paciente. A ella tiene acceso el Administrador y el Doctor, este ultimo podrá visualizar los datos pero solo el administrador podra interactuar con ella
+            <br><br>
+            En esta página, el doctor podrá ver una tabla con los datos de los paciente y un odontograma donde verá el progreso de este y podra asignar cita.
+            A continuación, se mostrará el diseño de nuestra interfaz, señalizando y explicando la funcionalidad de los distintos 
+            elementos destacables:
+        </p>
+        <img class="captura" src="../imagenes/pacientes.jpg" alt="Imagen Paciente">
+    
+        <p>Listado de elementos:</p>
+        <ol>
+            <li>
+                <span class="elemento">Tabla:</span>Está conectada a la base de datos "Pacientes", y nos permite visualizar el 
+                contenido de este. Donde tendremos los datos personales de los paciente. El doctor tendrá todos los datos en su mano pero no los puede modificar.
+                Solo el administrador puede modificar datos personales.
+            <li>
+                <span class="elemento">Botón "Agragar, modificar, baja":</span>Estos botones realizan su accion correspondiente a los paciente, la cual esta disponible solamente si entramos.
+                como admnistrador.
+            </li>
+            <li>
+                <span class="elemento">Botón "Odontograma":</span>Este es utilizado mayoritariamente por el doctor, el cual puede observar y modificar las acciones que hay sobre el paciente.
+            </li>
+            <li>
+                <span class="elemento">Botón "Filtrar Tabla":</span>Tanto el administrador como el doctor puede buscar al paciente conociendo su DNI y se les mostrara en la ventana ya filtrado.
+            </li>
+            <li>
+                <span class="elemento">Cuadro de texto "Datos Cliente":</span>En él se mostrará todos los datos de paciente seleccionado .
+          
+        </ol>
+    </div>
+    
+
+</body>
+</html>
