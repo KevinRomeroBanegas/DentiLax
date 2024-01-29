@@ -9,6 +9,15 @@ import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
 
+import org.apache.commons.collections4.map.HashedMap;
+
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.view.JasperViewer;
+
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
@@ -17,10 +26,12 @@ import java.awt.Toolkit;
 
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
+import java.util.Map;
 import java.awt.event.ActionEvent;
 import javax.swing.ImageIcon;
 import java.awt.Dialog.ModalityType;
 import java.awt.Color;
+
 
 public class Factura extends JDialog {
 
@@ -29,6 +40,7 @@ public class Factura extends JDialog {
 
 	private JTextField text_nombreDoctor;
 	private JTable table_especialidad;
+	private JasperReport reporte; 
 
 	public static void main(String[] args) {
 
@@ -49,6 +61,24 @@ public class Factura extends JDialog {
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel);
 		contentPanel.setLayout(null);
+		
+		JButton btnNewButton = new JButton("New button");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					Map<String, Object> parametros = new HashedMap<String, Object>();
+					parametros.put("DNICliente", "77193434Y");
+					reporte=JasperCompileManager.compileReport("src/Informes/factura.jrxml");
+					JasperPrint p =JasperFillManager.fillReport(reporte, parametros, bbdd.conectar());
+					JasperViewer.viewReport(p,true);
+				} catch (JRException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
+		btnNewButton.setBounds(480, 575, 89, 23);
+		contentPanel.add(btnNewButton);
 		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setBackground(new Color(24, 165, 174));

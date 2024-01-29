@@ -9,7 +9,7 @@
 JOIN bbdd_dentista.cita ON factura.idCita=cita.idCita
 JOIN bbdd_dentista.tratamiento ON tratamiento.Nombre=cita.NombreTrat
 JOIN bbdd_dentista.cliente ON cliente.DNI = cita.DniClientes
-WHERE cliente.DNI= $P{DNICliente} ]]>
+WHERE cliente.DNI= $P{DNICliente}]]>
 	</queryString>
 	<field name="idCita" class="java.lang.Integer">
 		<property name="com.jaspersoft.studio.field.name" value="idCita"/>
