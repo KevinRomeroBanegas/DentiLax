@@ -708,4 +708,25 @@ public class BBDD {
 		return DNI_cliente;
 
 	}
+
+	public String sacarNombreDoctor(String dNI) {
+		conectar();
+		String Nombre = null;
+		try {
+			String sql = "SELECT Nombre FROM bbdd_dentista.usuario WHERE DNI='"+dNI+"'";
+			Statement st;
+
+			st = cn.createStatement();
+			ResultSet res = st.executeQuery(sql);
+			while (res.next()) {
+				Nombre = res.getString("Nombre");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return Nombre;
+	}
+	
+	
 }

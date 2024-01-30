@@ -285,8 +285,7 @@ public class Cita extends JDialog {
 		table_cita.setBounds(10, 11, 864, 463);
 		table_cita = bbdd.MostrarTabla("Cita", table_cita);
 		if("Doctor".equals(rol)) {
-			String consulta="Carlos Alcaraz Montes";
-			System.out.print(consulta);
+			String consulta=bbdd.sacarNombreDoctor(DNI);
 			table_cita = bbdd.MostrarTablaCitaDoctor("Cita", table_cita, consulta);
 		}
 		table_cita.addMouseListener(new MouseAdapter() {
