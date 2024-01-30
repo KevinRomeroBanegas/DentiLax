@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<!-- 
-    This is the DTD for favorites
-    Copyright (c) 2001 Sun Microsystems
-
-    @(#)favorites_2_0.dtd 1.2 03/19/02
--->
+<!-- This is the DTD for favorites Copyright (c) 2001 Sun Microsystems @(#)favorites_2_0.dtd 
+	1.2 03/19/02 -->
 
 
 <!-- It is versioned -->
@@ -16,7 +12,7 @@
     xml:lang CDATA #IMPLIED
   >
 
-  <!-- an item -->
+<!-- an item -->
   
   <!ELEMENT favoriteitem (#PCDATA |favoriteitem)*>
   <!ATTLIST favoriteitem
@@ -26,9 +22,4 @@
     target CDATA #IMPLIED
     text CDATA #IMPLIED
   >
-<!-- 
-  Change list:
-
-  Created - Richard Gregor, 28 August '01
-
- -->
+<!-- Change list: Created - Richard Gregor, 28 August '01 -->

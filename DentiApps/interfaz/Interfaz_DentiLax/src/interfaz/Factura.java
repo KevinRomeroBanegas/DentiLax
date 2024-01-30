@@ -26,21 +26,29 @@ import java.awt.Toolkit;
 
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.Map;
 import java.awt.event.ActionEvent;
 import javax.swing.ImageIcon;
 import java.awt.Dialog.ModalityType;
 import java.awt.Color;
-
+import java.awt.Dialog;
 
 public class Factura extends JDialog {
 
 	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
 
-	private JTextField text_nombreDoctor;
+	private JTextField text_idCita;
 	private JTable table_especialidad;
-	private JasperReport reporte; 
+	private JasperReport reporte;
 
 	public static void main(String[] args) {
 
@@ -61,24 +69,7 @@ public class Factura extends JDialog {
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel);
 		contentPanel.setLayout(null);
-		
-		JButton btnNewButton = new JButton("New button");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				try {
-					Map<String, Object> parametros = new HashedMap<String, Object>();
-					parametros.put("DNICliente", "77193434Y");
-					reporte=JasperCompileManager.compileReport("interfaz/Interfaz_DentiLax/src/Informes/factura.jrxml");
-					JasperPrint p =JasperFillManager.fillReport(reporte, parametros, bbdd.conectar());
-					JasperViewer.viewReport(p,true);
-				} catch (JRException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-			}
-		});
-		btnNewButton.setBounds(480, 575, 89, 23);
-		contentPanel.add(btnNewButton);
+
 		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setBackground(new Color(24, 165, 174));
@@ -92,20 +83,41 @@ public class Factura extends JDialog {
 				buttonPane.add(lblNewLabel_1);
 			}
 
-			text_nombreDoctor = new JTextField();
-			text_nombreDoctor.setBounds(180, 10, 285, 20);
-			buttonPane.add(text_nombreDoctor);
-			text_nombreDoctor.setColumns(10);
-			
+			text_idCita = new JTextField();
+			text_idCita.setBounds(180, 10, 285, 20);
+			buttonPane.add(text_idCita);
+			text_idCita.setColumns(10);
+
 			JButton btn_filtrarTabla = new JButton("Filtrar tabla");
 			btn_filtrarTabla.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					String consulta=JOptionPane.showInputDialog("Ponga el ID por el cual quiere filtrar la tabla");
+					String consulta = JOptionPane.showInputDialog("Ponga el ID por el cual quiere filtrar la tabla");
 					bbdd.filtro(consulta, table_especialidad);
 				}
 			});
 			btn_filtrarTabla.setBounds(749, 12, 105, 20);
 			buttonPane.add(btn_filtrarTabla);
+
+			JButton btnNewButton = new JButton("Sacar factura");
+			btnNewButton.setBounds(634, 12, 105, 20);
+			buttonPane.add(btnNewButton);
+			btnNewButton.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					try {
+						Map<String, Object> parametros = new HashedMap<String, Object>();
+						parametros.put("DNICliente", bbdd.sacarDNI(text_idCita.getText()));
+						reporte = JasperCompileManager
+								.compileReport("interfaz/Interfaz_DentiLax/src/Informes/factura.jrxml");
+						JasperPrint p = JasperFillManager.fillReport(reporte, parametros, bbdd.conectar());
+						JasperViewer.viewReport(p, false);
+						dispose();
+					} catch (JRException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+
+				}
+			});
 		}
 
 		JLabel lblNewLabel = new JLabel("Datos Facturas");
@@ -116,14 +128,14 @@ public class Factura extends JDialog {
 		JButton btn_modificarEspecialidad = new JButton("Modificar");
 		btn_modificarEspecialidad.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (text_nombreDoctor.getText().isBlank()) {
+				if (text_idCita.getText().isBlank()) {
 					JOptionPane.showMessageDialog(null, "Rellena el campo ID Cita");
 				} else {
 					JOptionPane.showMessageDialog(null, "Factura Modificada");
-					String []valores=new String [1];
-					valores[0]=text_nombreDoctor.getText();
+					String[] valores = new String[1];
+					valores[0] = text_idCita.getText();
 					bbdd.modificar("factura", valores, false, table_especialidad);
-					table_especialidad=bbdd.MostrarTabla("factura", table_especialidad);
+					table_especialidad = bbdd.MostrarTabla("factura", table_especialidad);
 				}
 			}
 		});
@@ -133,14 +145,14 @@ public class Factura extends JDialog {
 		JButton btn_agregarEspecialidad = new JButton("Agregar");
 		btn_agregarEspecialidad.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (text_nombreDoctor.getText().isBlank()) {
+				if (text_idCita.getText().isBlank()) {
 					JOptionPane.showMessageDialog(null, "Rellena el campo ID Cita");
 				} else {
-					String []valores=new String [1];
-					valores[0]=text_nombreDoctor.getText();
+					String[] valores = new String[1];
+					valores[0] = text_idCita.getText();
 					bbdd.insertar("factura", valores, false);
 					JOptionPane.showMessageDialog(null, "Factura Agregada");
-					table_especialidad=bbdd.MostrarTabla("factura", table_especialidad);
+					table_especialidad = bbdd.MostrarTabla("factura", table_especialidad);
 
 				}
 
@@ -152,15 +164,15 @@ public class Factura extends JDialog {
 		JButton btn_bajaEspecialidad = new JButton("Baja");
 		btn_bajaEspecialidad.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (text_nombreDoctor.getText().isBlank()) {
+				if (text_idCita.getText().isBlank()) {
 					JOptionPane.showMessageDialog(null, "Rellena el campo ID Cita");
 
 				} else {
-					String []valores=new String [1];
-					valores[0]=text_nombreDoctor.getText();
+					String[] valores = new String[1];
+					valores[0] = text_idCita.getText();
 					bbdd.borrar("factura", valores, false);
 					JOptionPane.showMessageDialog(null, "Factura Borrada");
-					table_especialidad=bbdd.MostrarTabla("factura", table_especialidad);
+					table_especialidad = bbdd.MostrarTabla("factura", table_especialidad);
 
 				}
 			}
@@ -171,6 +183,15 @@ public class Factura extends JDialog {
 		table_especialidad = new JTable();
 		table_especialidad.setBounds(10, 11, 864, 552);
 		table_especialidad = bbdd.MostrarTabla("factura", table_especialidad);
+		table_especialidad.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if (e.getClickCount() == 2) {
+					String[] valores = bbdd.SacarValoresTabla(table_especialidad);
+					text_idCita.setText(valores[0].toString());
+				}
+			}
+		});
 		contentPanel.add(table_especialidad);
 
 		JLabel Fondo_especialidad = new JLabel("");

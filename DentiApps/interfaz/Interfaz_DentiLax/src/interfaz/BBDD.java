@@ -291,10 +291,6 @@ public class BBDD {
 		}
 	}
 
-	public void obtenerCantidadActual(String tableNa, String idStock) {
-
-	}
-
 	public JTable MostrarTabla(String TableName, JTable table) {
 		conectar();
 		try {
@@ -637,8 +633,6 @@ public class BBDD {
 		}
 		return existe;
 	}
-	
-	
 
 	public JTable MostrarTablaCitaDoctor(String TableName, JTable table, String doctor) {
 		conectar();
@@ -693,4 +687,46 @@ public class BBDD {
 		}
 		return table;
 	}
+
+	public String sacarDNI(String id) {
+		conectar();
+		String DNI_cliente = null;
+		try {
+			String sql = "SELECT cita.DniClientes FROM bbdd_dentista.cita WHERE cita.idCita=(SELECT idCita FROM bbdd_dentista.factura WHERE idCita="
+					+ id + ")";
+			Statement st;
+
+			st = cn.createStatement();
+			ResultSet res = st.executeQuery(sql);
+			while (res.next()) {
+				DNI_cliente = res.getString("DniClientes");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return DNI_cliente;
+
+	}
+
+	public String sacarNombreDoctor(String dNI) {
+		conectar();
+		String Nombre = null;
+		try {
+			String sql = "SELECT Nombre FROM bbdd_dentista.usuario WHERE DNI='"+dNI+"'";
+			Statement st;
+
+			st = cn.createStatement();
+			ResultSet res = st.executeQuery(sql);
+			while (res.next()) {
+				Nombre = res.getString("Nombre");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return Nombre;
+	}
+	
+	
 }

@@ -14,6 +14,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JMenu;
 import java.awt.Font;
+import java.awt.Point;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
@@ -25,6 +26,7 @@ import javax.swing.JPopupMenu;
 
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
@@ -259,11 +261,6 @@ public class PaginaPrincipal extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-
-				/*Ayuda ayuda = new Ayuda();
-				ayuda.setLocationRelativeTo(null);
-				ayuda.setLocation(370, 212);
-				ayuda.setVisible(true);*/
 				
 				//codigo para abrir ayuda
 				try {
@@ -271,6 +268,9 @@ public class PaginaPrincipal extends JFrame {
 					java.net.URL hsURL = fichero.toURI().toURL();
 					HelpSet helpset = new HelpSet (getClass().getClassLoader(),hsURL); 
 					HelpBroker hb = helpset.createHelpBroker();
+					
+					hb.setLocation(new Point(380,230));
+					hb.setSize(new Dimension(884, 660));
 					
 					hb.enableHelpOnButton(mntmNewMenuItem_7,"principal", helpset);
 					

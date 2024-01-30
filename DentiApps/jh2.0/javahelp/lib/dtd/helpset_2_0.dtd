@@ -1,14 +1,10 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 
-<!-- 
-    This is the DTD for helpset
-    Copyright (c) 1998,1999 Sun Microsystems
-
-    @(#)helpset_2_0.dtd 1.5 06/05/03
--->
+<!-- This is the DTD for helpset Copyright (c) 1998,1999 Sun Microsystems 
+	@(#)helpset_2_0.dtd 1.5 06/05/03 -->
 
 
-<!-- A HelpSet.  It is versioned -->
+<!-- A HelpSet. It is versioned -->
 
 <!ELEMENT helpset (title, maps, view+, subhelpset*, presentation*, impl?)>
   <!ATTLIST helpset version ( 1.0 | 2.0) #IMPLIED>
@@ -74,26 +70,9 @@
   <!ATTLIST viewerregistry viewertype CDATA #REQUIRED>
   <!ATTLIST viewerregistry viewerclass CDATA #REQUIRED>
 
-<!--
-
-  Change list:
-
-  Cleanup to be more XML-ish - epll, 15 Dec '98
-  xml:lang attributes for title, label, and name are no more.
-  engine is now an attribute of data.
-  impl is no more; use PI's instead.
-  data inside map is now the map tag.
-
-  More cleanup - epll, 16 Dec '98
-  moved homeID into map
-  made data inside map be mapref (for map reference)
-
-  Added mergetype attribute into view - rgregor 6 June '01
-
-  Added versions
-
-  Added presentation
-
-  Added impl
-
- -->
+<!-- Change list: Cleanup to be more XML-ish - epll, 15 Dec '98 xml:lang 
+	attributes for title, label, and name are no more. engine is now an attribute 
+	of data. impl is no more; use PI's instead. data inside map is now the map 
+	tag. More cleanup - epll, 16 Dec '98 moved homeID into map made data inside 
+	map be mapref (for map reference) Added mergetype attribute into view - rgregor 
+	6 June '01 Added versions Added presentation Added impl -->
