@@ -109,8 +109,11 @@ public class Factura extends JDialog {
 						reporte = JasperCompileManager
 								.compileReport("interfaz/Interfaz_DentiLax/src/Informes/factura.jrxml");
 						JasperPrint p = JasperFillManager.fillReport(reporte, parametros, bbdd.conectar());
-						JasperViewer.viewReport(p, false);
-						dispose();
+						JasperViewer viewer = new JasperViewer(p, false);
+			            viewer.setVisible(true);
+			            dispose();
+			            viewer.toFront();
+						
 					} catch (JRException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
