@@ -9,6 +9,15 @@ import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
 
+import org.apache.commons.collections4.map.HashedMap;
+
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.view.JasperViewer;
+
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
@@ -20,6 +29,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.text.SimpleDateFormat;
+import java.util.Map;
 import java.awt.event.ActionEvent;
 import javax.swing.ImageIcon;
 import java.awt.Dialog.ModalityType;
@@ -37,6 +47,7 @@ public class Paciente extends JDialog {
 	private JTextField text_telefonoPaciente;
 	private JTextField text_edadPaciente;
 	private JTable table_paciente;
+	private JasperReport reporte;
 
 	public static void main(String[] args) {
 
@@ -138,19 +149,49 @@ public class Paciente extends JDialog {
 							odon.setLocationRelativeTo(null);
 							odon.setLocation(370, 212);
 							odon.setVisible(true);
+							dispose();
 						} else {
 							JOptionPane.showMessageDialog(null, "No se ha podido encontrar el odontograma o no existe",
 									"ERROR", JOptionPane.ERROR_MESSAGE);
 						}
 					} else {
-						JOptionPane.showMessageDialog(null, "Rellena el campo DNI",
-								"ERROR", JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(null, "Rellena el campo DNI", "ERROR", JOptionPane.ERROR_MESSAGE);
 					}
 				}
 			});
 			btn_odontograma.setFont(new Font("Tahoma", Font.BOLD, 15));
 			btn_odontograma.setBounds(526, 93, 213, 35);
 			buttonPane.add(btn_odontograma);
+
+			JButton btn_generarHistorial = new JButton("Generar Historial");
+			btn_generarHistorial.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					if (text_dniPaciente.getText().isBlank()) {
+						try {
+							Map<String, Object> parametros = new HashedMap<String, Object>();
+							parametros.put("DNI", text_dniPaciente.getText());
+							reporte = JasperCompileManager
+									.compileReport("interfaz/Interfaz_DentiLax/src/Informes/Cliente.jrxml");
+							JasperPrint p = JasperFillManager.fillReport(reporte, parametros, bbdd.conectar());
+							JasperViewer viewer = new JasperViewer(p, false);
+							viewer.setVisible(true);
+							dispose();
+							viewer.toFront();
+
+						} catch (JRException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+					} else {
+						JOptionPane.showMessageDialog(null, "Rellene el campo DNI para generar su historial",
+								"ERROR", JOptionPane.ERROR_MESSAGE);
+					}
+
+				}
+			});
+			btn_generarHistorial.setActionCommand("Cancel");
+			btn_generarHistorial.setBounds(450, 485, 130, 20);
+			contentPanel.add(btn_generarHistorial);
 
 			JButton btn_filtrarTabla = new JButton("Filtrar tabla");
 			btn_filtrarTabla.addActionListener(new ActionListener() {
@@ -195,7 +236,7 @@ public class Paciente extends JDialog {
 					int result = JOptionPane.showConfirmDialog(null, "¿Quieres modificar esta paciente?",
 							"MODIFICAR PACIENTE", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 					if (result == JOptionPane.YES_OPTION) {
-						
+
 						bbdd.modificar("cliente", valores, false, table_paciente);
 						JOptionPane.showMessageDialog(null, "Paciente Modificado");
 					}
@@ -298,8 +339,8 @@ public class Paciente extends JDialog {
 				"C:\\Users\\kevin\\Documents\\GitHub\\DentiLax\\DentiApps\\interfaz\\Interfaz_DentiLax\\Fondo 1200x800.png"));
 		Fondo_paciente.setBounds(0, 0, 884, 660);
 		contentPanel.add(Fondo_paciente);
-		
-		//codigo restricciones de acceso de usuario doctor
+
+		// codigo restricciones de acceso de usuario doctor
 		if (rol.equals("Doctor")) {
 			btn_bajaCliente.setEnabled(false);
 			btn_agregarCliente.setEnabled(false);

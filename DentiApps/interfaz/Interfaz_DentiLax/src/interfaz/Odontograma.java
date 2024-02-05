@@ -8,6 +8,9 @@ import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
+
+import org.apache.commons.collections4.map.HashedMap;
+
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
@@ -17,6 +20,7 @@ import java.awt.event.MouseEvent;
 import java.text.SimpleDateFormat;
 import java.time.ZonedDateTime;
 import java.util.Calendar;
+import java.util.Map;
 
 import javax.swing.JTextField;
 import javax.swing.ImageIcon;
@@ -28,6 +32,13 @@ import java.awt.Toolkit;
 import javax.swing.JTextArea;
 import com.toedter.calendar.JDateChooser;
 
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.view.JasperViewer;
+
 public class Odontograma extends JDialog {
 
 	private static final long serialVersionUID = 1L;
@@ -36,6 +47,7 @@ public class Odontograma extends JDialog {
 	private JTable table_stock;
 	private JTextArea text_historial;
 	private JTextArea text_descripcion;
+	private JasperReport reporte;
 
 	public static void main(String[] args) {
 		try {

@@ -2,7 +2,7 @@
 <!-- Created with Jaspersoft Studio version 6.20.6.final using JasperReports Library version 6.20.6-5c96b6aa8a39ac1dc6b6bea4b81168e16dd39231  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="informes" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="2f6de8de-a404-4fd5-87dd-7d5859aa4575">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
-	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="ConexionPrueba_Jasper"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Conexion_Jasper"/>
 	<parameter name="DNICliente" class="java.lang.String"/>
 	<queryString language="SQL">
 		<![CDATA[SELECT factura.idCita, cita.DniClientes AS DNI,cliente.Nombre AS "Nombre Completo", cita.NombreTrat AS Tratamiento, CONCAT(tratamiento.Precio,'€') AS Precio, CONCAT(cita.Fecha,',',cita.Hora) AS Fecha FROM bbdd_dentista.factura 
