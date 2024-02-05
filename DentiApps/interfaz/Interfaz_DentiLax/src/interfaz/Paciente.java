@@ -166,7 +166,7 @@ public class Paciente extends JDialog {
 			JButton btn_generarHistorial = new JButton("Generar Historial");
 			btn_generarHistorial.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					if (text_dniPaciente.getText().isBlank()) {
+					if (text_dniPaciente.getText().isBlank()!=true) {
 						try {
 							Map<String, Object> parametros = new HashedMap<String, Object>();
 							parametros.put("DNI", text_dniPaciente.getText());
