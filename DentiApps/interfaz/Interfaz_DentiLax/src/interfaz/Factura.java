@@ -91,8 +91,8 @@ public class Factura extends JDialog {
 			JButton btn_filtrarTabla = new JButton("Filtrar tabla");
 			btn_filtrarTabla.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					String consulta = JOptionPane.showInputDialog("Ponga el ID por el cual quiere filtrar la tabla");
-					bbdd.filtro(consulta, table_especialidad);
+					String DNI = JOptionPane.showInputDialog("Escribe el DNI del paciente");
+					bbdd.filtrarFacturas(DNI, table_especialidad);
 				}
 			});
 			btn_filtrarTabla.setBounds(749, 12, 105, 20);

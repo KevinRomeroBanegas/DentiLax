@@ -240,6 +240,9 @@ public class Cita extends JDialog {
 						JOptionPane.showMessageDialog(null, "Cita insertada");
 						bbdd.insertar("cita", valores, true);
 						table_cita = bbdd.MostrarTabla("Cita", table_cita);
+						String [] idCita = new String [1];
+						idCita[0]= ""+bbdd.sacarIdCita(table_cita)+"";
+						bbdd.insertar("factura", idCita, false);
 					
 					} else {
 						JOptionPane.showMessageDialog(null,
